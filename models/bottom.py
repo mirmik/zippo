@@ -3,14 +3,15 @@
 
 from zencad import *
 from drive_place import drive_place
+from params import *
 
-x = 100
-y = 150
-z = 15
-t = 1.5
+x = body_x
+y = body_y
+z = bottom_z
+t = bottom_wall_thikness
 
-s = y/4
-sl = 40
+s = dist_between_whells
+sl = wheel_window 
 
 #a = mirrorXZ()
 #b = translate(+x/4,-y/2,0)
@@ -24,10 +25,10 @@ stiffer_trans = multitransform([
 	translate(+x/4,-y/2,0),
 	mirrorXZ() * translate(-x/4,-y/2,0),
 	mirrorXZ() * translate(+x/4,-y/2,0),
-	translate(+x/2,-s*3/8,0) * rotateZ(gr(90)),
-	translate(-x/2,-s*3/8,0) * rotateZ(-gr(90)),
-	translate(+x/2,s*3/8,0) * rotateZ(gr(90)),
-	translate(-x/2,s*3/8,0) * rotateZ(-gr(90)),
+	translate(+x/2,-dist_between_whells*3/16,0) * rotateZ(gr(90)),
+	translate(-x/2,-dist_between_whells*3/16,0) * rotateZ(-gr(90)),
+	translate(+x/2,dist_between_whells*3/16,0) * rotateZ(gr(90)),
+	translate(-x/2,dist_between_whells*3/16,0) * rotateZ(-gr(90)),
 ])
 
 sqtrans = multitransform([
@@ -52,7 +53,7 @@ m = (m
 	- sqtrans(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
  	
  	#Drive places
-	- sqtrans(drive_place.translate(x/2-t, s, 0))
+	- sqtrans(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
 
 	+stiffer_trans(stiffener)
 )
