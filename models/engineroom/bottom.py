@@ -4,6 +4,7 @@
 from zencad import *
 from drive_place import drive_place
 from params import *
+from utils import sqtrans
 
 x = body_x
 y = body_y
@@ -31,12 +32,6 @@ stiffer_trans = multitransform([
 	translate(-x/2,dist_between_whells*3/16,0) * rotateZ(-gr(90)),
 ])
 
-sqtrans = multitransform([
-	translate(0,0,0),
-	mirrorYZ(),
-	mirrorXZ(),
-	mirrorZ(),
-])
 
 m =  difference([
 	linear_extrude(rectangle(x, y, center = True).fillet(5,[0,1,2,3]),(0,0,z)),
