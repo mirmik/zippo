@@ -2,15 +2,24 @@
 #coding: utf-8
 
 from zencad import *
+from params import *
 
-s = box(5,3,15) - cylinder(h=3, r=1).rotateX(gr(90)).up(15/2+3/2).forw(3).right(5/2)
+#Переделка оригинальной стойки. Убрал скругление в изначальной модели
+
+t = thickness
+
+ssize = (5, t, miniservo_width + t)
+shole_radius = miniservo_mount_radius
+shole_up = t + miniservo_width / 2 
+
+s = box(size = ssize) - cylinder(h=t, r=shole_radius).rotateX(gr(90)).up(shole_up).forw(t).right(ssize[0]/2)
 
 m = (
-	box(34, 10, 1.5) 
-	+ s.right(29)
+	box(miniservo_length, miniservo_height, t) 
+	+ s.right(miniservo_length - ssize[0])
 	+ s
-	- cylinder(h=3, r=1).forw(6.5).right(5/2)
-	- cylinder(h=3, r=1).forw(6.5).right(5/2 + 29)
+	+ box(t, miniservo_height, t).left(t)
+	+ box(t, t, ssize[2]).left(t)
 )
 
 
