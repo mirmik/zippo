@@ -20,7 +20,14 @@ for i in range(0,len(r0)):
 
 pol = polygon(parr)
 
-m = linear_extrude(circle(r=5) - pol, 5).up(3) + linear_extrude(circle(r=10) - pol, 3)
+m = linear_extrude(circle(r=5) - pol, 2.5).up(1.5) + linear_extrude(circle(r=8) - circle(r=2.5/2), 1.5)
+
+m = (m 
+	- cylinder(r=0.5, h=1.5).right(6.5)
+	- cylinder(r=0.5, h=1.5).left(6.5)
+	- cylinder(r=0.5, h=1.5).forw(6.5)
+	- cylinder(r=0.5, h=1.5).back(6.5)
+)
 
 display(m)
 
