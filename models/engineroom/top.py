@@ -9,10 +9,14 @@ x = params.body_x
 y = params.body_y
 t = params.bottom_wall_thikness
 
-z2 = 10
+z2 = 15
 nhz = 3
 
-nut_holder = linear_extrude(ngon(r=5,n=6),(0,0,nhz)) - linear_extrude(ngon(r=3,n=6),(0,0,nhz))
+platform_offset = 40
+
+nut_holder = linear_extrude(ngon(r=5.5,n=6),(0,0,nhz)) - linear_extrude(ngon(r=4,n=6),(0,0,nhz))
+wires_path_hole = box(5,10,t)
+wires_path_hole_trans = (35,20,0)
 
 m = (
 	#Основное тело
@@ -28,14 +32,15 @@ m = (
 	- sqtrans(cylinder(r=3,h=z2).translate(x/2-5,y/2-5,0))
 	
 	#Отверстия под крепления поворотной платформы
-	- sqtrans(cylinder(r=1,h=t).translate(24,24,0)).forw(30)
+	- sqtrans(cylinder(r=1.5,h=t).translate(24,24,0)).forw(platform_offset)
+	- box(20,20,t).translate(-10,platform_offset-10,0)
 
 	#Держатели гаек
-	+ sqtrans(nut_holder.translate(24,24,0)).forw(30).up(t/2)
+	+ sqtrans(nut_holder.translate(24,24,0)).forw(platform_offset).up(t/2)
 
 	#Для проводов
-	- cylinder(r = 10, h = t).back(20)
-)
+	- sqtrans(wires_path_hole.translate(*wires_path_hole_trans)).back(30)
+).mirrorXY()
 
 display(m)
 show()
