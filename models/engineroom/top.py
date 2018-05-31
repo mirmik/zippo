@@ -27,11 +27,11 @@ m = (
 	#Отверстия в колоннах
 	- sqtrans(cylinder(r=3,h=z2).translate(x/2-5,y/2-5,0))
 	
-	#Отверстия под крепления аккумуляторного отсека
-	- sqtrans(cylinder(r=1,h=t).translate(30,20,0)).forw(30)
+	#Отверстия под крепления поворотной платформы
+	- sqtrans(cylinder(r=1,h=t).translate(24,24,0)).forw(30)
 
 	#Держатели гаек
-	+ sqtrans(nut_holder.translate(30,20,0)).forw(30).up(t/2)
+	+ sqtrans(nut_holder.translate(24,24,0)).forw(30).up(t/2)
 
 	#Для проводов
 	- cylinder(r = 10, h = t).back(20)

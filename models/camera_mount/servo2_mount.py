@@ -15,12 +15,12 @@ shole_up = t + miniservo_width / 2
 s = box(size = ssize) - cylinder(h=t, r=shole_radius).rotateX(gr(90)).up(shole_up).forw(t).right(ssize[0]/2)
 
 m = (
-	box(miniservo_length, miniservo_height, t) 
-	+ s.right(miniservo_length - ssize[0])
+	box(miniservo_length + 5 * 2, miniservo_height, t) 
+	+ s.right(miniservo_length + 5)
 	+ s
 	+ box(t, miniservo_height, t).left(t)
 	+ box(t, t, ssize[2]).left(t)
-)
+).mirrorXZ()
 
 
 display(m)
