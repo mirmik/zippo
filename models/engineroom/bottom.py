@@ -3,8 +3,10 @@
 
 from zencad import *
 from drive_place import drive_place
+from usb_charger_plate import usb_charger_top_hole, usb_charger_position, on_hole, on_position, usb_charger_protect_hole
 from params import *
-from utils import sqtrans
+
+from m_accumholder import hole_x, hole_y, hole_d
 
 x = body_x
 y = body_y
@@ -14,22 +16,28 @@ t = bottom_wall_thikness
 s = dist_between_whells
 sl = wheel_window 
 
-#a = mirrorXZ()
-#b = translate(+x/4,-y/2,0)
-
+#Ребро
 stiffener = linear_extrude(polygon(points([ 
-	(0,0), (z,0), (0,z*2)
+	(0,0), (z,0), (0,20)
 ])),(0,0,t),center=True).rotateY(gr(-90))
 
-stiffer_trans = multitransform([
-	translate(-x/4,-y/2,0),
-	translate(+x/4,-y/2,0),
-	mirrorXZ() * translate(-x/4,-y/2,0),
-	mirrorXZ() * translate(+x/4,-y/2,0),
+stiffener_long = linear_extrude(polygon(points([ 
+	(0,0), (z,0), (0,30)
+])),(0,0,t),center=True).rotateY(gr(-90))
+
+#Расстановка рёбер.
+stiffer_trans1 = multitransform([
 	translate(+x/2,-dist_between_whells*3/16,0) * rotateZ(gr(90)),
 	translate(-x/2,-dist_between_whells*3/16,0) * rotateZ(-gr(90)),
 	translate(+x/2,dist_between_whells*3/16,0) * rotateZ(gr(90)),
 	translate(-x/2,dist_between_whells*3/16,0) * rotateZ(-gr(90)),
+])
+
+stiffer_trans2 = multitransform([
+	translate(-x/4,-y/2,0),
+	translate(+x/4,-y/2,0),
+	mirrorXZ() * translate(-x/4,-y/2,0),
+	mirrorXZ() * translate(+x/4,-y/2,0),
 ])
 
 
@@ -40,20 +48,29 @@ m =  difference([
 
 drive_place = drive_place(t,z,sl,t)
 
-m = (m
-	#Cylinders body
-	+ sqtrans(cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
+def bottom_model():
+	return (m
+		#Cylinders body
+		+ sqrtrans()(cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
  	
- 	#Cylinders holes
-	- sqtrans(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
+ 		#Cylinders holes
+		- sqrtrans()(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
  	
- 	#Drive places
-	- sqtrans(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
+ 		#Drive places
+		- sqrtrans()(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
 
-	+stiffer_trans(stiffener)
-)
+		#accumholder place
+		- sqrtrans()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0)).rotateZ(gr(90))
 
+		#Добавляем ребра жесткости.
+		+stiffer_trans1(stiffener)
+		+stiffer_trans2(stiffener_long)
 
-#display(stiffener)
-display(m)
-show()
+		- usb_charger_position(usb_charger_top_hole())
+		- usb_charger_position(usb_charger_protect_hole()).down(t)
+		- on_position(on_hole())
+	)
+
+if __name__ == "__main__":
+	display(bottom_model())
+	show()
