@@ -8,6 +8,8 @@ from params import *
 
 from m_accumholder import hole_x, hole_y, hole_d
 
+import voltregul
+
 x = body_x
 y = body_y
 z = bottom_z
@@ -69,6 +71,9 @@ def bottom_model():
 		- usb_charger_position(usb_charger_top_hole())
 		- usb_charger_position(usb_charger_protect_hole()).down(t)
 		- on_position(on_hole())
+
+		+ voltregul.position_0(voltregul.holder)
+		+ voltregul.position_1(voltregul.holder)
 	)
 
 if __name__ == "__main__":

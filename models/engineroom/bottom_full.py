@@ -10,14 +10,17 @@ from m_accumholder import accumholder_model
 from usb_charger_plate import usb_charger, usb_charger_position, usb_charger_protect 
 from usb_charger_plate import y as usb_charger_y
 #from lipo_charger_protect import usb_protect
-from m_wheel import quadro_wheel
+import m_wheel
+import voltregul
 
 bottom_full_arr = [ 
 	bottom_model(), 
 	accumholder_model().up(bottom_wall_thikness),
-	quadro_wheel(),
+	m_wheel.quadro(),
 	usb_charger_position(usb_charger()),
 	usb_charger_position(usb_charger_protect()),
+	voltregul.position_0(voltregul.plate),
+	voltregul.position_1(voltregul.plate),
 ]
 
 def bottom_full():
