@@ -9,13 +9,11 @@ from bottom import z as bottom_z
 from top import top_model
 from top import z2 as top_z
 
-def full():
- 	return union([ 
-		bottom_full(), 
-		top_model().up(bottom_z+top_z),
- 	])
-
+def engineroom():
+ 	scene = Scene()
+ 	scene.add(top_model().up(bottom_z+top_z), Color(0,1,0))
+ 	scene.append(bottom_full())
+ 	return scene
 
 if __name__ == "__main__":
-	display(full())
-	show()
+	show(engineroom())
