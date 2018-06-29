@@ -4,6 +4,9 @@
 import zencad
 from zencad import *
 
+import evalcache
+evalcache.enable()
+
 from params import *
 from bottom import bottom_model
 from m_accumholder import accumholder_model
@@ -23,7 +26,7 @@ bottom_full_arr = [
 	voltregul.position_1(voltregul.plate),
 ]
 
-def bottom_full():
+def bottom_full_scene():
 	scene = Scene()
 
 	scene.add(bottom_model().eval(), Color(0.6,0.8,0.6))
@@ -38,4 +41,4 @@ def bottom_full():
 
 
 if __name__ == "__main__":
-	show(bottom_full())
+	show(bottom_full_scene())

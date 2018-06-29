@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 #coding: utf-8
 
+import evalcache
+evalcache.enable()
+
 from zencad import *
 from drive_place import drive_place
 from usb_charger_plate import usb_charger_top_hole, usb_charger_position, on_hole, on_position, usb_charger_protect_hole
@@ -41,8 +44,8 @@ stiffer_trans2 = multitransform([
 	mirrorXZ() * translate(-x/4,-y/2,0),
 	mirrorXZ() * translate(+x/4,-y/2,0),
 ])
-
-
+#
+#
 m =  difference([
 	linear_extrude(rectangle(x, y, center = True).fillet(5,[0,1,2,3]),(0,0,z)),
 	linear_extrude(rectangle(x-2*t, y-2*t, center = True).fillet(5-t,[0,1,2,3]),(0,0,z-t)).up(t)
@@ -53,12 +56,12 @@ drive_place = drive_place(t,z,sl,t)
 def bottom_model():
 	return (m
 		#Cylinders body
-		+ sqrtrans()(cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
- 	
- 		#Cylinders holes
+		+ sqrtrans() ( cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
+	
+		#Cylinders holes
 		- sqrtrans()(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
- 	
- 		#Drive places
+	
+		#Drive places
 		- sqrtrans()(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
 
 		#accumholder place
