@@ -26,13 +26,13 @@ bottom_full_arr = [
 def bottom_full():
 	scene = Scene()
 
-	scene.add(bottom_model(), Color(0.6,0.8,0.6))
-	scene.add(accumholder_model().up(bottom_wall_thikness), Color(1,1,1))
-	scene.add(m_wheel.quadro(), Color(1,1,1))
-	scene.add(usb_charger_position(usb_charger()), Color(1,1,1))
-	scene.add(usb_charger_position(usb_charger_protect()), Color(1,0,0))
-	scene.add(voltregul.position_0(voltregul.plate), Color(1,1,1))
-	scene.add(voltregul.position_1(voltregul.plate), Color(1,1,1))
+	scene.add(bottom_model().eval(), Color(0.6,0.8,0.6))
+	scene.add(accumholder_model().up(bottom_wall_thikness).eval(), Color(1,1,1))
+	scene.add(m_wheel.quadro().eval(), Color(1,1,1))
+	scene.add(usb_charger_position(usb_charger()).eval(), Color(1,1,1))
+	scene.add(usb_charger_position(usb_charger_protect()).eval(), Color(1,0,0))
+	scene.add(voltregul.position_0(voltregul.plate).eval(), Color(1,1,1))
+	scene.add(voltregul.position_1(voltregul.plate).eval(), Color(1,1,1))
 
 	return scene
 
