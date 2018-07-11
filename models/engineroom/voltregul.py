@@ -6,8 +6,9 @@
 from zencad import *
 from params import *
 
+#)Размеры платы.
 x=17.5
-y=37
+y=37.4
 z=1.7
 
 shift0=8

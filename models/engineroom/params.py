@@ -6,4 +6,3 @@ bottom_z = 15
 bottom_wall_thikness = 1.5
 
 dist_between_whells = 90
-wheel_window = 40 

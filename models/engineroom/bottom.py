@@ -6,20 +6,23 @@ evalcache.enable()
 
 from zencad import *
 from drive_place import drive_place
-from usb_charger_plate import usb_charger_top_hole, usb_charger_position, on_hole, on_position, usb_charger_protect_hole
+from usb_charger_plate import *
+import params
 from params import *
 
 from m_accumholder import hole_x, hole_y, hole_d
 
 import voltregul
 
+#Габариты коробки
 x = body_x
 y = body_y
 z = bottom_z
-t = bottom_wall_thikness
 
-s = dist_between_whells
-sl = wheel_window 
+t = bottom_wall_thikness #Толщина стенок и дна.
+
+dist_between_whells = params.dist_between_whells #Расстояния между осями колес.
+sl = 17 #Ширина окна под двигатель.
 
 #Ребро
 stiffener = linear_extrude(polygon(points([ 
@@ -71,9 +74,10 @@ def bottom_model():
 		+stiffer_trans1(stiffener)
 		+stiffer_trans2(stiffener_long)
 
-		- usb_charger_position(usb_charger_top_hole())
-		- usb_charger_position(usb_charger_protect_hole()).down(t)
-		- on_position(on_hole())
+		+ usb_charger_position(usb_plate_upper())
+		- usb_charger_position(usb_charger_port_hole()) #Отверстия под usb порт
+		- usb_charger_position(usb_charger_protect_hole()).down(t) #Отверстие под держатель usb зарядника
+		- on_position(on_hole()) #Отверстие под выключатель
 
 		+ voltregul.position_0(voltregul.holder)
 		+ voltregul.position_1(voltregul.holder)
