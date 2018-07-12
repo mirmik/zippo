@@ -34,4 +34,4 @@ __pycache__/
 *.out
 *.app
 
-**/.evalcache
+.evalcache
