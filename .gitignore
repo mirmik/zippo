@@ -1,3 +1,6 @@
+__pycache__/
+*.pyc
+
 # Prerequisites
 *.d
 
@@ -31,4 +34,4 @@
 *.out
 *.app
 
-**/.evalcache
+.evalcache
