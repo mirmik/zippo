@@ -27,16 +27,19 @@ hole_coords = [
 	(plate_x - 3.5, 3.5 + 58),
 ]
 
+#размер уха.
+s = 8
+
 hsys = translate(t+0.5,t+0.5,0)
 hsysm = multitransform([translate(t[0], t[1], 0) * hsys for t in hole_coords])
 ear_place = multitransform([
-	translate(0,0,0),
-	right(x -t*2-7),
-	forw(y+t*2+7),
-	translate(x-t*2-7, y+t*2+7, 0),
+	translate(x+s/2,s/2,0),
+	#right(x+s),
+	translate(s/2, y+s/2,0),
+	translate(x-s/2, y+s/2, 0),
 ])
 
-ear = box(t*2+7,t*2+7,t).back(t*2+7) - cylinder(h=t, r=1.6).translate(t+3.5,-t-3.5,0)
+ear = box(s,s,t, center=True).up(t/2) - cylinder(h=t, r=1.6)
 
 def raspbox():
 	m = (
@@ -51,7 +54,7 @@ def raspbox():
 		+ ear_place(ear)
 
 
-	).translate(-t-3.5,t+3.5,0)
+	)#.translate(-s/2,s/2,0)
 	return m
 
 
