@@ -33,6 +33,8 @@ application("main",
 		("genos.schedee"),
 		("gxx.syslock", "genos.atomic"),
 		("genos.malloc", "lin"),
+
+		("genos.displace", "reset"),
 		
 		("gxx.libc"),
 		("gxx.std"),
