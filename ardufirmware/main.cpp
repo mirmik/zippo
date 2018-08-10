@@ -14,6 +14,8 @@
 
 #include <gxx/debug/delay.h>
 
+#include <genos/proclib.h>
+
 arch::i2c_automate i2c;
 
 void error_handler() {
@@ -22,38 +24,53 @@ void error_handler() {
 
 char buf[64];
 
-char stack[256];
+char stack[512];
+char stack2[512];
 
 void operation_finish_handler() {
 	gxx::print_dump((const char*)buf, 2, 8);
 }
 
 void mainproc(void* arg);
+void mainproc2(void* arg);
 
 int main() {
 	board_init();
 	//debug_blink();
 
-	/*const char* str = "HelloWorld";
-	i2c.error_handler = error_handler;
-	i2c.operation_finish_handler = operation_finish_handler;
-	i2c.init_master();
-	i2c.start_write(0x60, str);*/
+	//i2c.error_handler = error_handler;
+	//i2c.operation_finish_handler = operation_finish_handler;
+	//i2c.init_master();
 
-	genos::create_process(mainproc, nullptr, stack);
+	genos::create_process(mainproc, nullptr, stack).detach();
+	genos::create_process(mainproc2, nullptr, stack2).detach();
+
 	genos::hal::irqs::enable();
 
-	
+	dprln("start!");
 	genos::schedule();
 }
 
 volatile int count = 3;
+volatile int count2 = 5;
 
 void mainproc(void* arg) {
-	while(count--) {
-		gxx::println("Mirmik was here");
-		//debug_delay(200000);		
-		genos::displace();
+	while(1) {
+		dprln("Mirmik was here1", count, SP);
+		genos::sleep(500);
+		//genos::displace();
+		//dprln("Mirmik was here3", count, SP);
+
+		//debug_delay(20000);
+	}
+}
+
+void mainproc2(void* arg) {
+	while(1) {
+		dprln("Mirmik was here2", count2, SP);
+		//genos::displace();
+		genos::sleep(1500);
+		//genos::displace();
 	}
 }
 
