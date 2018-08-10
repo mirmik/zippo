@@ -36,14 +36,10 @@ void mainproc2(void* arg);
 
 int main() {
 	board_init();
-	//debug_blink();
-
-	//i2c.error_handler = error_handler;
-	//i2c.operation_finish_handler = operation_finish_handler;
-	//i2c.init_master();
+	i2c.init_master();
 
 	genos::create_process(mainproc, nullptr, stack).detach();
-	genos::create_process(mainproc2, nullptr, stack2).detach();
+	//genos::create_process(mainproc2, nullptr, stack2).detach();
 
 	genos::hal::irqs::enable();
 
@@ -55,24 +51,24 @@ volatile int count = 3;
 volatile int count2 = 5;
 
 void mainproc(void* arg) {
-	while(1) {
-		dprln("Mirmik was here1", count, SP);
-		genos::sleep(500);
-		//genos::displace();
-		//dprln("Mirmik was here3", count, SP);
+	dprln("Mirmik was here1", count, SP);
 
-		//debug_delay(20000);
-	}
+	genos::set_wait_handler(i2c.operation_finish_handler);
+	
+	i2c.start_write(0x2, "H");
+	genos::wait();
+
+	gxx::println("process unwait");
 }
 
-void mainproc2(void* arg) {
+/*void mainproc2(void* arg) {
 	while(1) {
 		dprln("Mirmik was here2", count2, SP);
 		//genos::displace();
 		genos::sleep(1500);
 		//genos::displace();
 	}
-}
+}*/
 
 void genos::schedule() {
 	while(1) {
