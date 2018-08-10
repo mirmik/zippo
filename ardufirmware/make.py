@@ -52,6 +52,8 @@ application("main",
 		("g1.allocator", "malloc"),
 
 		("g0"),
+
+		("genos.addons.adafruit_motor_shield")
 	]
 )
 

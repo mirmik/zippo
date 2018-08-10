@@ -16,6 +16,8 @@
 
 #include <genos/proclib.h>
 
+#include <genos/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.h>
+
 arch::i2c_automate i2c;
 
 void error_handler() {
@@ -33,6 +35,8 @@ void operation_finish_handler() {
 
 void mainproc(void* arg);
 void mainproc2(void* arg);
+
+Adafruit_MS_PWMServoDriver mshield(i2c, 0x60);
 
 int main() {
 	board_init();
@@ -54,11 +58,14 @@ void mainproc(void* arg) {
 	dprln("Mirmik was here1", count, SP);
 
 	genos::set_wait_handler(i2c.operation_finish_handler);
-	
-	i2c.start_write(0x2, "H");
-	genos::wait();
+
+	mshield.reset();
 
 	gxx::println("process unwait");
+
+	GXX_PRINT(i2c.ERR_BF);
+	GXX_PRINT(i2c.ERR_NA);
+	GXX_PRINT(i2c.ERR_NK);
 }
 
 /*void mainproc2(void* arg) {
