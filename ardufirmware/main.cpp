@@ -16,9 +16,10 @@
 
 #include <genos/proclib.h>
 
-#include <genos/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.h>
+#include <genos/addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
 
 arch::i2c_automate i2c;
+Adafruit_MotorShield mshield;
 
 void error_handler() {
 	dprln("error_handler");
@@ -36,7 +37,6 @@ void operation_finish_handler() {
 void mainproc(void* arg);
 void mainproc2(void* arg);
 
-Adafruit_MS_PWMServoDriver mshield(i2c, 0x60);
 
 int main() {
 	board_init();
@@ -59,13 +59,34 @@ void mainproc(void* arg) {
 
 	genos::set_wait_handler(i2c.operation_finish_handler);
 
-	mshield.reset();
+	Adafruit_DCMotor *myMotor = mshield.getMotor(1);
 
-	gxx::println("process unwait");
+	mshield.begin(&i2c);  // create with the default frequency 1.6KHz
+	//AFMS.begin(1000);  // OR with a different frequency, say 1KHz
+	
+	// Set the speed to start, from 0 (off) to 255 (max speed)
+	myMotor->setSpeed(20);
+	myMotor->run(FORWARD);
 
-	GXX_PRINT(i2c.ERR_BF);
-	GXX_PRINT(i2c.ERR_NA);
-	GXX_PRINT(i2c.ERR_NK);
+	genos::sleep(1000);
+	myMotor->setSpeed(50);
+
+	genos::sleep(1000);
+	myMotor->setSpeed(100);
+
+	genos::sleep(1000);
+	myMotor->setSpeed(150);
+
+	genos::sleep(1000);
+	myMotor->setSpeed(200);
+
+	genos::sleep(1000);
+	myMotor->run(RELEASE);
+	
+	//mshield.reset();
+	//mshield.setPWMFreq(1600);
+
+	gxx::println("end of process");
 }
 
 /*void mainproc2(void* arg) {
