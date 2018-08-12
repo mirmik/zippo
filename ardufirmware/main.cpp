@@ -19,6 +19,7 @@
 #include <genos/robo/motor.h>
 
 #include <crow/tower.h>
+#include <crow/pubsub.h>
 #include <genos/drivers/g1/uartgate.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
@@ -90,29 +91,42 @@ void mainproc(void* arg);
 void mainproc2(void* arg);
 
 
+void traveling_handler(crow::packet* pack) {
+	//dprln("travel");
+}
+
 int main() {
 	board_init();
+
+	/*while(1) {
+		board::led.tgl();
+		debug_delay(40000);
+	}	*/
+
 	i2c.init_master();
 
-	genos::create_process(mainproc, nullptr, stack).detach();
+	crow::traveling_handler = traveling_handler;
 
-	crow::link_gate(&uartgate, 10);
+	crow::set_publish_host(crow::host("#F4.12.192.168.1.135:10009"));
+	crow::set_publish_qos(crow::QoS(0));
+	crow::link_gate(&uartgate, 0xF4);
+	board::usart0.enable(false);
+	board::usart0.setup(115200);
 	uartgate.init();
-	genos::hal::irqs::enable();
+	board::usart0.enable(true);
 
 	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
 
-	crow::send("\x0A", 1, "HelloWorld", 10);
+	genos::create_process(mainproc, nullptr, stack).detach();
 
+	genos::hal::irqs::enable();
 
+	crow::send("\xF4", 1, "HelloWorld\n", 11);
 	genos::schedule();
 }
-
-volatile int count = 3;
-volatile int count2 = 5;
 
 void motors_stop() {
 	for (auto m : motors) m.stop();
@@ -129,23 +143,24 @@ void motors_run(float lpwr, float rpwr) {
 	motor_fr.power(rpwr);
 }
 
+int i = 0;
 void mainproc(void* arg) {
-	genos::set_wait_handler(i2c.operation_finish_handler);
-	mshield.begin(&i2c); 
+	//genos::set_wait_handler(i2c.operation_finish_handler);
+	//mshield.begin(&i2c); 
 
 
-	motors_stop();
-}
+	//motors_stop();
 
-
-/*void mainproc2(void* arg) {
 	while(1) {
-		dprln("Mirmik was here2", count2, SP);
-		//genos::displace();
-		genos::sleep(1500);
-		//genos::displace();
-	}
-}*/
+		i++;
+
+		std::string a = gxx::format("HelloWorld i = {}", i);
+
+		crow::publish("hello", 5, a.data(), a.size());
+		board::led.tgl();
+		genos::sleep(1000);
+	}	
+}
 
 uint16_t crow::millis() {
 	return systime::millis();
