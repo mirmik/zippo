@@ -24,6 +24,10 @@
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 
+void motors_stop();
+void motors_run(float pwr);
+void motors_run(float lpwr, float rpwr);
+
 arch::i2c_automate i2c;
 Adafruit_MotorShield mshield;
 
@@ -88,11 +92,15 @@ void operation_finish_handler() {
 }
 
 void mainproc(void* arg);
-void mainproc2(void* arg);
+void initproc(void* arg);
 
 
 void traveling_handler(crow::packet* pack) {
 	//dprln("travel");
+}
+
+void pubsub_handler(crow::packet* pack) {
+	genos::create_process(mainproc, pack, stack).detach();
 }
 
 int main() {
@@ -120,11 +128,18 @@ int main() {
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
 
-	genos::create_process(mainproc, nullptr, stack).detach();
-
+	
 	genos::hal::irqs::enable();
+	genos::create_process(initproc, nullptr, stack).detach();
 
-	crow::send("\xF4", 1, "HelloWorld\n", 11);
+	
+	crow::subscribe("turtle_power", crow::QoS(2));
+	crow::pubsub_handler = pubsub_handler;
+
+	//crow::send("\xF4", 1, "HelloWorld\n", 11);
+	crow::publish("journal", "start schedule");
+
+	//dprln("HERE");
 	genos::schedule();
 }
 
@@ -145,22 +160,32 @@ void motors_run(float lpwr, float rpwr) {
 
 int i = 0;
 void mainproc(void* arg) {
-	//genos::set_wait_handler(i2c.operation_finish_handler);
-	//mshield.begin(&i2c); 
+	//dprln("HERE");
+	crow::publish("journal", gxx::format("here {}", i++).c_str());	
+	crow::packet* pack = (crow::packet*) arg;
+	
+	/*gxx::buffer dsect = crow::pubsub_message_datasect(pack);
 
+	using tt = struct{ float a; float b; };
+	tt* s = (tt*) dsect.data(); 
 
-	//motors_stop();
+	if (dsect.size() != 8) {
+		crow::publish("journal","turtle_power wrong size");	
+		crow::release(pack);
+		return;
+	}
 
-	while(1) {
-		i++;
-
-		std::string a = gxx::format("HelloWorld i = {}", i);
-
-		crow::publish("hello", 5, a.data(), a.size());
-		board::led.tgl();
-		genos::sleep(1000);
-	}	
+	genos::set_wait_handler(i2c.operation_finish_handler);
+	//motors_run(s->a, s->b);	
+	motors_run(s->a, s->b);	*/
+	
+	crow::release(pack);
 }
+
+void initproc(void* arg) {
+	genos::set_wait_handler(i2c.operation_finish_handler);
+	mshield.begin(&i2c); 
+} 
 
 uint16_t crow::millis() {
 	return systime::millis();
