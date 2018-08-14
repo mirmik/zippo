@@ -84,8 +84,8 @@ void error_handler() {
 
 char buf[64];
 
-char stack[512];
-char stack2[512];
+char stack[256];
+char stack2[256];
 
 void operation_finish_handler() {
 	gxx::print_dump((const char*)buf, 2, 8);
@@ -162,12 +162,15 @@ int i = 0;
 void mainproc(void* arg) {
 	//dprln("HERE");
 	crow::publish("journal", gxx::format("here {}", i++).c_str());	
+	board::led.tgl();
 	crow::packet* pack = (crow::packet*) arg;
 	
-	/*gxx::buffer dsect = crow::pubsub_message_datasect(pack);
+	gxx::buffer dsect = crow::pubsub_message_datasect(pack);
 
 	using tt = struct{ float a; float b; };
 	tt* s = (tt*) dsect.data(); 
+
+	
 
 	if (dsect.size() != 8) {
 		crow::publish("journal","turtle_power wrong size");	
@@ -177,7 +180,7 @@ void mainproc(void* arg) {
 
 	genos::set_wait_handler(i2c.operation_finish_handler);
 	//motors_run(s->a, s->b);	
-	motors_run(s->a, s->b);	*/
+	motors_run(s->a, s->b);	
 	
 	crow::release(pack);
 }
