@@ -37,6 +37,8 @@ application("main",
 		
 		("gxx.libc"),
 		("gxx.std"),
+		("gxx.posix"),
+
 		("gxx.include"),
 		("gxx.util"),
 #		("gxx.log2", "stub"),

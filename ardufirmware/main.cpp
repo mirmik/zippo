@@ -1,5 +1,5 @@
-#include <genos/hal/board.h>
-#include <genos/hal/irqs.h>
+#include <hal/board.h>
+#include <hal/irq.h>
 #include <genos/time/systime.h>
 
 #include <arch/i2c_automate.h>
@@ -129,7 +129,7 @@ int main() {
 	motor_fl.M = mshield.getMotor(4);
 
 	
-	genos::hal::irqs::enable();
+	irqs_enable();
 	genos::create_process(initproc, nullptr, stack).detach();
 
 	
@@ -191,7 +191,7 @@ void initproc(void* arg) {
 } 
 
 uint16_t crow::millis() {
-	return systime::millis();
+	return millis();
 }
 
 void genos::schedule() {
