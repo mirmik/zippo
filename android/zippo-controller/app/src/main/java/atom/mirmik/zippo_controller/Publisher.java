@@ -6,9 +6,19 @@ import java.lang.*;
 
 public class Publisher {
     byte[] haddr;
+    DatagramSocket sock;
+    SocketAddress sockaddr;
 
     public Publisher() {
         System.out.println("Publisher created");
+        try {
+            sock = new DatagramSocket();
+            InetAddress iaddr = InetAddress.getByName("192.168.1.135");
+            sockaddr = new InetSocketAddress(iaddr, 10009);
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(0);
+        }
     }
 
     public static byte[] concat(byte[] a, byte[] b) {
@@ -54,15 +64,8 @@ public class Publisher {
         packdata = concat(packdata,data);
 
         try {
-            DatagramSocket sock;
-            SocketAddress sockaddr;
             DatagramPacket packet;
-            sock = new DatagramSocket();
-
-            InetAddress iaddr = InetAddress.getByName("192.168.1.135");
-            sockaddr = new InetSocketAddress(iaddr, 10009);
             packet = new DatagramPacket(packdata, packdata.length, sockaddr);
-
             sock.send(packet);
         }
         catch (Exception e) {

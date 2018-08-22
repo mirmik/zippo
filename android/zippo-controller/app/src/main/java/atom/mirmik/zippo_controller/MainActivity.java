@@ -10,11 +10,17 @@ import android.content.Context;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorEvent;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 public class MainActivity extends AppCompatActivity {
 
     float[] acc = new float[3];
     float[] gyr = new float[3];
     float[] mag = new float[3];
+
+    //final Lock lock = new ReentrantLock();
+    //final Condition needUpdate  = lock.newCondition();
 
     long accTime = System.nanoTime();
     long gyrTime = System.nanoTime();
@@ -37,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
                     gyr[2] = event.values[2];
                     //System.out.println(String.format("gyr (%f, %f, %f), d: %f", event.values[0], event.values[1], event.values[2], (float)(System.nanoTime() - gyrTime)/1000000));
                     gyrTime = System.nanoTime();
+                    //needUpdate.
+
+                    /*lock.lock();
+                    try {
+                        needUpdate.signal();
+                    } finally {
+                        lock.unlock();
+                    }*/
+
                     break;
                 case Sensor.TYPE_MAGNETIC_FIELD:
                     mag[0] = event.values[0];
@@ -65,16 +80,42 @@ public class MainActivity extends AppCompatActivity {
     public class PublishThread extends Thread {
         int i = 0;
         public void run(){
+            ByteBuffer bbuf = ByteBuffer.allocate(36);
+            bbuf.order(ByteOrder.LITTLE_ENDIAN);
+            try {
+                Thread.sleep(2000);
+            }catch (Exception e) {
+                System.out.println(e);
+            }
             while(true) {
-                //publisher.publish("hello", String.format("HelloWorld %d", i++).getBytes());
-                publisher.publish("acc", String.format("acc (%f, %f, %f) ", acc[0], acc[1], acc[2]).getBytes());
-                publisher.publish("gyr", String.format("gyr (%f, %f, %f) ", gyr[0], gyr[1], gyr[2]).getBytes());
-                publisher.publish("mag", String.format("mag (%f, %f, %f) ", mag[0], mag[1], mag[2]).getBytes());
+                bbuf.putFloat(0, acc[0]);
+                bbuf.putFloat(4, acc[1]);
+                bbuf.putFloat(8, acc[2]);
+                bbuf.putFloat(12, gyr[0]);
+                bbuf.putFloat(16, gyr[1]);
+                bbuf.putFloat(20, gyr[2]);
+                bbuf.putFloat(24, mag[0]);
+                bbuf.putFloat(28, mag[1]);
+                bbuf.putFloat(32, mag[2]);
+
+                publisher.publish("ahrs", bbuf.array());
+
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(20);
                 }catch (Exception e) {
                     System.out.println(e);
                 }
+
+
+                    //publisher.publish("hello", String.format("HelloWorld %d", i++).getBytes());
+                    //publisher.publish("acc", String.format("acc (%f, %f, %f) ", acc[0], acc[1], acc[2]).getBytes());
+                    //publisher.publish("gyr", String.format("gyr (%f, %f, %f) ", gyr[0], gyr[1], gyr[2]).getBytes());
+                    //publisher.publish("mag", String.format("mag (%f, %f, %f) ", mag[0], mag[1], mag[2]).getBytes());
+                    //try {
+                    //    Thread.sleep(10);
+                    //}catch (Exception e) {
+                    //    System.out.println(e);
+                    //}
             }
         }
     }
@@ -128,18 +169,8 @@ public class MainActivity extends AppCompatActivity {
             mSensorManager.registerListener(listener, sAcc, SensorManager.SENSOR_DELAY_GAME);
             mSensorManager.registerListener(listener, sGyr, SensorManager.SENSOR_DELAY_GAME);
             mSensorManager.registerListener(listener, sMag, SensorManager.SENSOR_DELAY_GAME);
-
-            /*while(true) {
-                publisher.publish("hello", String.format("HelloWorld %d", i++).getBytes());
-                try {
-                    Thread.sleep(1000);
-                }catch (Exception e) {}
-            }*/
         }
     }
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
