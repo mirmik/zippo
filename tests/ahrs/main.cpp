@@ -7,11 +7,32 @@
 #include <gxx/math/linalg.h>
 #include <gxx/print/linalg.h>
 
+#include <thread>
+#include <chrono>
+//#include <algorithm>
+
+namespace cstd {
+	template<class T, class Compare>
+	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
+	{
+   		return comp(v, lo) ? lo : comp(hi, v) ? hi : v;
+	}
+
+	template<class T>
+	constexpr const T& clamp( const T& v, const T& lo, const T& hi )
+	{
+	    return clamp( v, lo, hi, std::less<>() );
+	}
+}
+
+
 using namespace linalg::aliases;
 using namespace linalg;
 
 Madgwick ahrs;
 bool coralg ;
+
+volatile bool enabledata = false;
 
 float3 eg(0.0);
 //float2 kvec_x(-0.015, 0);
@@ -23,13 +44,16 @@ float3 zgyr(-0.015,0.013,0.001);
 
 int count = 0;
 
+float p;
+float r;
+float y;
+
 void mhandler(crow::packet* pack) {
+	enabledata = true;
+
 	float alpha = 0;
 	float4 lq;
 	float4 q;
-	float p;
-	float r;
-	float y;
 
 	auto data = crow::pubsub_data(pack);
 
@@ -126,7 +150,7 @@ void mhandler(crow::packet* pack) {
 	printf("kv0:%7.3f kv1:%7.3f   ", kvec_y.x, kvec_y.y);
 	printf("kv0:%7.3f kv1:%7.3f   ", kvec_z.x, kvec_z.y);*/
 	//printf("e0:%7.3f e1:%7.3f    ", E, e);
-	printf("qw:%7.3f qx:%7.3f qy:%7.3f z:%7.3f    ", lq.w, lq.x, lq.y, lq.z);
+	/*printf("qw:%7.3f qx:%7.3f qy:%7.3f z:%7.3f    ", lq.w, lq.x, lq.y, lq.z);
 	printf("y:%7.3f p:%7.3f r:%7.3f    ", y * RAD_TO_DEG, p * RAD_TO_DEG, r * RAD_TO_DEG);
 	printf("alg:%d    ", coralg);
 	
@@ -135,11 +159,37 @@ void mhandler(crow::packet* pack) {
 
 	//printf("data update acc:(%7.3f,%7.3f,%7.3f) gyr:(%7.3f,%7.3f,%7.3f) mag:(%7.3f,%7.3f,%7.3f)\n", acc[0], acc[1], acc[2], gyr[0], gyr[1], gyr[2], mag[0], mag[1], mag[2]);
 	//printf("acc:(%7.3f,%7.3f,%7.3f) gyr:(%7.3f,%7.3f,%7.3f) mag:(%7.3f,%7.3f,%7.3f) ahrs: q0:%7.3f q1:%7.3f q2:%7.3f q3:%7.3f y:%7.3f p:%7.3f r:%7.3f", acc[0], acc[1], acc[2], gyr[0], gyr[1], gyr[2], mag[0], mag[1], mag[2], q.w, q.x, q.y, q.z, y * RAD_TO_DEG + 180.0, p * RAD_TO_DEG, r * RAD_TO_DEG);
-	printf("\n");
+	printf("\n");*/
 	//gxx::println(q, lq, );
 
 
 	crow::release(pack);
+}
+
+#define MAXSIG 0.4
+
+void publish_thread() {
+	while(1) {
+		if (enabledata) {
+			float summ = - (p * RAD_TO_DEG - 45.0) / 45.0 * MAXSIG;
+			float diff = (r * RAD_TO_DEG) / 90.0 * MAXSIG;
+	
+	
+			float data[2];
+			data[0] = summ - diff;//(diff > 0 ? diff : 0);
+			data[1] = summ + diff;//(diff < 0 ? diff : 0);
+	
+			data[0] = cstd::clamp<float>(data[0], -MAXSIG, MAXSIG);
+			data[1] = cstd::clamp<float>(data[1], -MAXSIG, MAXSIG);
+
+			printf("kv0:%7.3f kv1:%7.3f   \n", data[0], data[1]);
+	
+			const char* thm = "turtle_power";
+			crow::publish(thm, strlen(thm), data, sizeof(data));
+			enabledata = false;
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
 }
 
 int main() {
@@ -157,6 +207,9 @@ int main() {
 	crow::pubsub_handler = mhandler;
 
 	crow::link_gate(&udpgate, 12);
+
+	auto thr = std::thread(publish_thread);
+	thr.detach();
 
 	crow::spin();
 }
