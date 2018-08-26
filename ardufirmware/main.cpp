@@ -110,7 +110,7 @@ int main() {
 	irqs_enable();
 	genos::create_process(initproc, nullptr, stack).detach();
 		
-	crow::subscribe("turtle_power", crow::QoS(2));
+	crow::subscribe("turtle_power", crow::QoS(0));
 	crow::pubsub_handler = pubsub_handler;
 
 	crow::publish("zippo", "start schedule");
