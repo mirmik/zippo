@@ -33,8 +33,8 @@ yw = 2
 zw = 1
 
 
-usb_charger_position = rotateZ(gr(180)) * translate(shift, body_y/2 - y/2 - bottom_wall_thikness, bottom_wall_thikness)
-on_position = rotateZ(gr(180)) * translate(-shift, body_y/2 - bottom_wall_thikness, bottom_wall_thikness + 2.5 + on_z/2)
+usb_charger_position = rotateZ(deg(180)) * translate(shift, body_y/2 - y/2 - bottom_wall_thikness, bottom_wall_thikness)
+on_position = rotateZ(deg(180)) * translate(-shift, body_y/2 - bottom_wall_thikness, bottom_wall_thikness + 2.5 + on_z/2)
 
 #подставка под плату. (переносит пот немного выше)
 def usb_plate_upper():
@@ -57,11 +57,11 @@ def usb_charger_protect():
 	 -box(bx, by, bz).right((x + xw*2-bx)/2).up(t)
 	 -box(x, by+yw, t+upper_z).right(xw).down(upper_z)
 	 -multitransform([translate(xw/2,(yw+by)/2,0), translate(x+xw*3/2,(yw+by)/2,0)])(cylinder(r=1.5, h=bz+zw+t+upper_z).down(upper_z))
-	).translate(-(x + xw*2)/2, -(by+yw)/2 - y/2 + (by+s)/2, 0).rotateZ(gr(180))
+	).translate(-(x + xw*2)/2, -(by+yw)/2 - y/2 + (by+s)/2, 0).rotateZ(deg(180))
 	return m
 
 def usb_charger_protect_hole():
-	return multitransform([translate(xw/2,(yw+by)/2,0), translate(x+xw*3/2,(yw+by)/2,0)])(cylinder(r=1.5, h=bz+zw+t)).translate(-(x + xw*2)/2, -(by+yw)/2 - y/2 + (by+s)/2, -t/2).rotateZ(gr(180))
+	return multitransform([translate(xw/2,(yw+by)/2,0), translate(x+xw*3/2,(yw+by)/2,0)])(cylinder(r=1.5, h=bz+zw+t)).translate(-(x + xw*2)/2, -(by+yw)/2 - y/2 + (by+s)/2, -t/2).rotateZ(deg(180))
 
 
 if __name__ == "__main__":

@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 #coding: utf-8
 
-import evalcache
-evalcache.enable()
-
 from zencad import *
 from drive_place import drive_place
 from usb_charger_plate import *
@@ -27,18 +24,18 @@ sl = 17 #Ширина окна под двигатель.
 #Ребро
 stiffener = linear_extrude(polygon(points([ 
 	(0,0), (z,0), (0,20)
-])),(0,0,t),center=True).rotateY(gr(-90))
+])),(0,0,t),center=True).rotateY(deg(-90))
 
 stiffener_long = linear_extrude(polygon(points([ 
 	(0,0), (z,0), (0,30)
-])),(0,0,t),center=True).rotateY(gr(-90))
+])),(0,0,t),center=True).rotateY(deg(-90))
 
 #Расстановка рёбер.
 stiffer_trans1 = multitransform([
-	translate(+x/2,-dist_between_whells*3/16,0) * rotateZ(gr(90)),
-	translate(-x/2,-dist_between_whells*3/16,0) * rotateZ(-gr(90)),
-	translate(+x/2,dist_between_whells*3/16,0) * rotateZ(gr(90)),
-	translate(-x/2,dist_between_whells*3/16,0) * rotateZ(-gr(90)),
+	translate(+x/2,-dist_between_whells*3/16,0) * rotateZ(deg(90)),
+	translate(-x/2,-dist_between_whells*3/16,0) * rotateZ(-deg(90)),
+	translate(+x/2,dist_between_whells*3/16,0) * rotateZ(deg(90)),
+	translate(-x/2,dist_between_whells*3/16,0) * rotateZ(-deg(90)),
 ])
 
 stiffer_trans2 = multitransform([
@@ -68,7 +65,7 @@ def bottom_model():
 		- sqrtrans()(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
 
 		#accumholder place
-		- sqrtrans()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0)).rotateZ(gr(90))
+		- sqrtrans()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0)).rotateZ(deg(90))
 
 		#Добавляем ребра жесткости.
 		+stiffer_trans1(stiffener)
