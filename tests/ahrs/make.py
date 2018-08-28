@@ -23,7 +23,8 @@ application("target",
 		("crow"),
 		("crow.allocator", "malloc"),
 		("crow.time", "chrono"),
-	]
+	],
+	libs = ["pthread"],
 )
 
 licant.ex("target")

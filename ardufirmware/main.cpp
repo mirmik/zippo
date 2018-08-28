@@ -77,27 +77,13 @@ motor_driver & motor_fr = motors[1];
 motor_driver & motor_bl = motors[2]; 
 motor_driver & motor_br = motors[3];
 
-
-void error_handler() {
-	dprln("error_handler");
-}
-
 char buf[64];
 
 char stack[256];
 char stack2[256];
 
-void operation_finish_handler() {
-	gxx::print_dump((const char*)buf, 2, 8);
-}
-
 void mainproc(void* arg);
 void initproc(void* arg);
-
-
-void traveling_handler(crow::packet* pack) {
-	//dprln("travel");
-}
 
 void pubsub_handler(crow::packet* pack) {
 	genos::create_process(mainproc, pack, stack).detach();
@@ -106,14 +92,7 @@ void pubsub_handler(crow::packet* pack) {
 int main() {
 	board_init();
 
-	/*while(1) {
-		board::led.tgl();
-		debug_delay(40000);
-	}	*/
-
 	i2c.init_master();
-
-	crow::traveling_handler = traveling_handler;
 
 	crow::set_publish_host(crow::host("#F4.12.192.168.1.135:10009"));
 	crow::set_publish_qos(crow::QoS(0));
@@ -127,19 +106,14 @@ int main() {
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
-
 	
 	irqs_enable();
 	genos::create_process(initproc, nullptr, stack).detach();
-
-	
-	crow::subscribe("turtle_power", crow::QoS(2));
+		
+	crow::subscribe("turtle_power", crow::QoS(0));
 	crow::pubsub_handler = pubsub_handler;
 
-	//crow::send("\xF4", 1, "HelloWorld\n", 11);
-	crow::publish("journal", "start schedule");
-
-	//dprln("HERE");
+	crow::publish("zippo", "start schedule");
 	genos::schedule();
 }
 
@@ -160,8 +134,7 @@ void motors_run(float lpwr, float rpwr) {
 
 int i = 0;
 void mainproc(void* arg) {
-	//dprln("HERE");
-	crow::publish("journal", gxx::format("here {}", i++).c_str());	
+	crow::publish("zippo", gxx::format("here {}", i++).c_str());	
 	board::led.tgl();
 	crow::packet* pack = (crow::packet*) arg;
 	
@@ -173,7 +146,7 @@ void mainproc(void* arg) {
 	
 
 	if (dsect.size() != 8) {
-		crow::publish("journal","turtle_power wrong size");	
+		crow::publish("zippo","turtle_power wrong size");	
 		crow::release(pack);
 		return;
 	}
@@ -191,7 +164,7 @@ void initproc(void* arg) {
 } 
 
 uint16_t crow::millis() {
-	return millis();
+	return ::millis();
 }
 
 void genos::schedule() {
