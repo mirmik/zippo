@@ -6,6 +6,8 @@ from zencad import *
 
 from evalcache import unlazy
 
+zencad.enable_cache_diagnostic()
+
 from bottom_full import bottom_full_scene
 from bottom import z as bottom_z
 from top import top_model
