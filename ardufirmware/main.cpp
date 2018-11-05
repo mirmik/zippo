@@ -1,26 +1,21 @@
 #include <hal/board.h>
 #include <hal/irq.h>
-#include <genos/time/systime.h>
 
 #include <arch/i2c_automate.h>
 #include <gxx/print.h>
 
-#include <genos/schedule.h>
-#include <genos/sched/tasklet.h>
-#include <genos/sched/timer.h>
-#include <genos/sched/schedee.h>
-
-#include <genos/sched/process.h>
 #include <gxx/debug/delay.h>
-
-#include <genos/proclib.h>
-#include <genos/addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
-
-#include <genos/robo/motor.h>
+#include <gxx/util/hexer.h>
 
 #include <crow/tower.h>
 #include <crow/pubsub.h>
-#include <genos/drivers/g1/uartgate.h>
+#include <systime/systime.h>
+#include <drivers/serial/avr_usart.h>
+#include <drivers/crow/uartgate.h>
+#include <sched/sched.h>
+
+#include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
+#include <robo/motor.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 
@@ -31,7 +26,8 @@ void motors_run(float lpwr, float rpwr);
 arch::i2c_automate i2c;
 Adafruit_MotorShield mshield;
 
-genos::uartgate uartgate(&board::usart0, 128);
+avr_usart usart0;
+struct crow_uartgate uartgate;
 
 struct motor_driver : public genos::robo::motor {
 	Adafruit_DCMotor* M;
@@ -85,24 +81,28 @@ char stack2[256];
 void mainproc(void* arg);
 void initproc(void* arg);
 
-void pubsub_handler(crow::packet* pack) {
-	genos::create_process(mainproc, pack, stack).detach();
+void pubsub_handler(crowket* pack) {
+	//genos::create_process(mainproc, pack, stack).detach();
 }
 
+uint8_t raddr_[8];
 int main() {
+	const char * raddr = "#F4.12.192.168.1.135:10009"; 
+	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
+
 	board_init();
+	schedee_manager_init();
 
 	i2c.init_master();
 
-	crow::set_publish_host(crow::host("#F4.12.192.168.1.135:10009"));
-	crow::set_publish_qos(crow::QoS(0));
-	crow::link_gate(&uartgate, 0xF4);
-	board::usart0.enable(false);
-	board::usart0.setup(115200);
-	uartgate.init();
-	board::usart0.enable(true);
+	crow_set_publish_host(raddr_, raddr_len);
+	//crow_link_gate(&uartgate.gw, 0xF4);
+	//board::usart0.enable(false);
+	//board::usart0.setup(115200);
+	crow_uartgate_init(&uartgate, &usart0);
+	//board::usart0.enable(true);
 
-	motor_bl.M = mshield.getMotor(1);
+	/*motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
@@ -114,7 +114,7 @@ int main() {
 	crow::pubsub_handler = pubsub_handler;
 
 	crow::publish("zippo", "start schedule");
-	genos::schedule();
+	genos::schedule();*/
 }
 
 void motors_stop() {
@@ -134,7 +134,7 @@ void motors_run(float lpwr, float rpwr) {
 
 int i = 0;
 void mainproc(void* arg) {
-	crow::publish("zippo", gxx::format("here {}", i++).c_str());	
+	/*crow::publish("zippo", gxx::format("here {}", i++).c_str());	
 	board::led.tgl();
 	crow::packet* pack = (crow::packet*) arg;
 	
@@ -155,23 +155,23 @@ void mainproc(void* arg) {
 	//motors_run(s->a, s->b);	
 	motors_run(s->a, s->b);	
 	
-	crow::release(pack);
+	crow::release(pack);*/
 }
 
 void initproc(void* arg) {
-	genos::set_wait_handler(i2c.operation_finish_handler);
-	mshield.begin(&i2c); 
+	/*genos::set_wait_handler(i2c.operation_finish_handler);
+	mshield.begin(&i2c);*/ 
 } 
 
-uint16_t crow::millis() {
-	return ::millis();
+uint16_t crow_millis() {
+	return millis();
 }
 
-void genos::schedule() {
+void __schedule__() {
 	while(1) {
-		crow::onestep();
-		genos::tasklet_manager.exec();
-		genos::timer_manager.exec();
-		genos::schedee_manager.exec();
+		crow_onestep();
+		//tasklet_manager.exec();
+		//timer_manager.exec();
+		schedee_manager();
 	}
 }

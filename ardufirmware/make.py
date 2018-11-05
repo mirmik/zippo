@@ -5,6 +5,7 @@ import licant
 from licant.cxx_modules import application
 from licant.libs import include
 from licant.cxx_make import make_gcc_binutils
+from licant.modules import submodule
 
 import os
 
@@ -22,35 +23,34 @@ application("main",
 	cc_flags = "-Os -flto",
 
 	include_modules = [
-		("genos"),
 		("genos.board", "arduino_uno"),
 
+
+		("genos.include"),
 		
 		("genos.irqtbl"),
-		("genos.tasklet"),
-		("genos.timer"),
-		("genos.schedee"),
+		("genos.sched", "impl"),
 		("gxx.syslock", "genos.atomic"),
 		("genos.malloc", "lin"),
 
-		("genos.displace", "reset"),
-		
 		("gxx.libc"),
 		("gxx.std"),
 		("gxx.posix"),
 
 		("gxx.include"),
 		("gxx.util"),
-#		("gxx.log2", "stub"),
 		
 		("gxx.diag", "impl"),
 		("gxx.dprint", "diag"),
 		("gxx.print", "dprint"),
 
-		("gxx.panic", "abort"),
-
 		("crow"),
 		("crow.allocator", "malloc"),
+
+		("genos.mvfs"),
+		submodule("genos.drivers.common"),
+		submodule("genos.drivers.gpio.avr"), 
+		submodule("genos.drivers.usart.avr"),
 
 		("genos.addons.adafruit_motor_shield")
 	]
