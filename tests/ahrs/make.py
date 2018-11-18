@@ -21,6 +21,7 @@ application("target",
 		("gxx.madgwick"),
 
 		("crow"),
+		("crow.udpgate"),
 		("crow.allocator", "malloc"),
 		("crow.time", "chrono"),
 	],

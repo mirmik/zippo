@@ -6,6 +6,7 @@
 #include <gxx/math/madgwick.h>
 #include <gxx/math/linalg.h>
 #include <gxx/print/linalg.h>
+#include <gxx/util/hexer.h>
 
 #include <thread>
 #include <chrono>
@@ -48,14 +49,14 @@ float p;
 float r;
 float y;
 
-void mhandler(crow::packet* pack) {
+void mhandler(crowket* pack) {
 	enabledata = true;
 
 	float alpha = 0;
 	float4 lq;
 	float4 q;
 
-	auto data = crow::pubsub_data(pack);
+	auto data = crow::pubsub::get_data(pack);
 
 	if (count < 500) {
 		count++;
@@ -171,7 +172,7 @@ void mhandler(crow::packet* pack) {
 void publish_thread() {
 	while(1) {
 		if (enabledata) {
-			float summ = - (p * RAD_TO_DEG - 45.0) / 45.0 * MAXSIG;
+			float summ = - (p * RAD_TO_DEG - 50.0) / 40.0 * MAXSIG;
 			float diff = (r * RAD_TO_DEG) / 90.0 * MAXSIG;
 	
 	
@@ -184,32 +185,39 @@ void publish_thread() {
 
 			printf("kv0:%7.3f kv1:%7.3f   \n", data[0], data[1]);
 	
-			const char* thm = "turtle_power";
-			crow::publish(thm, strlen(thm), data, sizeof(data));
+			const char* thm = "zippo_control";
+			crow::publish(thm, (const char*)data, sizeof(data));
 			enabledata = false;
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
 
 int main() {
 	//crow::enable_diagnostic();
 
+	uint8_t _raddr[20];
+
 	ahrs.reset();
 	ahrs.setKoeff(50, 0.5);
 
-	crow::set_publish_host(".12.192.168.1.135:10009");
-	crow::subscribe("ahrs", 4, crow::QoS(1));
+	const char * raddr = ".12.192.168.1.135:10009"; 
+	int rlen = hexer(_raddr, 20, raddr, strlen(raddr));
 
-	crow::udpgate udpgate;
-	udpgate.open(9999);
+	crow_set_publish_host(_raddr, rlen);
+	crow::subscribe("ahrs", 0, 200);
 
-	crow::pubsub_handler = mhandler;
+	//crow_udpgate udpgate;
+	//udpgate.open(9999);
 
-	crow::link_gate(&udpgate, 12);
+	crow_create_udpgate(9999, 12);
+
+	crow_pubsub_handler = mhandler;
+
+	//crow::link_gate(&udpgate, 12);
 
 	auto thr = std::thread(publish_thread);
 	thr.detach();
 
-	crow::spin();
+	crow_spin();
 }

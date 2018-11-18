@@ -25,6 +25,9 @@ void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
 
+float lpower = 0;
+float rpower = 0;
+
 avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 
@@ -80,6 +83,7 @@ char buf[64];
 void* recvproc(void* arg);
 void* initproc(void* arg);
 void* spammer(void* arg);
+void* updater(void* arg);
 
 int i = 0;
 void pubsub_handler(crowket* pack) 
@@ -98,7 +102,9 @@ void pubsub_handler(crowket* pack)
 		memcpy(&l, datbuf.data(), 4);
 		memcpy(&r, datbuf.data() + 4, 4);
 
-		motors_run(l, r);
+		lpower = l;
+		rpower = r;
+		//motors_run(l, r);
 	}
 
 	crow::release(pack);
@@ -112,7 +118,7 @@ void pubsub_handler(crowket* pack)
 uint8_t raddr_[8];
 int main() {
 	//const char * raddr = "#F4.12.192.168.1.135:10009"; 
-	const char * raddr = "#F4.12.127.0.0.1:10010"; 
+	const char * raddr = "#F4.12.192.168.1.135:10009"; 
 	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
 
 	board_init();
@@ -146,7 +152,7 @@ int main() {
 
 	//motors_run(0.2, 0.2);
 
-	//schedee_run(create_cooperative_schedee(spammer, nullptr, 256));
+	schedee_run(create_cooperative_schedee(updater, nullptr, 256));
 		
 	//crow::publish("mirmik", "HelloWorld");
 //	crow::subscribe("turtle_power", crow::QoS(0));
@@ -174,35 +180,12 @@ void motors_run(float lpwr, float rpwr) {
 	motor_fr.power(rpwr);
 }
 
-void* recvproc(void* arg) 
+void* updater(void* arg) 
 {
-	crowket* pack = (crowket*) arg;
-
-	//gxx::println("mainproc");
-
-	//motors_run(0.1, -0.1);
-
-	//crow::publish("zippo", gxx::format("here {}", i++).c_str());
-	//crow::packet* pack = (crow::packet*) arg;
-	
-	//gxx::buffer dsect = crow::pubsub_message_datasect(pack);
-
-	//using tt = struct{ float a; float b; };
-	//tt* s = (tt*) dsect.data(); 
-
-	/*
-
-	if (dsect.size() != 8) {
-		crow::publish("zippo","turtle_power wrong size");	
-		crow::release(pack);
-		return;
+	while(1) {
+		motors_run(lpower, rpower);
+		msleep(100);
 	}
-
-	genos::set_wait_handler(i2c.operation_finish_handler);
-	//motors_run(s->a, s->b);	
-	motors_run(s->a, s->b);	
-	*/
-	crow::release(pack);
 }
 
 void* spammer(void* arg) 

@@ -34,7 +34,7 @@ public class Publisher {
         byte[] sh = new byte[3];
         byte[] thm = theme.getBytes();
 
-        bytes[0] = (byte)0b00010000; //pflag
+        bytes[0] = (byte)0b00100000; //pflag
         bytes[1] = (byte) (bytes.length + addr.length + data.length + thm.length + sh.length); //flen hi
         bytes[2] = 0; //flen lo
         bytes[3] = (byte) addr.length; //alen
