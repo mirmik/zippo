@@ -30,16 +30,17 @@ application("main",
 		
 		("genos.irqtbl"),
 		("genos.sched", "impl"),
-		("gxx.syslock", "genos.atomic"),
 		("genos.malloc", "lin"),
 
+		("gxx.syslock", "genos.atomic"),
 		("gxx.libc"),
 		("gxx.std"),
 		("gxx.posix"),
 		("gxx.panic", "abort"),
 
 		("gxx.include"),
-		("gxx.util"),
+		("gxx.c_only"),
+		("gxx.util.cxx"),
 		
 		("gxx.diag", "impl"),
 		("gxx.dprint", "diag"),
@@ -48,7 +49,9 @@ application("main",
 		("crow"),
 		("crow.allocator", "malloc"),
 
-		("genos.mvfs"),
+		("genos.drivers.crow.uartgate"),
+
+		#("genos.mvfs"),
 		("genos.systime"),
 		submodule("genos.drivers.common"),
 		submodule("genos.drivers.gpio.avr"), 
@@ -58,10 +61,10 @@ application("main",
 	]
 )
 
-@licant.routine
+@licant.routine(deps=["main"])
 def install():
 	#os.system("sudo avrdude -P/dev/ttyACM0 -v -cwiring -patmega2560 -b115200 -D -Uflash:w:./firmware.bin -u")
-	os.system("sudo avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
+	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
 
 @licant.routine
 def remote_install():
@@ -74,4 +77,4 @@ def remote_install():
 def terminal():
 	os.system("sudo gtkterm -p /dev/ttyACM0 -s 115200")
 
-licant.ex(default = "main", colorwrap = True)
+licant.ex("main")

@@ -1,7 +1,7 @@
 #include <hal/board.h>
 #include <hal/irq.h>
 
-#include <arch/i2c_automate.h>
+//#include <arch/i2c_automate.h>
 #include <gxx/print.h>
 
 #include <gxx/debug/delay.h>
@@ -10,9 +10,11 @@
 #include <crow/tower.h>
 #include <crow/pubsub.h>
 #include <systime/systime.h>
+#include <drivers/i2c/avr_i2c.h>
 #include <drivers/serial/avr_usart.h>
 #include <drivers/crow/uartgate.h>
 #include <sched/sched.h>
+#include <sched/timer.h>
 
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
 #include <robo/motor.h>
@@ -23,10 +25,10 @@ void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
 
-arch::i2c_automate i2c;
+avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 
-avr_usart usart0;
+avr_usart usart0(USART0, ATMEGA_IRQ_U0RX);
 struct crow_uartgate uartgate;
 
 struct motor_driver : public genos::robo::motor {
@@ -75,46 +77,86 @@ motor_driver & motor_br = motors[3];
 
 char buf[64];
 
-char stack[256];
-char stack2[256];
+void* recvproc(void* arg);
+void* initproc(void* arg);
+void* spammer(void* arg);
 
-void mainproc(void* arg);
-void initproc(void* arg);
+int i = 0;
+void pubsub_handler(crowket* pack) 
+{		
+	gxx::buffer thmbuf = crow::pubsub::get_theme(pack);
 
-void pubsub_handler(crowket* pack) {
-	//genos::create_process(mainproc, pack, stack).detach();
+	if (thmbuf == "zippo_control") 
+	{
+		board::sysled.toggle();
+
+		gxx::buffer datbuf = crow::pubsub::get_data(pack);
+
+		float l;
+		float r;
+
+		memcpy(&l, datbuf.data(), 4);
+		memcpy(&r, datbuf.data() + 4, 4);
+
+		motors_run(l, r);
+	}
+
+	crow::release(pack);
 }
+
+/*void user_incoming_handler(crowket* pack) {
+	board::sysled.toggle();
+	crow::release(pack);
+}*/
 
 uint8_t raddr_[8];
 int main() {
-	const char * raddr = "#F4.12.192.168.1.135:10009"; 
+	//const char * raddr = "#F4.12.192.168.1.135:10009"; 
+	const char * raddr = "#F4.12.127.0.0.1:10010"; 
 	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
 
 	board_init();
 	schedee_manager_init();
+	
+	board::sysled.settings(GPIO_MODE_OUTPUT);
+	board::sysled.set(1);
+
+	usart0.setup(115200);
+	usart0.enable();
 
 	i2c.init_master();
+	i2c.enable();
 
 	crow_set_publish_host(raddr_, raddr_len);
-	//crow_link_gate(&uartgate.gw, 0xF4);
-	//board::usart0.enable(false);
-	//board::usart0.setup(115200);
 	crow_uartgate_init(&uartgate, &usart0);
-	//board::usart0.enable(true);
+	crow_user_incoming_handler = NULL;
+	crow_pubsub_handler = pubsub_handler;
+	
+	irqs_enable();
+	delay(100);
+	
+	mshield.begin(&i2c);
 
-	/*motor_bl.M = mshield.getMotor(1);
+	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
-	
-	irqs_enable();
-	genos::create_process(initproc, nullptr, stack).detach();
-		
-	crow::subscribe("turtle_power", crow::QoS(0));
-	crow::pubsub_handler = pubsub_handler;
 
-	crow::publish("zippo", "start schedule");
-	genos::schedule();*/
+	crow::subscribe("zippo_control");
+
+	//motors_run(0.2, 0.2);
+
+	//schedee_run(create_cooperative_schedee(spammer, nullptr, 256));
+		
+	//crow::publish("mirmik", "HelloWorld");
+//	crow::subscribe("turtle_power", crow::QoS(0));
+//	crow::pubsub_handler = pubsub_handler;
+//	crow::publish("zippo", "start schedule");
+	__schedule__();
+
+	//crow_spin();
+
+	while(1);
 }
 
 void motors_stop() {
@@ -132,18 +174,23 @@ void motors_run(float lpwr, float rpwr) {
 	motor_fr.power(rpwr);
 }
 
-int i = 0;
-void mainproc(void* arg) {
-	/*crow::publish("zippo", gxx::format("here {}", i++).c_str());	
-	board::led.tgl();
-	crow::packet* pack = (crow::packet*) arg;
-	
-	gxx::buffer dsect = crow::pubsub_message_datasect(pack);
+void* recvproc(void* arg) 
+{
+	crowket* pack = (crowket*) arg;
 
-	using tt = struct{ float a; float b; };
-	tt* s = (tt*) dsect.data(); 
+	//gxx::println("mainproc");
 
+	//motors_run(0.1, -0.1);
+
+	//crow::publish("zippo", gxx::format("here {}", i++).c_str());
+	//crow::packet* pack = (crow::packet*) arg;
 	
+	//gxx::buffer dsect = crow::pubsub_message_datasect(pack);
+
+	//using tt = struct{ float a; float b; };
+	//tt* s = (tt*) dsect.data(); 
+
+	/*
 
 	if (dsect.size() != 8) {
 		crow::publish("zippo","turtle_power wrong size");	
@@ -154,13 +201,17 @@ void mainproc(void* arg) {
 	genos::set_wait_handler(i2c.operation_finish_handler);
 	//motors_run(s->a, s->b);	
 	motors_run(s->a, s->b);	
-	
-	crow::release(pack);*/
+	*/
+	crow::release(pack);
 }
 
-void initproc(void* arg) {
-	/*genos::set_wait_handler(i2c.operation_finish_handler);
-	mshield.begin(&i2c);*/ 
+void* spammer(void* arg) 
+{
+	while(1) {
+		crow_publish("mirmik", "HelloWorld", 0, 200);
+		//dprln("HelloWorld");
+		msleep(500);
+	}
 } 
 
 uint16_t crow_millis() {
@@ -170,8 +221,7 @@ uint16_t crow_millis() {
 void __schedule__() {
 	while(1) {
 		crow_onestep();
-		//tasklet_manager.exec();
-		//timer_manager.exec();
+		timer_manager();
 		schedee_manager();
 	}
 }
