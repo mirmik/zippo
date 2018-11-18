@@ -34,6 +34,8 @@ Adafruit_MotorShield mshield;
 avr_usart usart0(USART0, ATMEGA_IRQ_U0RX);
 struct crow_uartgate uartgate;
 
+bool prevent_crowing = false;
+
 struct motor_driver : public genos::robo::motor {
 	Adafruit_DCMotor* M;
 
@@ -174,16 +176,18 @@ void motors_run(float pwr) {
 }
 
 void motors_run(float lpwr, float rpwr) {
-	motor_br.power(rpwr);
 	motor_bl.power(lpwr);
 	motor_fl.power(lpwr);
+	motor_br.power(rpwr);
 	motor_fr.power(rpwr);
 }
 
 void* updater(void* arg) 
 {
 	while(1) {
+	//	prevent_crowing = true;
 		motors_run(lpower, rpower);
+	//	prevent_crowing = false;
 		msleep(100);
 	}
 }
@@ -203,7 +207,7 @@ uint16_t crow_millis() {
 
 void __schedule__() {
 	while(1) {
-		crow_onestep();
+		if (!prevent_crowing) crow_onestep();
 		timer_manager();
 		schedee_manager();
 	}
