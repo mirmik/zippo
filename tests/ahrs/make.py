@@ -20,7 +20,8 @@ application("target",
 
 		("gxx.madgwick"),
 
-		("crow"),
+		("crow.minimal"),
+		("crow.minimal_pubsub"),
 		("crow.udpgate"),
 		("crow.allocator", "malloc"),
 		("crow.time", "chrono"),

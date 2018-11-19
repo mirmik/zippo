@@ -28,6 +28,7 @@ void motors_run(float lpwr, float rpwr);
 float lpower = 0;
 float rpower = 0;
 
+bool en = false;
 avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 
@@ -84,18 +85,19 @@ char buf[64];
 
 void* recvproc(void* arg);
 void* initproc(void* arg);
-void* spammer(void* arg);
+void* spammer0(void* arg);
+void* spammer1(void* arg);
+void* spammer2(void* arg);
+void* spammer3(void* arg);
 void* updater(void* arg);
 
-int i = 0;
-void pubsub_handler(crowket* pack) 
+int32_t i = 0;
+void pubsub_handler(crow::packet* pack) 
 {		
 	gxx::buffer thmbuf = crow::pubsub::get_theme(pack);
 
 	if (thmbuf == "zippo_control") 
 	{
-		board::sysled.toggle();
-
 		gxx::buffer datbuf = crow::pubsub::get_data(pack);
 
 		float l;
@@ -107,6 +109,22 @@ void pubsub_handler(crowket* pack)
 		lpower = l;
 		rpower = r;
 		//motors_run(l, r);
+	}
+
+	else if (thmbuf == "zippo_enable") 
+	{
+		board::sysled.toggle();
+
+		gxx::buffer datbuf = crow::pubsub::get_data(pack);
+
+		if (datbuf == "en") 
+		{
+			en = true;
+		}
+
+		else if (datbuf == "off") {
+			en = false;
+		}
 	}
 
 	crow::release(pack);
@@ -135,10 +153,10 @@ int main() {
 	i2c.init_master();
 	i2c.enable();
 
-	crow_set_publish_host(raddr_, raddr_len);
-	crow_uartgate_init(&uartgate, &usart0);
-	crow_user_incoming_handler = NULL;
-	crow_pubsub_handler = pubsub_handler;
+	crow::set_publish_host(raddr_, raddr_len);
+	uartgate.init(&usart0);
+	crow::user_incoming_handler = NULL;
+	crow::pubsub_handler = pubsub_handler;
 	
 	irqs_enable();
 	delay(100);
@@ -151,10 +169,15 @@ int main() {
 	motor_fl.M = mshield.getMotor(4);
 
 	crow::subscribe("zippo_control");
+	crow::subscribe("zippo_enable");
 
 	//motors_run(0.2, 0.2);
 
-	schedee_run(create_cooperative_schedee(updater, nullptr, 256));
+	//schedee_run(create_cooperative_schedee(spammer0, nullptr, 128));
+	//schedee_run(create_cooperative_schedee(spammer1, nullptr, 128));
+	//schedee_run(create_cooperative_schedee(spammer2, nullptr, 256));
+	//schedee_run(create_cooperative_schedee(spammer3, nullptr, 256));
+	schedee_run(create_cooperative_schedee(updater, nullptr, 128));
 		
 	//crow::publish("mirmik", "HelloWorld");
 //	crow::subscribe("turtle_power", crow::QoS(0));
@@ -186,28 +209,71 @@ void* updater(void* arg)
 {
 	while(1) {
 	//	prevent_crowing = true;
-		motors_run(lpower, rpower);
+		if (en)
+			motors_run(lpower, rpower);
+		else 
+			motors_run(0, 0);
 	//	prevent_crowing = false;
+		//crow::publish("upd", "updated", 0, 200);
 		msleep(100);
 	}
 }
 
-void* spammer(void* arg) 
+void* spammer0(void* arg) 
 {
 	while(1) {
-		crow_publish("mirmik", "HelloWorld", 0, 200);
+		char buf[20];
+		i32toa(i++, buf, 10);
+
+		crow::publish("mirmik0", buf, 0, 200);
 		//dprln("HelloWorld");
-		msleep(500);
+		msleep(200);
 	}
 } 
 
-uint16_t crow_millis() {
-	return millis();
+void* spammer1(void* arg) 
+{
+	while(1) {
+		char buf[20];
+		i32toa(i++, buf, 10);
+
+		crow::publish("mirmik1", buf, 0, 200);
+		//dprln("HelloWorld");
+		msleep(200);
+	}
+} 
+
+void* spammer2(void* arg) 
+{
+	while(1) {
+		char buf[20];
+		i32toa(i++, buf, 10);
+
+		crow::publish("mirmik2", buf, 0, 200);
+		//dprln("HelloWorld");
+		msleep(200);
+	}
+} 
+
+void* spammer3(void* arg) 
+{
+	while(1) {
+		char buf[20];
+		i32toa(i++, buf, 10);
+
+		crow::publish("mirmik3", buf, 0, 200);
+		//dprln("HelloWorld");
+		msleep(200);
+	}
+} 
+
+uint16_t crow::millis() {
+	return ::millis();
 }
 
 void __schedule__() {
 	while(1) {
-		if (!prevent_crowing) crow_onestep();
+		if (!prevent_crowing) crow::onestep();
 		timer_manager();
 		schedee_manager();
 	}
