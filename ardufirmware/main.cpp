@@ -1,3 +1,6 @@
+#define NOTRACE 1
+#include <gxx/trace.h>
+
 #include <hal/board.h>
 #include <hal/irq.h>
 
@@ -20,10 +23,14 @@
 #include <robo/motor.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
+#define CROW_PACKET_SIZE 64
+#define CROW_PACKET_TOTAL 5
 
 void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
+
+uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
 float lpower = 0;
 float rpower = 0;
@@ -37,48 +44,61 @@ struct crow_uartgate uartgate;
 
 bool prevent_crowing = false;
 
-struct motor_driver : public genos::robo::motor {
+struct motor_driver : public genos::robo::motor
+{
 	Adafruit_DCMotor* M;
 
 	uint8_t setted_mode = RELEASE;
 
 	bool reverse = false;
 
-	void power(float pwr) override {
+	void power(float pwr) override
+	{
 		if (reverse) pwr = -pwr;
 
-		if (pwr == 0) {
+		if (pwr == 0)
+		{
 			M->run(RELEASE);
 			M->setSpeed(0);
 			setted_mode = RELEASE;
 			return;
 		}
 
-		if (pwr > 0) {
+		if (pwr > 0)
+		{
 			if (setted_mode == BACKWARD) { M->run(RELEASE); }
+
 			M->setSpeed(pwr * 255);
+
 			if (setted_mode != FORWARD) { M->run(FORWARD); }
+
 			setted_mode = FORWARD;
 			return;
 		}
 
-		if (pwr < 0) {
+		if (pwr < 0)
+		{
 			if (setted_mode == FORWARD) { M->run(RELEASE); }
+
 			M->setSpeed((-pwr) * 255);
+
 			if (setted_mode != BACKWARD) { M->run(BACKWARD); }
+
 			setted_mode = BACKWARD;
 		}
 	}
 
-	void stop() override { 
-		power(0); 
+	void stop() override
+	{
+		TRACE();
+		power(0);
 	}
 };
 
 motor_driver motors[4];
-motor_driver & motor_fl = motors[0]; 
+motor_driver & motor_fl = motors[0];
 motor_driver & motor_fr = motors[1];
-motor_driver & motor_bl = motors[2]; 
+motor_driver & motor_bl = motors[2];
 motor_driver & motor_br = motors[3];
 
 char buf[64];
@@ -92,11 +112,12 @@ void* spammer3(void* arg);
 void* updater(void* arg);
 
 int32_t i = 0;
-void pubsub_handler(crow::packet* pack) 
-{		
+void pubsub_handler(crow::packet* pack)
+{
+	TRACE();
 	gxx::buffer thmbuf = crow::pubsub::get_theme(pack);
 
-	if (thmbuf == "zippo_control") 
+	if (thmbuf == "zippo_control")
 	{
 		gxx::buffer datbuf = crow::pubsub::get_data(pack);
 
@@ -111,18 +132,21 @@ void pubsub_handler(crow::packet* pack)
 		//motors_run(l, r);
 	}
 
-	else if (thmbuf == "zippo_enable") 
+	else if (thmbuf == "zippo_enable")
 	{
 		board::sysled.toggle();
 
 		gxx::buffer datbuf = crow::pubsub::get_data(pack);
 
-		if (datbuf == "en") 
+		if (datbuf == "on")
 		{
+			board::sysled.set(1);
 			en = true;
 		}
 
-		else if (datbuf == "off") {
+		else if (datbuf == "off")
+		{
+			board::sysled.set(0);
 			en = false;
 		}
 	}
@@ -136,14 +160,17 @@ void pubsub_handler(crow::packet* pack)
 }*/
 
 uint8_t raddr_[8];
-int main() {
-	//const char * raddr = "#F4.12.192.168.1.135:10009"; 
-	const char * raddr = "#F4.12.192.168.1.135:10009"; 
+int main()
+{
+	//const char * raddr = "#F4.12.192.168.1.135:10009";
+	const char * raddr = "#F4.12.192.168.1.135:10009";
 	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
 
 	board_init();
 	schedee_manager_init();
-	
+
+	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
+
 	board::sysled.settings(GPIO_MODE_OUTPUT);
 	board::sysled.set(1);
 
@@ -157,10 +184,10 @@ int main() {
 	uartgate.init(&usart0);
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_handler = pubsub_handler;
-	
+
 	irqs_enable();
 	delay(100);
-	
+
 	mshield.begin(&i2c);
 
 	motor_bl.M = mshield.getMotor(1);
@@ -178,7 +205,7 @@ int main() {
 	//schedee_run(create_cooperative_schedee(spammer2, nullptr, 256));
 	//schedee_run(create_cooperative_schedee(spammer3, nullptr, 256));
 	schedee_run(create_cooperative_schedee(updater, nullptr, 128));
-		
+
 	//crow::publish("mirmik", "HelloWorld");
 //	crow::subscribe("turtle_power", crow::QoS(0));
 //	crow::pubsub_handler = pubsub_handler;
@@ -187,41 +214,56 @@ int main() {
 
 	//crow_spin();
 
-	while(1);
+	while (1);
 }
 
-void motors_stop() {
+void motors_stop()
+{
+	TRACE();
+
 	for (auto m : motors) m.stop();
 }
 
-void motors_run(float pwr) {
-	for (auto m : motors) m.power(pwr);	
+void motors_run(float pwr)
+{
+	TRACE();
+
+	for (auto m : motors) m.power(pwr);
 }
 
-void motors_run(float lpwr, float rpwr) {
+void motors_run(float lpwr, float rpwr)
+{
+	TRACE();
 	motor_bl.power(lpwr);
 	motor_fl.power(lpwr);
 	motor_br.power(rpwr);
 	motor_fr.power(rpwr);
 }
 
-void* updater(void* arg) 
+void* updater(void* arg)
 {
-	while(1) {
-	//	prevent_crowing = true;
+	TRACE();
+
+	while (1)
+	{
+		//	prevent_crowing = true;
 		if (en)
 			motors_run(lpower, rpower);
-		else 
+		else
 			motors_run(0, 0);
-	//	prevent_crowing = false;
+
+		//	prevent_crowing = false;
 		//crow::publish("upd", "updated", 0, 200);
 		msleep(100);
 	}
 }
 
-void* spammer0(void* arg) 
+void* spammer0(void* arg)
 {
-	while(1) {
+	TRACE();
+
+	while (1)
+	{
 		char buf[20];
 		i32toa(i++, buf, 10);
 
@@ -229,11 +271,14 @@ void* spammer0(void* arg)
 		//dprln("HelloWorld");
 		msleep(200);
 	}
-} 
+}
 
-void* spammer1(void* arg) 
+void* spammer1(void* arg)
 {
-	while(1) {
+	TRACE();
+
+	while (1)
+	{
 		char buf[20];
 		i32toa(i++, buf, 10);
 
@@ -241,11 +286,14 @@ void* spammer1(void* arg)
 		//dprln("HelloWorld");
 		msleep(200);
 	}
-} 
+}
 
-void* spammer2(void* arg) 
+void* spammer2(void* arg)
 {
-	while(1) {
+	TRACE();
+
+	while (1)
+	{
 		char buf[20];
 		i32toa(i++, buf, 10);
 
@@ -253,11 +301,14 @@ void* spammer2(void* arg)
 		//dprln("HelloWorld");
 		msleep(200);
 	}
-} 
+}
 
-void* spammer3(void* arg) 
+void* spammer3(void* arg)
 {
-	while(1) {
+	TRACE();
+
+	while (1)
+	{
 		char buf[20];
 		i32toa(i++, buf, 10);
 
@@ -265,15 +316,22 @@ void* spammer3(void* arg)
 		//dprln("HelloWorld");
 		msleep(200);
 	}
-} 
+}
 
-uint16_t crow::millis() {
+uint16_t crow::millis()
+{
+	TRACE();
 	return ::millis();
 }
 
-void __schedule__() {
-	while(1) {
+void __schedule__()
+{
+	TRACE();
+
+	while (1)
+	{
 		if (!prevent_crowing) crow::onestep();
+
 		timer_manager();
 		schedee_manager();
 	}

@@ -20,8 +20,8 @@ application("main",
 	sources = ["main.cpp"],
 	target = "firmware.bin",
 
-	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto",
-	cc_flags = "-Os -flto",
+	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto -DNDEBUG",
+	cc_flags = "-Os -flto -DNDEBUG",
 
 	include_modules = [
 		("genos.board", "arduino_uno"),
@@ -37,7 +37,6 @@ application("main",
 		("gxx.libc"),
 		("gxx.std"),
 		("gxx.posix"),
-		("gxx.panic", "abort"),
 
 		("gxx.include"),
 		("gxx.c_only"),
@@ -48,7 +47,7 @@ application("main",
 		("gxx.print", "dprint"),
 
 		("crow"),
-		("crow.allocator", "malloc"),
+		("crow.allocator", "pool"),
 
 		("genos.drivers.crow.uartgate"),
 
