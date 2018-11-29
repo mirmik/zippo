@@ -163,7 +163,7 @@ uint8_t raddr_[8];
 int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
-	const char * raddr = "#F4.12.192.168.1.135:10009";
+	const char * raddr = "#F4.12.127.0.0.1:10009";
 	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
 
 	board_init();
