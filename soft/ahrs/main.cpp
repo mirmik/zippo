@@ -49,7 +49,7 @@ float p;
 float r;
 float y;
 
-void mhandler(crowket* pack) {
+void mhandler(crow::packet* pack) {
 	enabledata = true;
 
 	float alpha = 0;
@@ -167,7 +167,7 @@ void mhandler(crowket* pack) {
 	crow::release(pack);
 }
 
-#define MAXSIG 0.4
+#define MAXSIG 0.6
 
 void publish_thread() {
 	while(1) {
@@ -186,7 +186,7 @@ void publish_thread() {
 			printf("kv0:%7.3f kv1:%7.3f   \n", data[0], data[1]);
 	
 			const char* thm = "zippo_control";
-			crow::publish(thm, (const char*)data, sizeof(data));
+			crow::publish_buffer(thm, (const char*)data, 8, 0, 200);
 			enabledata = false;
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -204,20 +204,20 @@ int main() {
 	const char * raddr = ".12.192.168.1.135:10009"; 
 	int rlen = hexer(_raddr, 20, raddr, strlen(raddr));
 
-	crow_set_publish_host(_raddr, rlen);
+	crow::set_publish_host(_raddr, rlen);
 	crow::subscribe("ahrs", 0, 200);
 
 	//crow_udpgate udpgate;
 	//udpgate.open(9999);
 
-	crow_create_udpgate(9999, 12);
+	crow::create_udpgate(9999, 12);
 
-	crow_pubsub_handler = mhandler;
+	crow::pubsub_handler = mhandler;
 
 	//crow::link_gate(&udpgate, 12);
 
 	auto thr = std::thread(publish_thread);
 	thr.detach();
 
-	crow_spin();
+	crow::spin();
 }

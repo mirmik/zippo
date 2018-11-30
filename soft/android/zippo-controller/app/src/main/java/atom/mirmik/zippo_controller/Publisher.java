@@ -31,7 +31,7 @@ public class Publisher {
     public void publish(String theme, byte[] data) {
         byte[] bytes = new byte[10];
         byte[] addr = new byte[7];
-        byte[] sh = new byte[3];
+        byte[] sh = new byte[4];
         byte[] thm = theme.getBytes();
 
         bytes[0] = (byte)0b00100000; //pflag
@@ -55,7 +55,8 @@ public class Publisher {
 
         sh[0] = 1;
         sh[1] = (byte) thm.length;
-        sh[2] = (byte) data.length;
+        sh[2] = (byte) (data.length & 0xFF);
+        sh[3] = (byte) ((data.length & 0xFF00) >> 8);
 
         byte[] packdata = bytes;
         packdata = concat(packdata,addr);

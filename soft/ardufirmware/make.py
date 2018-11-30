@@ -7,6 +7,7 @@ from licant.libs import include
 from licant.cxx_make import make_gcc_binutils
 from licant.modules import submodule
 
+import time
 import os
 
 include("genos")
@@ -19,8 +20,8 @@ application("main",
 	sources = ["main.cpp"],
 	target = "firmware.bin",
 
-	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto",
-	cc_flags = "-Os -flto",
+	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto -DNDEBUG",
+	cc_flags = "-Os -flto -DNDEBUG",
 
 	include_modules = [
 		("genos.board", "arduino_uno"),
@@ -36,7 +37,6 @@ application("main",
 		("gxx.libc"),
 		("gxx.std"),
 		("gxx.posix"),
-		("gxx.panic", "abort"),
 
 		("gxx.include"),
 		("gxx.c_only"),
@@ -47,7 +47,7 @@ application("main",
 		("gxx.print", "dprint"),
 
 		("crow"),
-		("crow.allocator", "malloc"),
+		("crow.allocator", "pool"),
 
 		("genos.drivers.crow.uartgate"),
 
@@ -67,11 +67,12 @@ def install():
 	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
 
 @licant.routine
-def remote_install():
-	os.system("ctrans .12.192.168.1.140:10008 --pulse 'exit' --type 15 --qos 2")
+def remote_install(deps=["main"]):
+	os.system("ctrans .12.192.168.1.140:10008 --pulse exit")
 	os.system("scp ./firmware.bin mirmik@192.168.1.140:/tmp/enginedrive.bin")
 	os.system("ssh mirmik@192.168.1.140 avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:/tmp/enginedrive.bin -u")
-	os.system("ssh mirmik@192.168.1.140 ctrans --api --udp 10008 --serial /dev/ttyACM0 > /dev/null &")
+	time.sleep(1)
+	os.system("ssh mirmik@192.168.1.140 ctrans --api --noconsole --udp 10008 --serial /dev/ttyACM0 > /dev/null &")
 
 @licant.routine
 def terminal():
