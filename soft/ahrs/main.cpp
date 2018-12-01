@@ -67,9 +67,13 @@ void mhandler(crow::packet* pack) {
 	}
 
 	//Размечаем данные в пакете.
-	float3& acc = * (float3*) &data[0];
-	float3& gyr = * (float3*) &data[12];
-	float3& mag = * (float3*) &data[24];
+	float3 acc;  //* (float3*) &data[0];
+	float3 gyr;  //* (float3*) &data[12];
+	float3 mag;  //* (float3*) &data[24];
+
+	memcpy(&acc, &data[0],  sizeof(float) * 3);
+	memcpy(&gyr, &data[12], sizeof(float) * 3);
+	memcpy(&mag, &data[24], sizeof(float) * 3);
 
     float3 corgyr = gyr - zgyr;
 
