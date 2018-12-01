@@ -70,6 +70,7 @@ def install():
 def install_retrans():
 	os.system("ctrans .12.127.0.0.1:10008 --pulse exit")
 	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
+	time.sleep(1)
 	os.system("bash /home/mirmik/start-trans.sh &")
 
 @licant.routine(deps=['main'])
