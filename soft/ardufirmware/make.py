@@ -69,8 +69,7 @@ def install():
 @licant.routine(deps=["main"])
 def install_retrans():
 	os.system("ctrans .12.127.0.0.1:10008 --pulse exit")
-        #os.system("sudo avrdude -P/dev/ttyACM0 -v -cwiring -patmega2560 -b115200 -D -Uflash:w:.$
-        os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firm$
+	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
 	os.system("bash /home/mirmik/start-trans.sh &")
 
 @licant.routine(deps=['main'])
