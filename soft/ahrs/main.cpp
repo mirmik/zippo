@@ -11,6 +11,8 @@
 #include <thread>
 #include <chrono>
 
+#include <gxx/trace.h>
+
 namespace cstd {
 	template<class T, class Compare>
 	constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp )
@@ -43,6 +45,8 @@ float r;
 float y;
 
 void mhandler(crow::packet* pack) {
+	TRACE();
+
 	enabledata = true;
 
 	float alpha = 0;
@@ -104,6 +108,8 @@ void mhandler(crow::packet* pack) {
 #define MAXSIG 0.6
 
 void publish_thread() {
+	TRACE();
+
 	while(1) {
 		if (enabledata) {
 			float summ = - (p * RAD_TO_DEG - 50.0) / 40.0 * MAXSIG;
@@ -128,6 +134,8 @@ void publish_thread() {
 }
 
 int main() {
+	TRACE();
+
 	uint8_t _raddr[20];
 
 	ahrs.reset();
