@@ -1,3 +1,5 @@
+#define NOTRACE 1
+
 #include <crow/pubsub.h>
 #include <crow/gates/udpgate.h>
 
