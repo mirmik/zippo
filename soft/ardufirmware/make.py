@@ -66,8 +66,15 @@ def install():
 	#os.system("sudo avrdude -P/dev/ttyACM0 -v -cwiring -patmega2560 -b115200 -D -Uflash:w:./firmware.bin -u")
 	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
 
-@licant.routine
-def remote_install(deps=["main"]):
+@licant.routine(deps=["main"])
+def install_retrans():
+	os.system("ctrans .12.127.0.0.1:10008 --pulse exit")
+        #os.system("sudo avrdude -P/dev/ttyACM0 -v -cwiring -patmega2560 -b115200 -D -Uflash:w:.$
+        os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firm$
+	os.system("bash /home/mirmik/start-trans.sh &")
+
+@licant.routine(deps=['main'])
+def remote_install():
 	os.system("ctrans .12.192.168.1.140:10008 --pulse exit")
 	os.system("scp ./firmware.bin mirmik@192.168.1.140:/tmp/enginedrive.bin")
 	os.system("ssh mirmik@192.168.1.140 avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:/tmp/enginedrive.bin -u")
