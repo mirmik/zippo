@@ -1,9 +1,11 @@
 package atom.mirmik.zippo_controller;
 
+import android.view.View;
 import android.view.WindowManager;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.AsyncTask;
 import android.hardware.SensorManager;
 import android.hardware.Sensor;
 import android.content.Context;
@@ -118,6 +120,24 @@ public class MainActivity extends AppCompatActivity {
                     //}
             }
         }
+    }
+
+    public void enableCommandSend(View view) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                publisher.publish("zippo_enable", "on".getBytes());
+            }
+        });
+    }
+
+    public void disableCommandSend(View view) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                publisher.publish("zippo_enable", "off".getBytes());
+            }
+        });
     }
 
     public class ImuThread extends Thread {
