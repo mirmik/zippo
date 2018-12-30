@@ -10,22 +10,7 @@ licant.libs.include("crow")
 
 application("target",
 	sources = ["main.cpp"],
-	include_modules = [
-		("gxx", "posix"),
-		("gxx.dprint", "cout"),
-		("gxx.print", "cout"),
-
-		("gxx.syslock", "mutex"),
-		("gxx.inet", "posix"),
-
-		("gxx.madgwick"),
-
-		("crow.minimal"),
-		("crow.minimal_pubsub"),
-		("crow.udpgate"),
-		("crow.allocator", "malloc"),
-		("crow.time", "chrono"),
-	],
+	mdepends=["crow", "crow.udpgate", "gxx", "gxx.madgwick"],
 	libs = ["pthread"],
 )
 
