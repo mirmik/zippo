@@ -6,6 +6,8 @@ from zencad import *
 
 from evalcache import unlazy
 
+zencad.lazy.diag = True
+
 zencad.enable_cache_diagnostic()
 
 from bottom_full import bottom_full_scene
