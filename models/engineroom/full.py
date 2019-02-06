@@ -20,7 +20,6 @@ from control_body import control_body
 
 def engineroom_scene():
  	scene = Scene()
- 	#scene.add(unlazy(top_model().up(bottom_z+top_z)), Color(0,1,0))
  	scene.append(top_assemble())#.up(bottom_z+top_z))
  	scene.add(unlazy(control_body().up(bottom_z+top_z+control_z)), Color(1,0,0))
  	scene.append(bottom_full_scene())

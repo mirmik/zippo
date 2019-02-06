@@ -47,8 +47,8 @@ stiffer_trans2 = multitransform([
 #
 #
 m =  difference([
-	linear_extrude(rectangle(x, y, center = True).fillet(5,[0,1,2,3]),(0,0,z)),
-	linear_extrude(rectangle(x-2*t, y-2*t, center = True).fillet(5-t,[0,1,2,3]),(0,0,z-t)).up(t)
+	linear_extrude(rectangle(x, y, center = True).fillet(5),(0,0,z)),
+	linear_extrude(rectangle(x-2*t, y-2*t, center = True).fillet(5-t),(0,0,z-t)).up(t)
 ])
 
 drive_place = drive_place(t,z,sl,t)
