@@ -26,5 +26,6 @@ def engineroom_scene():
  	scene.append(bottom_full_scene())
  	return scene
 
+print(__name__)
 if __name__ == "__main__":
 	show(engineroom_scene())

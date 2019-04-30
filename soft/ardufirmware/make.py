@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #coding: utf-8
 
 import licant
@@ -11,8 +11,10 @@ import time
 import os
 
 include("genos")
-include("gxx")
 include("crow")
+include("igris")
+include("nos")
+
 binutils = make_gcc_binutils("avr")
 
 application("main", 
@@ -23,40 +25,28 @@ application("main",
 	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto -DNDEBUG",
 	cc_flags = "-Os -flto -DNDEBUG",
 
-	include_modules = [
+	mdepends = [
 		("genos.board", "arduino_uno"),
 
 
 		("genos.include"),
 		
-		("genos.irqtbl"),
+		("genos.irqtable"),
 		("genos.sched", "impl"),
 		("genos.malloc", "lin"),
 
-		("gxx.syslock", "genos.atomic"),
-		("gxx.libc"),
-		("gxx.std"),
-		("gxx.posix"),
-
-		("gxx.include"),
-		("gxx.c_only"),
-		("gxx.util.cxx"),
+		("igris.stdlibs"),
 		
-		("gxx.diag", "impl"),
-		("gxx.dprint", "diag"),
-		("gxx.print", "dprint"),
-
 		("crow"),
+		("crow.time", "__none__"),
 		("crow.allocator", "pool"),
 
 		("genos.drivers.crow.uartgate"),
 
+		"genos.drivers.avr",
+
 		#("genos.mvfs"),
 		("genos.systime"),
-		submodule("genos.drivers.common"),
-		submodule("genos.drivers.gpio.avr"), 
-		submodule("genos.drivers.usart.avr"),
-
 		("genos.addons.adafruit_motor_shield")
 	]
 )
