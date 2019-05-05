@@ -27,7 +27,7 @@ base = rectangle(x, y, center = True).extrude(z+filrad*2).fillet(filrad).down(z)
 def control_body():
 	m = (
 		#Основное тело
-		thicksolid(base, [point(0,0,0)], -t).up(z)
+		thicksolid(base, -t, [point(0,0,0)]).up(z)
 
 		#Колоны
 		- sqrtrans()(cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 

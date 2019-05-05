@@ -1,17 +1,15 @@
 #define NOTRACE 1
-#include <gxx/trace.h>
+#include <nos/trace.h>
 
 #include <hal/board.h>
 #include <hal/irq.h>
 
 //#include <arch/i2c_automate.h>
-#include <gxx/print.h>
-
-#include <gxx/debug/delay.h>
-#include <gxx/util/hexer.h>
+#include <nos/print.h>
 
 #include <crow/tower.h>
 #include <crow/pubsub.h>
+#include <crow/hexer.h>
 #include <systime/systime.h>
 #include <drivers/i2c/avr_i2c.h>
 #include <drivers/serial/avr_usart.h>
@@ -39,7 +37,7 @@ bool en = false;
 avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 
-avr_usart usart0(USART0, ATMEGA_IRQ_U0RX);
+AVR_USART_DEVICE_DECLARE(usart0, USART0, ATMEGA_IRQ_U0RX);
 struct crow_uartgate uartgate;
 
 bool prevent_crowing = false;
@@ -115,11 +113,11 @@ int32_t i = 0;
 void pubsub_handler(crow::packet* pack)
 {
 	TRACE();
-	gxx::buffer thmbuf = crow::pubsub::get_theme(pack);
+	igris::buffer thmbuf = crow::pubsub::get_theme(pack);
 
 	if (thmbuf == "zippo_control")
 	{
-		gxx::buffer datbuf = crow::pubsub::get_data(pack);
+		igris::buffer datbuf = crow::pubsub::get_data(pack);
 
 		float l;
 		float r;
@@ -134,19 +132,20 @@ void pubsub_handler(crow::packet* pack)
 
 	else if (thmbuf == "zippo_enable")
 	{
-		board::sysled.toggle();
+		//board::sysled.toggle();
+		gpio_pin_toggle(&board_led);
 
-		gxx::buffer datbuf = crow::pubsub::get_data(pack);
+		igris::buffer datbuf = crow::pubsub::get_data(pack);
 
 		if (datbuf == "on")
 		{
-			board::sysled.set(1);
+			gpio_pin_write(&board_led, 1);
 			en = true;
 		}
 
 		else if (datbuf == "off")
 		{
-			board::sysled.set(0);
+			gpio_pin_write(&board_led, 0);
 			en = false;
 		}
 	}
@@ -171,17 +170,17 @@ int main()
 
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 
-	board::sysled.settings(GPIO_MODE_OUTPUT);
-	board::sysled.set(1);
+	gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
+	gpio_pin_write(&board_led, 1);
 
-	usart0.setup(115200);
-	usart0.enable();
+	uart_device_setup(&usart0, 115200, 'n', 8, 1);
 
 	i2c.init_master();
 	i2c.enable();
 
 	crow::set_publish_host(raddr_, raddr_len);
-	uartgate.init(&usart0);
+	uartgate.init(&usart0.dev);
+
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_handler = pubsub_handler;
 
@@ -318,12 +317,6 @@ void* spammer3(void* arg)
 	}
 }
 
-uint16_t crow::millis()
-{
-	TRACE();
-	return ::millis();
-}
-
 void __schedule__()
 {
 	TRACE();
@@ -332,7 +325,7 @@ void __schedule__()
 	{
 		if (!prevent_crowing) crow::onestep();
 
-		timer_manager();
-		schedee_manager();
+		timer_manager_step();
+		schedee_manager_step();
 	}
 }

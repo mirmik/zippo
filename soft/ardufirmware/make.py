@@ -11,7 +11,8 @@ import time
 import os
 
 include("genos")
-include("gxx")
+include("nos")
+include("igris")
 include("crow")
 binutils = make_gcc_binutils("avr")
 
@@ -23,41 +24,31 @@ application("main",
 	cxx_flags = "-Os -fpermissive -fno-threadsafe-statics -flto -DNDEBUG",
 	cc_flags = "-Os -flto -DNDEBUG",
 
-	include_modules = [
+	mdepends = [
 		("genos.board", "arduino_uno"),
-
-
-		("genos.include"),
-		
-		("genos.irqtbl"),
-		("genos.sched", "impl"),
+		"genos.include",
+		"genos.sched",
 		("genos.malloc", "lin"),
 
-		("gxx.syslock", "genos.atomic"),
-		("gxx.libc"),
-		("gxx.std"),
-		("gxx.posix"),
+		"nos.include",
+		("nos.current_ostream", "nullptr"),
 
-		("gxx.include"),
-		("gxx.c_only"),
-		("gxx.util.cxx"),
-		
-		("gxx.diag", "impl"),
-		("gxx.dprint", "diag"),
-		("gxx.print", "dprint"),
+		("igris.syslock", "genos.atomic"),
+		"igris.libc",
+		"igris.std",
+		"igris.posix",
+
+		("igris.dprint", "diag"),
+		"igris.protocols.gstuff",
 
 		("crow"),
 		("crow.allocator", "pool"),
+		("crow.time", "genos"),
 
-		("genos.drivers.crow.uartgate"),
+		"genos.drivers.avr",
+		"genos.drivers.crow.uartgate",
 
-		#("genos.mvfs"),
-		("genos.systime"),
-		submodule("genos.drivers.common"),
-		submodule("genos.drivers.gpio.avr"), 
-		submodule("genos.drivers.usart.avr"),
-
-		("genos.addons.adafruit_motor_shield")
+		"genos.addons.adafruit_motor_shield",
 	]
 )
 
