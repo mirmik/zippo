@@ -5,6 +5,9 @@ import zencad
 from zencad import *
 
 from evalcache import unlazy
+import sys
+
+print(sys.path)
 
 from params import *
 from bottom import bottom_model

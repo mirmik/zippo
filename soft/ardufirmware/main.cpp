@@ -4,9 +4,6 @@
 #include <hal/board.h>
 #include <hal/irq.h>
 
-//#include <arch/i2c_automate.h>
-#include <nos/print.h>
-
 #include <crow/tower.h>
 #include <crow/pubsub.h>
 #include <crow/hexer.h>
@@ -14,7 +11,11 @@
 #include <drivers/i2c/avr_i2c.h>
 #include <drivers/serial/avr_usart.h>
 #include <drivers/crow/uartgate.h>
+
 #include <sched/sched.h>
+#include <sched/schedee/cooperative.h>
+#include <sched/schedee/autom.h>
+
 #include <sched/timer.h>
 
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
@@ -22,7 +23,7 @@
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 5
+#define CROW_PACKET_TOTAL 4
 
 void motors_stop();
 void motors_run(float pwr);
@@ -41,6 +42,9 @@ AVR_USART_DEVICE_DECLARE(usart0, USART0, ATMEGA_IRQ_U0RX);
 struct crow_uartgate uartgate;
 
 bool prevent_crowing = false;
+
+struct cooperative_schedee updater_schedee;
+char updater_schedee_heap[128];
 
 struct motor_driver : public genos::robo::motor
 {
@@ -88,7 +92,7 @@ struct motor_driver : public genos::robo::motor
 
 	void stop() override
 	{
-		TRACE();
+
 		power(0);
 	}
 };
@@ -103,17 +107,14 @@ char buf[64];
 
 void* recvproc(void* arg);
 void* initproc(void* arg);
-void* spammer0(void* arg);
-void* spammer1(void* arg);
-void* spammer2(void* arg);
-void* spammer3(void* arg);
+void* spammer0(void* arg, int* state);
 void* updater(void* arg);
 
 int32_t i = 0;
 void pubsub_handler(crow::packet* pack)
 {
-	TRACE();
 	igris::buffer thmbuf = crow::pubsub::get_theme(pack);
+	//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
 
 	if (thmbuf == "zippo_control")
 	{
@@ -132,6 +133,7 @@ void pubsub_handler(crow::packet* pack)
 
 	else if (thmbuf == "zippo_enable")
 	{
+		//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
 		//board::sysled.toggle();
 		gpio_pin_toggle(&board_led);
 
@@ -158,25 +160,23 @@ void pubsub_handler(crow::packet* pack)
 	crow::release(pack);
 }*/
 
-uint8_t raddr_[8];
+uint8_t raddr_[16];
 int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
-	const char * raddr = "#F4.12.127.0.0.1:10009";
-	int raddr_len = hexer(raddr_, 8, raddr, strlen(raddr));
-
 	board_init();
-	schedee_manager_init();
 
+	const char * raddr = "#F4.12.127.0.0.1:10009";
+	int raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
+
+	uart_device_setup(&usart0, 115200, 'n', 8, 1);
+
+	scheduler_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 
 	gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
 	gpio_pin_write(&board_led, 1);
 
-	uart_device_setup(&usart0, 115200, 'n', 8, 1);
-
-	i2c.init_master();
-	i2c.enable();
 
 	crow::set_publish_host(raddr_, raddr_len);
 	uartgate.init(&usart0.dev);
@@ -187,52 +187,36 @@ int main()
 	irqs_enable();
 	delay(100);
 
-	mshield.begin(&i2c);
+	//crow::diagnostic_enable();
 
-	motor_bl.M = mshield.getMotor(1);
-	motor_br.M = mshield.getMotor(2);
-	motor_fr.M = mshield.getMotor(3);
-	motor_fl.M = mshield.getMotor(4);
-
-	crow::subscribe("zippo_control");
 	crow::subscribe("zippo_enable");
+	crow::subscribe("zippo_control");
 
 	//motors_run(0.2, 0.2);
 
-	//schedee_run(create_cooperative_schedee(spammer0, nullptr, 128));
-	//schedee_run(create_cooperative_schedee(spammer1, nullptr, 128));
-	//schedee_run(create_cooperative_schedee(spammer2, nullptr, 256));
-	//schedee_run(create_cooperative_schedee(spammer3, nullptr, 256));
-	schedee_run(create_cooperative_schedee(updater, nullptr, 128));
+	//schedee_run(create_autom_schedee(spammer0, nullptr));
 
-	//crow::publish("mirmik", "HelloWorld");
-//	crow::subscribe("turtle_power", crow::QoS(0));
-//	crow::pubsub_handler = pubsub_handler;
-//	crow::publish("zippo", "start schedule");
-	__schedule__();
 
-	//crow_spin();
+	cooperative_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128);
+	schedee_run(&updater_schedee.sch);
 
-	while (1);
+	while (1)
+		__schedule__();
 }
 
 void motors_stop()
 {
-	TRACE();
-
 	for (auto m : motors) m.stop();
 }
 
 void motors_run(float pwr)
 {
-	TRACE();
-
 	for (auto m : motors) m.power(pwr);
 }
 
 void motors_run(float lpwr, float rpwr)
 {
-	TRACE();
+
 	motor_bl.power(lpwr);
 	motor_fl.power(lpwr);
 	motor_br.power(rpwr);
@@ -241,89 +225,58 @@ void motors_run(float lpwr, float rpwr)
 
 void* updater(void* arg)
 {
-	TRACE();
+	irqs_enable();
+
+	dprln("i2c init master");
+	i2c.init_master();
+	//msleep(2000);
+
+	dprln("i2c enable");
+	i2c.enable();
+	//msleep(2000);
+
+	dprln("mshield begin");
+	mshield.begin(&i2c);
+	//msleep(2000);
+
+	dprln("mshield motors registry begin");
+	motor_bl.M = mshield.getMotor(1);
+	motor_br.M = mshield.getMotor(2);
+	motor_fr.M = mshield.getMotor(3);
+	motor_fl.M = mshield.getMotor(4);
+	schedee_exit();
 
 	while (1)
 	{
-		//	prevent_crowing = true;
 		if (en)
+		{
+			//crow::send("\xF4", 1, "Asdfa", 5, 0, 0, 200);
 			motors_run(lpower, rpower);
+		}
 		else
 			motors_run(0, 0);
 
-		//	prevent_crowing = false;
-		//crow::publish("upd", "updated", 0, 200);
 		msleep(100);
 	}
 }
 
-void* spammer0(void* arg)
+void* spammer0(void* arg, int* state)
 {
-	TRACE();
 
-	while (1)
-	{
-		char buf[20];
-		i32toa(i++, buf, 10);
 
-		crow::publish("mirmik0", buf, 0, 200);
-		//dprln("HelloWorld");
-		msleep(200);
-	}
-}
+	char buf[20];
+	i32toa(i++, buf, 10);
 
-void* spammer1(void* arg)
-{
-	TRACE();
-
-	while (1)
-	{
-		char buf[20];
-		i32toa(i++, buf, 10);
-
-		crow::publish("mirmik1", buf, 0, 200);
-		//dprln("HelloWorld");
-		msleep(200);
-	}
-}
-
-void* spammer2(void* arg)
-{
-	TRACE();
-
-	while (1)
-	{
-		char buf[20];
-		i32toa(i++, buf, 10);
-
-		crow::publish("mirmik2", buf, 0, 200);
-		//dprln("HelloWorld");
-		msleep(200);
-	}
-}
-
-void* spammer3(void* arg)
-{
-	TRACE();
-
-	while (1)
-	{
-		char buf[20];
-		i32toa(i++, buf, 10);
-
-		crow::publish("mirmik3", buf, 0, 200);
-		//dprln("HelloWorld");
-		msleep(200);
-	}
+	crow::publish("mirmik0", buf, 0, 200);
+	msleep(200);
 }
 
 void __schedule__()
 {
-	TRACE();
-
 	while (1)
 	{
-		if (!prevent_crowing) crow::onestep();
+		if (!prevent_crowing)
+			crow::onestep();
 
 		timer_manager_step();
 		schedee_manager_step();
