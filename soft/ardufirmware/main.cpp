@@ -16,7 +16,7 @@
 #include <sched/schedee/cooperative.h>
 #include <sched/schedee/autom.h>
 
-#include <sched/timer.h>
+#include <genos/ktimer.h>
 
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
 #include <robo/motor.h>
@@ -227,24 +227,23 @@ void* updater(void* arg)
 {
 	irqs_enable();
 
-	dprln("i2c init master");
+	//dprln("i2c init master");
 	i2c.init_master();
 	//msleep(2000);
 
-	dprln("i2c enable");
+	//dprln("i2c enable");
 	i2c.enable();
 	//msleep(2000);
 
-	dprln("mshield begin");
+	//dprln("mshield begin");
 	mshield.begin(&i2c);
 	//msleep(2000);
 
-	dprln("mshield motors registry begin");
+	//dprln("mshield motors registry begin");
 	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
-	schedee_exit();
 
 	while (1)
 	{
