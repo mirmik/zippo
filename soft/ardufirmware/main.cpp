@@ -255,7 +255,7 @@ void* updater(void* arg)
 		else
 			motors_run(0, 0);
 
-		msleep(100);
+		msleep(10);
 	}
 }
 

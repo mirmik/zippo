@@ -27,7 +27,7 @@ remote_ip = "192.168.1.145"
 @licant.routine(deps=['firmware'])
 def remote_install():
 	os.system("ctrans .12.{ip}:10008 --pulse exit".format(ip=remote_ip))
-	os.system("scp ./firmware.bin mirmik@{ip}:/tmp/enginedrive.bin".format(ip=remote_ip))
+	os.system("scp ./firmware mirmik@{ip}:/tmp/enginedrive.bin".format(ip=remote_ip))
 	os.system("ssh mirmik@{ip} avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:/tmp/enginedrive.bin -u".format(ip=remote_ip))
 	time.sleep(1)
 	os.system("ssh mirmik@{ip} ctrans --api --noconsole --udp 10008 --serial /dev/ttyACM0 > /dev/null &".format(ip=remote_ip))
