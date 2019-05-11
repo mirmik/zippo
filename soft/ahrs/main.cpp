@@ -109,7 +109,7 @@ void mhandler(crow::packet* pack)
 	crow::release(pack);
 }
 
-#define MAXSIG 0.8
+#define MAXSIG 1
 
 void publish_thread()
 {
