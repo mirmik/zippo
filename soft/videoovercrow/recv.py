@@ -11,7 +11,7 @@ import pycrow as crow
 import threading
 
 crow.create_udpgate(12, 10011)
-crow.set_crowker(".12.127.0.0.1:10009")
+crow.set_crowker(".12.192.168.1.93:10009")
 
 crow.diagnostic_enable()
 
@@ -36,7 +36,7 @@ while(True):
 	
 		img = Image.open(tmpFile)
 		I = np.asarray(img)
-		#I = cv2.resize(I,(640, 480))
+		I = cv2.resize(I,(640, 480))
 
 		cv2.imshow('frame',I)
 		if cv2.waitKey(1) & 0xFF == ord('q'):

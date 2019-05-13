@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         publisher = new Publisher();
-        publisher.setHostAddress(".12.192.168.1.145:10009");
+        publisher.setHostAddress(".12.192.168.1.93:10009");
 
         hthr = new PublishThread();
         ithr = new ImuThread();

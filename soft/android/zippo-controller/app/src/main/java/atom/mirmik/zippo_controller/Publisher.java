@@ -13,7 +13,7 @@ public class Publisher {
         System.out.println("Publisher created");
         try {
             sock = new DatagramSocket();
-            InetAddress iaddr = InetAddress.getByName("192.168.1.145");
+            InetAddress iaddr = InetAddress.getByName("192.168.1.93");
             sockaddr = new InetSocketAddress(iaddr, 10009);
         } catch (Exception e) {
             System.out.println(e);
