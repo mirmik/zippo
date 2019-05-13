@@ -10,8 +10,8 @@ import pycrow as crow
 import threading
 
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640); 
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480);
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320); 
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240);
 cap.set(cv2.CAP_PROP_SATURATION,0.2);
 
 crow.create_udpgate(12, 10010)
