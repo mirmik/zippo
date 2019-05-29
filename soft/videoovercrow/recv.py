@@ -36,8 +36,9 @@ while(True):
 	
 		img = Image.open(tmpFile)
 		I = np.asarray(img)
+		I=cv2.flip(I, -1);
 		I = cv2.resize(I,(640, 480))
-
+		
 		cv2.imshow('frame',I)
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break

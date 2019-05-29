@@ -26,13 +26,14 @@ cyltrans = forw(22 + t) * up(r) * rotateY(deg(90))
 
 cyl = cylinder(r=r, h=t)
 chole = cylinder(r=2, h=t)
+chole2 = cylinder(r=1, h=t)
 hole = rotate_array(n=4)(cylinder(r=0.5, h=t).forw(6.5))
 
 m = (
 	m 
 	+ (ear	
 		+ cyltrans(cyl)
-		- cyltrans(chole))
+		- cyltrans(chole2))
 	+ (ear
 		+ cyltrans(cyl) 
 		- cyltrans(hole)
@@ -47,7 +48,7 @@ m = (
 		up(h/2),
 		up(h/2) * right(ww + w),
 		right(ww + w)
-	])(cylinder(r=2, h=3).rotateX(deg(-90)).left(ww/2).up(h/4))
+	])(cylinder(r=1.7, h=3).rotateX(deg(-90)).left(ww/2).up(h/4))
 )
 
 m = m.rotateX(deg(90))

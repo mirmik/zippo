@@ -21,6 +21,9 @@
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
 #include <robo/motor.h>
 
+#include <drivers/pwmservo/pwmservo.h>
+#include <drivers/timer/avr_timer.h>
+
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
 #define CROW_PACKET_TOTAL 4
@@ -45,6 +48,9 @@ bool prevent_crowing = false;
 
 struct cooperative_schedee updater_schedee;
 char updater_schedee_heap[128];
+
+pwmservo<uint16_t> servo0(&TIMER1->ocr_a, 0, 90, 1, 0x03FF);
+pwmservo<uint16_t> servo1(&TIMER1->ocr_b, 0, 90, 1, 0x03FF);
 
 struct motor_driver : public genos::robo::motor
 {
@@ -165,6 +171,18 @@ int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
 	board_init();
+
+	periph::timer1.set_mode(decltype(periph::timer1)::TimerMode::Clock);
+	periph::timer1.set_divider(64);
+	//servo0.set(0.5);
+	//servo1.set(0.5);
+	periph::timer1.set_output_a_mode(0b10);
+	periph::timer1.set_output_b_mode(0b10);
+
+	periph::timer1.set_compare_a(0x1FF);
+	periph::timer1.set_compare_b(0x1FF);
+
+	gpio_settings(GPIOB, (1<<0) | (1<<1), GPIO_MODE_OUTPUT);
 
 	const char * raddr = "#F4.12.127.0.0.1:10009";
 	int raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
