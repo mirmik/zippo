@@ -12,21 +12,24 @@
 #include <drivers/serial/avr_usart.h>
 #include <drivers/crow/uartgate.h>
 
-#include <sched/sched.h>
-#include <sched/schedee/cooperative.h>
-#include <sched/schedee/autom.h>
+#include <genos/sched.h>
+#include <genos/schedee/coop.h>
+#include <genos/schedee/autom.h>
 
 #include <genos/ktimer.h>
 
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
 #include <robo/motor.h>
 
-#include <drivers/pwmservo/pwmservo.h>
+#include <drivers/pwmservo/avr_pwmservo.h>
+#include <addons/arduino/pwm.h>
+#include <addons/arduino/pin.h>
 #include <drivers/timer/avr_timer.h>
+
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 4
+#define CROW_PACKET_TOTAL 6
 
 void motors_stop();
 void motors_run(float pwr);
@@ -41,16 +44,21 @@ bool en = false;
 avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 
-AVR_USART_DEVICE_DECLARE(usart0, USART0, ATMEGA_IRQ_U0RX);
 struct crow_uartgate uartgate;
 
 bool prevent_crowing = false;
 
-struct cooperative_schedee updater_schedee;
+genos::coopschedee updater_schedee;
 char updater_schedee_heap[128];
 
-pwmservo<uint16_t> servo0(&TIMER1->ocr_a, 0, 90, 1, 0x03FF);
-pwmservo<uint16_t> servo1(&TIMER1->ocr_b, 0, 90, 1, 0x03FF);
+//pwmservo<uint16_t> servo0(&TIMER1->ocr_a, 0, 90, 1, 0x03FF);
+//pwmservo<uint16_t> servo1(&TIMER1->ocr_b, 0, 90, 1, 0x03FF);
+
+genos::avr::pwmservo pwm_ver;
+genos::avr::pwmservo pwm_hor;
+
+genos::avr::pwmservo_writer<uint16_t> wr_ver;
+genos::avr::pwmservo_writer<uint16_t> wr_hor;
 
 struct motor_driver : public genos::robo::motor
 {
@@ -158,6 +166,26 @@ void pubsub_handler(crow::packet* pack)
 		}
 	}
 
+
+	else if (thmbuf == "zippo_shor")
+	{
+		igris::buffer datbuf = crow::pubsub::get_data(pack);
+
+		float l;
+		memcpy(&l, datbuf.data(), 4);
+		wr_hor.set(l);
+	}
+
+
+	else if (thmbuf == "zippo_sver")
+	{
+		igris::buffer datbuf = crow::pubsub::get_data(pack);
+
+		float l;
+		memcpy(&l, datbuf.data(), 4);
+		wr_ver.set(l);
+	}
+
 	crow::release(pack);
 }
 
@@ -167,12 +195,30 @@ void pubsub_handler(crow::packet* pack)
 }*/
 
 uint8_t raddr_[16];
+int raddr_len;
 int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
 	board_init();
 
-	periph::timer1.set_mode(decltype(periph::timer1)::TimerMode::Clock);
+	pwm_hor = arduino_pwm_timer(9);
+	pwm_ver = arduino_pwm_timer(10);
+
+	pwm_hor.standart_timer_mode();
+	pwm_hor.pwm_mode_start();
+	wr_hor = pwm_hor.get_writer(1000, 2000);
+
+	pwm_ver.standart_timer_mode();
+	pwm_ver.pwm_mode_start();
+	wr_ver = pwm_ver.get_writer(1000, 2000);
+
+	pinMode(9,1);
+	pinMode(10,1);
+
+	wr_hor.set(0.5);
+	wr_ver.set(0.5);
+
+	/*periph::timer1.set_mode(decltype(periph::timer1)::TimerMode::Clock);
 	periph::timer1.set_divider(64);
 	//servo0.set(0.5);
 	//servo1.set(0.5);
@@ -180,14 +226,14 @@ int main()
 	periph::timer1.set_output_b_mode(0b10);
 
 	periph::timer1.set_compare_a(0x1FF);
-	periph::timer1.set_compare_b(0x1FF);
+	periph::timer1.set_compare_b(0x1FF);*/
 
 	gpio_settings(GPIOB, (1<<0) | (1<<1), GPIO_MODE_OUTPUT);
 
 	const char * raddr = "#F4.12.127.0.0.1:10009";
-	int raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
+	raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
 
-	uart_device_setup(&usart0, 115200, 'n', 8, 1);
+	usart0.setup(115200, 'n', 8, 1);
 
 	scheduler_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
@@ -195,9 +241,7 @@ int main()
 	gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
 	gpio_pin_write(&board_led, 1);
 
-
-	crow::set_publish_host(raddr_, raddr_len);
-	uartgate.init(&usart0.dev);
+	uartgate.init(&usart0);
 
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_handler = pubsub_handler;
@@ -207,16 +251,18 @@ int main()
 
 	//crow::diagnostic_enable();
 
-	crow::subscribe("zippo_enable");
-	crow::subscribe("zippo_control");
+	crow::subscribe(raddr_, raddr_len, "zippo_enable");
+	crow::subscribe(raddr_, raddr_len, "zippo_control");
+	crow::subscribe(raddr_, raddr_len, "zippo_shor");
+	crow::subscribe(raddr_, raddr_len, "zippo_sver");
 
 	//motors_run(0.2, 0.2);
 
 	//schedee_run(create_autom_schedee(spammer0, nullptr));
 
 
-	cooperative_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128);
-	schedee_run(&updater_schedee.sch);
+	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
+	updater_schedee.run();
 
 	while (1)
 		__schedule__();
@@ -295,7 +341,7 @@ void __schedule__()
 		if (!prevent_crowing)
 			crow::onestep();
 
-		timer_manager_step();
+		ktimer_manager_step();
 		schedee_manager_step();
 	}
 }
