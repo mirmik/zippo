@@ -13,19 +13,18 @@ import threading
 crow.create_udpgate(12, 10011)
 crow.set_crowker(".12.192.168.1.93:10009")
 
-crow.diagnostic_enable()
-
 thr = threading.Thread(target=crow.spin, args=())
 thr.start()
 
+crow.diagnostic_enable()
 
 data = None
 def handler(pack):
 	global data
 	data = pack.data()
-	print(data[-40:-1])
+	#print(data[-40:-1])
 
-crow.subscribe("video_stream", handler)
+crow.subscribe("video_stream", handler, ack=0, ackquant=200, rack=0, rackquant=200)
 
 while(True):
 	if (data is not None):
