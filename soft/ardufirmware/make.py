@@ -34,11 +34,9 @@ def remote_install():
 
 licant.glbfunc.genos_firmware(
 	sources=["main.cpp"],
-	mdepends=[
-		"nos",
-		("nos.current_ostream", "nullptr"),
-		
-		"crow",
+	mdepends=[	
+		"crow.minimal",
+		("crow.protocol.pubsub"),
 		("crow.allocator", "pool"),
 		("crow.time", "genos"),
 
@@ -47,6 +45,8 @@ licant.glbfunc.genos_firmware(
 
 		"igris.protocols.gstuff",
 
+		("igris.dprint", "stub"),
+		("genos.diag", "stub"),
 		"genos.sched",
 	],
 )

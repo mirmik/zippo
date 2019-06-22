@@ -1,6 +1,3 @@
-#define NOTRACE 1
-#include <nos/trace.h>
-
 #include <hal/board.h>
 #include <hal/irq.h>
 
@@ -26,6 +23,7 @@
 #include <addons/arduino/pin.h>
 #include <drivers/timer/avr_timer.h>
 
+#include <igris/util/numconvert.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
@@ -35,7 +33,7 @@ void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
 
-uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
+uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL] __attribute__((aligned(16)));
 
 float lpower = 0;
 float rpower = 0;
@@ -124,6 +122,8 @@ void* initproc(void* arg);
 void* spammer0(void* arg, int* state);
 void* updater(void* arg);
 
+genos::autom_schedee spammer_schedee{spammer0, nullptr};
+
 int32_t i = 0;
 void pubsub_handler(crow::packet* pack)
 {
@@ -200,6 +200,8 @@ int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
 	board_init();
+	//while(1)
+	//dprln("INITED");
 
 	pwm_hor = arduino_pwm_timer(9);
 	pwm_ver = arduino_pwm_timer(10);
@@ -244,7 +246,9 @@ int main()
 	uartgate.init(&usart0);
 
 	crow::user_incoming_handler = NULL;
-	crow::pubsub_handler = pubsub_handler;
+	crow::pubsub_protocol.incoming_handler = pubsub_handler;
+
+	crow::pubsub_protocol.enable();	
 
 	irqs_enable();
 	delay(100);
@@ -258,7 +262,7 @@ int main()
 
 	//motors_run(0.2, 0.2);
 
-	//schedee_run(create_autom_schedee(spammer0, nullptr));
+	spammer_schedee.run();
 
 
 	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
@@ -325,19 +329,18 @@ void* updater(void* arg)
 
 void* spammer0(void* arg, int* state)
 {
-
-
 	char buf[20];
 	i32toa(i++, buf, 10);
 
-	crow::publish("mirmik0", buf, 0, 200);
-	msleep(200);
+	crow::publish(raddr_, raddr_len, "mirmik0", buf, 0, 200);
+	msleep(1000);
 }
 
 void __schedule__()
 {
 	while (1)
 	{
+		dprln("HERE");
 		if (!prevent_crowing)
 			crow::onestep();
 

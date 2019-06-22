@@ -4,6 +4,9 @@ import java.util.*;
 import java.net.*;
 import java.lang.*;
 
+import android.net.*;
+import android.net.wifi.*;
+
 public class Publisher {
     byte[] haddr;
     DatagramSocket sock;
@@ -13,8 +16,11 @@ public class Publisher {
         System.out.println("Publisher created");
         try {
             sock = new DatagramSocket();
-            InetAddress iaddr = InetAddress.getByName("192.168.1.93");
+            InetAddress iaddr = InetAddress.getByName("255.255.255.255");
             sockaddr = new InetSocketAddress(iaddr, 10009);
+            //sock.setReuseAddress(true);
+            //sock.bind(sockaddr);
+            sock.setBroadcast(true);
         } catch (Exception e) {
             System.out.println(e);
             System.exit(0);
@@ -74,6 +80,18 @@ public class Publisher {
             System.exit(0);
         }
     }
+
+    /*InetAddress getBroadcastAddress() {
+        //WifiManager wifiManager = (WifiManager) this.ge getSystemService(Context.WIFI_SERVICE);
+        DhcpInfo dhcp = wifi.getDhcpInfo();
+        // handle null somehow
+
+        int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
+        byte[] quads = new byte[4];
+        for (int k = 0; k < 4; k++)
+            quads[k] = (byte) ((broadcast >> k * 8) & 0xFF);
+        return InetAddress.getByAddress(quads);
+    }*/
 
     public void setHostAddress(String addr) {
         int sz = 0;

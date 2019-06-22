@@ -16,7 +16,7 @@ crow.set_crowker(".12.192.168.1.93:10009")
 thr = threading.Thread(target=crow.spin, args=())
 thr.start()
 
-crow.diagnostic_enable()
+#crow.diagnostic_enable()
 
 data = None
 def handler(pack):
@@ -36,7 +36,8 @@ while(True):
 		img = Image.open(tmpFile)
 		I = np.asarray(img)
 		I=cv2.flip(I, -1);
-		I = cv2.resize(I,(640, 480))
+		#I = cv2.resize(I,(int(640), int(480)))
+		I = cv2.resize(I,(int(640*3/2), int(480*3/2)))
 		
 		cv2.imshow('frame',I)
 		if cv2.waitKey(1) & 0xFF == ord('q'):
