@@ -36,30 +36,19 @@ public class MainActivity extends AppCompatActivity {
                     acc[0] = event.values[0];
                     acc[1] = event.values[1];
                     acc[2] = event.values[2];
-                    //System.out.println(String.format("acc (%f, %f, %f), d: %f", event.values[0], event.values[1], event.values[2], (float)(System.nanoTime() - accTime)/1000000));
                     accTime = System.nanoTime();
                     break;
                 case Sensor.TYPE_GYROSCOPE:
                     gyr[0] = event.values[0];
                     gyr[1] = event.values[1];
                     gyr[2] = event.values[2];
-                    //System.out.println(String.format("gyr (%f, %f, %f), d: %f", event.values[0], event.values[1], event.values[2], (float)(System.nanoTime() - gyrTime)/1000000));
                     gyrTime = System.nanoTime();
-                    //needUpdate.
-
-                    /*lock.lock();
-                    try {
-                        needUpdate.signal();
-                    } finally {
-                        lock.unlock();
-                    }*/
 
                     break;
                 case Sensor.TYPE_MAGNETIC_FIELD:
                     mag[0] = event.values[0];
                     mag[1] = event.values[1];
                     mag[2] = event.values[2];
-                    //System.out.println(String.format("mag (%f, %f, %f), d: %f", event.values[0], event.values[1], event.values[2], (float)(System.nanoTime() - magTime)/1000000));
                     magTime = System.nanoTime();
                     break;
                 default: publisher.publish("log", "Very Strange Situation".getBytes());
@@ -84,12 +73,18 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             ByteBuffer bbuf = ByteBuffer.allocate(36);
             bbuf.order(ByteOrder.LITTLE_ENDIAN);
-            try {
+
+            try
+            {
                 Thread.sleep(2000);
-            }catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 System.out.println(e);
             }
-            while(true) {
+
+            while(true)
+            {
                 bbuf.putFloat(0, acc[0]);
                 bbuf.putFloat(4, acc[1]);
                 bbuf.putFloat(8, acc[2]);
@@ -107,17 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 }catch (Exception e) {
                     System.out.println(e);
                 }
-
-
-                    //publisher.publish("hello", String.format("HelloWorld %d", i++).getBytes());
-                    //publisher.publish("acc", String.format("acc (%f, %f, %f) ", acc[0], acc[1], acc[2]).getBytes());
-                    //publisher.publish("gyr", String.format("gyr (%f, %f, %f) ", gyr[0], gyr[1], gyr[2]).getBytes());
-                    //publisher.publish("mag", String.format("mag (%f, %f, %f) ", mag[0], mag[1], mag[2]).getBytes());
-                    //try {
-                    //    Thread.sleep(10);
-                    //}catch (Exception e) {
-                    //    System.out.println(e);
-                    //}
             }
         }
     }
