@@ -27,7 +27,7 @@
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 6
+#define CROW_PACKET_TOTAL 8
 
 void motors_stop();
 void motors_run(float pwr);
@@ -262,7 +262,7 @@ int main()
 
 	//motors_run(0.2, 0.2);
 
-	spammer_schedee.run();
+	//spammer_schedee.run();
 
 
 	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
