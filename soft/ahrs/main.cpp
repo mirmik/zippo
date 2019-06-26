@@ -159,5 +159,11 @@ int main()
 	auto thr = std::thread(publish_thread);
 	thr.detach();
 
-	crow::spin();
+	//crow::spin();
+	
+	while(1) 
+	{
+		crow::onestep();
+		std::this_thread::sleep_for(std::chrono::microseconds(1));
+	}
 }
