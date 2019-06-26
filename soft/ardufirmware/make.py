@@ -14,6 +14,9 @@ include("genos")
 include("nos")
 include("igris")
 include("crow")
+include("ralgo")
+include("malgo")
+include("linalg-v3")
 
 @licant.routine(deps=["firmware"])
 def install_retrans():
@@ -48,5 +51,9 @@ licant.glbfunc.genos_firmware(
 		("igris.dprint", "stub"),
 		("genos.diag", "stub"),
 		"genos.sched",
+
+		"ralgo",
+		"malgo",
+		"linalg-v3",
 	],
 )

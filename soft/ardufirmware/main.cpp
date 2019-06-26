@@ -25,6 +25,8 @@
 
 #include <igris/util/numconvert.h>
 
+#include <ralgo/lintrans.h>
+
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
 #define CROW_PACKET_TOTAL 8
@@ -57,6 +59,9 @@ genos::avr::pwmservo pwm_hor;
 
 genos::avr::pwmservo_writer<uint16_t> wr_ver;
 genos::avr::pwmservo_writer<uint16_t> wr_hor;
+
+ralgo::lintrans::aperiodic<float> ver_filter(0.90, 0.1);
+ralgo::lintrans::aperiodic<float> hor_filter(0.90, 0.1);
 
 struct motor_driver : public genos::robo::motor
 {
@@ -173,7 +178,7 @@ void pubsub_handler(crow::packet* pack)
 
 		float l;
 		memcpy(&l, datbuf.data(), 4);
-		wr_hor.set(l);
+		wr_hor.set(hor_filter(l));
 	}
 
 
@@ -183,7 +188,7 @@ void pubsub_handler(crow::packet* pack)
 
 		float l;
 		memcpy(&l, datbuf.data(), 4);
-		wr_ver.set(l);
+		wr_ver.set(ver_filter(l));
 	}
 
 	crow::release(pack);
