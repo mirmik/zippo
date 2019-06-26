@@ -15,10 +15,10 @@ licant.libs.include("malgo")
 licant.libs.include("crow")
 licant.libs.include("linalg-v3")
 
-application("target",
+application("ahrs",
 	sources = ["main.cpp"],
 	mdepends=["crow", "crow.udpgate", "ralgo", ("igris.ctrobj", "linux")],
 	libs = ["pthread"],
 )
 
-licant.ex("target")
+licant.ex("ahrs")
