@@ -63,6 +63,9 @@ genos::avr::pwmservo_writer<uint16_t> wr_hor;
 ralgo::lintrans::aperiodic<float> ver_filter(0.90, 0.1);
 ralgo::lintrans::aperiodic<float> hor_filter(0.90, 0.1);
 
+ralgo::lintrans::aperiodic<float> left_filter(0.05, 0.01);
+ralgo::lintrans::aperiodic<float> right_filter(0.05, 0.01);
+
 struct motor_driver : public genos::robo::motor
 {
 	Adafruit_DCMotor* M;
@@ -323,10 +326,13 @@ void* updater(void* arg)
 		if (en)
 		{
 			//crow::send("\xF4", 1, "Asdfa", 5, 0, 0, 200);
-			motors_run(lpower, rpower);
+			motors_run(left_filter(lpower), right_filter(rpower));
 		}
-		else
+		else {
+			left_filter.set_value(0);
+			right_filter.set_value(0);
 			motors_run(0, 0);
+		}
 
 		msleep(10);
 	}
