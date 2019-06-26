@@ -15,7 +15,10 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240);
 cap.set(cv2.CAP_PROP_SATURATION,0.2);
 
 crow.create_udpgate(12, 10011)
+
+addr = ".12.127.0.0.1:10009"
 crow.set_crowker(".12.127.0.0.1:10009")
+caddr = crow.compile_address(addr)
 
 #crow.diagnostic_enable()
 
@@ -34,7 +37,7 @@ while(True):
 	data = tmpFile.read()
 #	print(data[-40:-1])
 
-	crow.publish("video_stream", data, 0, 200)
+	crow.publish(caddr, "video_stream", data, 0, 200)
 
 cap.release()
 cv2.destroyAllWindows()
