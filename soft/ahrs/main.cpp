@@ -39,6 +39,9 @@ float p;
 float r;
 float y;
 
+uint8_t _raddr[20];
+int rlen;
+
 void mhandler(crow::packet* pack)
 {
 	enabledata = true;
@@ -131,7 +134,7 @@ void publish_thread()
 			printf("kv0:%7.3f kv1:%7.3f   \n", data[0], data[1]);
 
 			const char* thm = "zippo_control";
-			crow::publish_buffer(thm, (const char*)data, 8, 0, 200);
+			crow::publish(_raddr, rlen, thm, (const char*)data, 8, 0, 200);
 			enabledata = false;
 		}
 
@@ -141,20 +144,20 @@ void publish_thread()
 
 int main()
 {
-	uint8_t _raddr[20];
 
 	ahrs.reset();
 	ahrs.setKoeff(50, 0.5);
 
 	const char * raddr = ".12.127.0.0.1:10009";
-	int rlen = hexer(_raddr, 20, raddr, strlen(raddr));
+	rlen = hexer(_raddr, 20, raddr, strlen(raddr));
 
-	crow::set_publish_host(_raddr, rlen);
-	crow::subscribe("ahrs", 0, 200);
+	//crow::set_publish_host(_raddr, rlen);
+	crow::subscribe(_raddr, rlen, "ahrs", 0, 200);
 
 	crow::create_udpgate(12, 9999);
 
-	crow::pubsub_handler = mhandler;
+	crow::pubsub_protocol.enable();
+	crow::pubsub_protocol.incoming_handler = mhandler;
 
 	auto thr = std::thread(publish_thread);
 	thr.detach();

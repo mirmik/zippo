@@ -17,7 +17,7 @@ licant.libs.include("linalg-v3")
 
 application("target",
 	sources = ["main.cpp"],
-	mdepends=["crow", "crow.udpgate", "ralgo"],
+	mdepends=["crow", "crow.udpgate", "ralgo", ("igris.ctrobj", "linux")],
 	libs = ["pthread"],
 )
 
