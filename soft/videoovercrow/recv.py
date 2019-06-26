@@ -28,7 +28,7 @@ crow.subscribe("video_stream", handler, ack=0, ackquant=200, rack=0, rackquant=2
 
 while(True):
 	if (data is not None):
-		print(len(data))
+		#print(len(data))
 		tmpFile = io.BytesIO()
 		tmpFile.write(data)
 		tmpFile.seek(0)

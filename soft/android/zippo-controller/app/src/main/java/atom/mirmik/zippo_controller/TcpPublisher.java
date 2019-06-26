@@ -73,6 +73,7 @@ public class TcpPublisher extends Publisher
         }
 
         sock = new Socket();
+        sock.setTcpNoDelay(true);
         sock.connect(new InetSocketAddress(ip, port));
 
         ma.connectState();
