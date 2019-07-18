@@ -1,0 +1,1619 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o)
+                              /tmp/cc2X38eK.ltrans3.ltrans.o (__subsf3)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o) (__addsf3x)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o)
+                              /tmp/cc2X38eK.ltrans0.ltrans.o (__eqsf2)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o)
+                              /tmp/cc2X38eK.ltrans1.ltrans.o (__divsf3)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3x.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o) (__divsf3x)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                              /tmp/cc2X38eK.ltrans4.ltrans.o (__fixsfsi)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+                              /tmp/cc2X38eK.ltrans0.ltrans.o (__fixunssfsi)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(floatsisf.o)
+                              /tmp/cc2X38eK.ltrans1.ltrans.o (__floatunsisf)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o) (__fp_cmp)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_inf.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_inf)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_nan.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_nan)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscA.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_pscA)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscB.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_pscB)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_round.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o) (__fp_round)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_split3.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_split3)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_zero.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o) (__fp_zero)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(gesf2.o)
+                              /tmp/cc2X38eK.ltrans0.ltrans.o (__gtsf2)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o)
+                              /tmp/cc2X38eK.ltrans0.ltrans.o (__mulsf3)
+/usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                              /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o) (__mulsf3x)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+                              /tmp/cc2X38eK.ltrans4.ltrans.o (__mulsi3)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+                              /tmp/cc2X38eK.ltrans4.ltrans.o (__udivmodsi4)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+                              /tmp/cc2X38eK.ltrans4.ltrans.o (__divmodsi4)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o) (__negsi2)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+                              /tmp/cc2X38eK.ltrans1.ltrans.o (__do_global_ctors)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+                              /tmp/cc2X38eK.ltrans3.ltrans.o (__do_global_dtors)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o) (__muluhisi3)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+                              /tmp/cc2X38eK.ltrans2.ltrans.o (__umoddi3)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o) (__udivmod64)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+                              /tmp/cc2X38eK.ltrans2.ltrans.o (__negdi2)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+                              /tmp/cc2X38eK.ltrans4.ltrans.o (__adddi3_s8)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+                              /tmp/cc2X38eK.ltrans2.ltrans.o (__cmpdi2_s8)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o) (__tablejump2__)
+/usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+                              /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o) (__umulhisi3)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7schedee14signal_handlerEi
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14avr_i2c_device6statusEv
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14avr_i2c_device11write_startEhPKvj
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14avr_i2c_device15writeread_startEhPKvjPvj
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos18autom_schedee_base8finalizeEv
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos18autom_schedee_base14signal_handlerEi
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos4robo5motor4stopEv
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN12motor_driver4stopEv
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN12motor_driver5powerEf
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris6buffereqEPKc
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos6restblC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7schedeeC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos7schedeeE
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14avr_i2c_deviceC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV14avr_i2c_device
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14avr_i2c_device11init_masterEm
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos11coopschedeeC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos18autom_schedee_baseC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr7timer1614enable_ocr_outEc
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr8pwmservo14pwm_mode_startEv
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr8pwmservo10get_writerEjj
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN13crow_uartgateC5Ev
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN4crow7gatewayE
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos4robo5motorE
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV12motor_driver
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN12motor_driverC5ERKS_
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE11set_dividerEj
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr15pwmservo_writerIjE3setEf
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA5_cEEvDpRKT_
+                0x0000000000000000        0x0 build/main.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._ZN5genos4robo5motor4stopEv
+                0x0000000000000000       0x14 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._ZN5genos18autom_schedee_base8finalizeEv
+                0x0000000000000000        0x2 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.file_printchar
+                0x0000000000000000       0x2c /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.printf   0x0000000000000000       0x38 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.vprintf  0x0000000000000000       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.puts     0x0000000000000000       0x50 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strcat   0x0000000000000000       0x1e /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strchr   0x0000000000000000       0x1e /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strncpy  0x0000000000000000       0x40 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strcpy   0x0000000000000000       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strrchr  0x0000000000000000       0x4a /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strstr   0x0000000000000000       0x42 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.memset   0x0000000000000000       0xe2 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strcspn  0x0000000000000000       0x46 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strspn   0x0000000000000000       0x2a /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strncat  0x0000000000000000       0x7e /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strpbrk  0x0000000000000000       0x38 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.memchr   0x0000000000000000       0x1e /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.strlen   0x0000000000000000       0x1c /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .text          0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text.__cxa_pure_virtual
+                0x0000000000000000        0x2 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZN5genos9directory7iterateEPcjPNS_7openresE
+                0x0000000000000000        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZN5genos8resource7gettypeEv
+                0x0000000000000000        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/board/arduino/board.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV11uart_device
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/board/arduino/board.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA12_cEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/board/arduino/board.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/allocation_pool.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris4pool4initEPvjj
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/allocation_pool.o (symbol from plugin)
+ .gnu.linkonce.t._Z8dprptrlnIPvEvRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/allocation_pool.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/addons/crow/crow_time.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/diag/diag_impl.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/sync/syslock_genos_atomic.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/start.o
+ .bss           0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/start.o
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/vectors.o
+ .bss           0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/vectors.o
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/irqcall.o
+ .bss           0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/irqcall.o
+ .bss           0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/switch_context.o
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/context.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/end_of_programm.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/arch.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/periph/timer.o (symbol from plugin)
+ .text          0x0000000000000000       0x3a build/home/mirmik/project/genos/arch/avr/src/debug_blink.o
+ .bss           0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/debug_blink.o
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/packet.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/tower.o (symbol from plugin)
+ .gnu.linkonce.t._ZN4crow8protocol11undeliveredEPNS_6packetE
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/tower.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris5dlistIN4crow7gatewayEXadL_ZNS2_3lnkEEEE8iteratorppEv
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/tower.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/protocol.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/hexer.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZN4crow8protocol11undeliveredEPNS_6packetE
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZN4crow19pubsub_protocol_clsC5Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN4crow8protocolE
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN4crow19pubsub_protocol_clsE
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE10invalidateEv
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE12changeBufferEj
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE7reserveEj
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE4copyEPKcj
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5EPKcj
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5EPKc
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .gnu.linkonce.t._ZNKSbISaIcEE5c_strEv
+                0x0000000000000000        0x0 build/home/mirmik/project/crow/crow/src/pubsub.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/crow/uartgate.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJiEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/crow/uartgate.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris5dlistIN4crow7gatewayEXadL_ZNS2_3lnkEEEE8add_lastERS2_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/crow/uartgate.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV13crow_uartgate
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/crow/uartgate.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.o (symbol from plugin)
+ .gnu.linkonce.t._ZN10i2c_device5writeEhPKvj
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.o (symbol from plugin)
+ .gnu.linkonce.t._ZN10i2c_device9writereadEhPKvjPvj
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MotorShield.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/protocols/gstuff/autorecv.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/protocols/gstuff/gstuff.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/numconvert.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/hexascii.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE12changeBufferEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/hexascii.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE7reserveEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/hexascii.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE6resizeEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/hexascii.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEED5Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE4moveERS0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5EOS0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris16array_destructorIPSbISaIcEEEEvT_S4_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE12changeBufferEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE7reserveEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE6appendEPKcj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE9push_backEc
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE6appendERKS0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE10invalidateEv
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEE4copyEPKcj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5EPKcj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5igris11constructorISbISaIcEEJRPciEEEvPT_DpOT0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5EPKc
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEaSERKS0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSbISaIcEEC5ERKS0_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSt6vectorISbISaIcEESaIS1_EE12changeBufferEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSt6vectorISbISaIcEESaIS1_EE7reserveEj
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .gnu.linkonce.t._ZNSt6vectorISbISaIcEESaIS1_EE12emplace_backIJRPciEEEvDpOT_
+                0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/string.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/dstring.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/stub.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/util/bug_abort.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/dprint/dprint_stdout.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/dprint/dprint_func_impl.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/igris/dprint/dprintxx.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/sched.o (symbol from plugin)
+ .gnu.linkonce.t._Z3dprIA9_cJiEEvRKT_DpRKT0_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/sched.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA9_ciEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/sched.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/apitime.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/autom.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos18autom_schedee_base8finalizeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/autom.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos18autom_schedee_base14signal_handlerEi
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/autom.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos13autom_schedeeE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/autom.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos18autom_schedee_baseE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/autom.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/coop.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7schedee14signal_handlerEi
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/coop.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos11coopschedeeE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/schedee/coop.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/sched/posix/fcntl_mvfs.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/sched/posix/unistd_mvfs.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/wait.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/ktimer.o (symbol from plugin)
+ .gnu.linkonce.t._Z3dprIlJlEEvRKT_DpRKT0_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/ktimer.o (symbol from plugin)
+ .gnu.linkonce.t._Z3dprIA6_cJllEEvRKT_DpRKT0_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/ktimer.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA6_cllEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/ktimer.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos8resource7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos4node5writeEPKvji
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos4node4readEPvji
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos4node7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos9directory7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/fops.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/resource.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos8resource4openEPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/resource.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/resmngr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/nav.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos8resource7releaseEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos8resource4openEPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos8resource7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos9directory7iterateEPcjPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos9directory6mknodeEPKcPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos9directory6rmnodeEPKcPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos9directory7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos15named_node_list7iterateEPcjPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7resmngr5mkdirEPKc
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7resmngr5rmdirEPKc
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos14device_manager4openEPKcPNS_7openresE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos7resmngrC5EPKc
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos7resmngrE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos15named_node_listC5Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos8resourceE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos9directoryE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos15named_node_listE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos14device_managerC5Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos14device_managerE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/dev.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/genos/errno.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/cxx/__cxa_pure_virtual.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/arch/avr/src/diag.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/hal/irqtable.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJjEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/hal/irqtable.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA10_cEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/hal/irqtable.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJVjEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/hal/irqtable.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/systime/systime.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos4node7gettypeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA22_cEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .gnu.linkonce.t._Z3dprIA6_cJiEEvRKT_DpRKT0_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .gnu.linkonce.t._Z5dprlnIJA6_ciEEvDpRKT_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV15uartring_device
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/uartring.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/spi/avr_spi.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/avr_usart.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV16avr_usart_device
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/serial/avr_usart.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE11set_dividerEj
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE11set_divcodeEh
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE14irq_ovf_enableEb
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE4typeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE7value16Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE11set_dividerEj
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE11set_divcodeEh
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE14irq_ovf_enableEb
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE4typeEv
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE7value16Ev
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIjP12timer16_regsE15set_ovf_handlerEPFvPvES5_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr5timerIhP11timer8_regsE15set_ovf_handlerEPFvPvES5_
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr6timer8C5EP11timer8_regsNS0_10timer_irqsEPVh
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos3avr10timer_baseE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos3avr5timerIhP11timer8_regsEE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos3avr6timer8E
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZN5genos3avr7timer16C5EP12timer16_regsNS0_10timer_irqsEPVh
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos3avr5timerIjP12timer16_regsEE
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .gnu.linkonce.t._ZTVN5genos3avr7timer16E
+                0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/genos/src/drivers/gpio/avr_gpio.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/atol.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/qsort.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/strtoll.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/getpagesize.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/bsearch.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/abort.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/strtol.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/random.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/strtoul.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/sysconf.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/strtoull.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/rand.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/strtod.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/itoa.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/random_r.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdlib/system.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strlcpy.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcasecmp.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memmove.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strlen.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memchr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strlwr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strpbrk.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcasestr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strncat.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strspn.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strnlen.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcspn.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memcpy.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strncasecmp.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strupr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strchrnul.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strncmp.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memset.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strstr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memrchr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strrchr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcmp.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcpy.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strdup.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strncpy.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strtok.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strndup.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strchr.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/strcat.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/string/memcmp.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/ctype/ctype.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdio/fdprintf.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdio/puts.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdio/perror.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdio/fdputc.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/stdio/printf.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 build/home/mirmik/project/igris/compat/libc/math/math_builtins.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3x.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3x.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixsfsi.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixsfsi.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(floatsisf.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(floatsisf.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_cmp.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_cmp.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_inf.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_inf.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_nan.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_nan.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscA.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscA.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscB.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscB.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_round.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_round.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_split3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_split3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_zero.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_zero.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(gesf2.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(gesf2.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3x.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3x.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .init6         0x0000000000000000       0x16 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .fini6         0x0000000000000000       0x16 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc   0x0000000000000000        0xc /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x0000000000000000 0x0000000000020000 xr
+sram             0x0000000000800060 0x000000000000ffa0 rw !x
+eeprom           0x0000000000810000 0x0000000000010000 rw !x
+fuse             0x0000000000820000 0x0000000000000400 rw !x
+lock             0x0000000000830000 0x0000000000000400 rw !x
+signature        0x0000000000840000 0x0000000000000400 rw !x
+user_signatures  0x0000000000850000 0x0000000000000400 rw !x
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+START GROUP
+LOAD build/main.o
+LOAD /tmp/cc2X38eK.ltrans0.ltrans.o
+LOAD /tmp/cc2X38eK.ltrans1.ltrans.o
+LOAD /tmp/cc2X38eK.ltrans2.ltrans.o
+LOAD /tmp/cc2X38eK.ltrans3.ltrans.o
+LOAD /tmp/cc2X38eK.ltrans4.ltrans.o
+LOAD build/home/mirmik/project/genos/board/arduino/board.o
+LOAD build/home/mirmik/project/crow/crow/src/allocation_pool.o
+LOAD build/home/mirmik/project/genos/src/addons/crow/crow_time.o
+LOAD build/home/mirmik/project/genos/src/diag/diag_impl.o
+LOAD build/home/mirmik/project/igris/igris/sync/syslock_genos_atomic.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/start.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/vectors.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/irqcall.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/switch_context.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/context.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/end_of_programm.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/arch.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/periph/timer.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/debug_blink.o
+LOAD build/home/mirmik/project/crow/crow/src/packet.o
+LOAD build/home/mirmik/project/crow/crow/src/tower.o
+LOAD build/home/mirmik/project/crow/crow/src/protocol.o
+LOAD build/home/mirmik/project/crow/crow/src/hexer.o
+LOAD build/home/mirmik/project/crow/crow/src/pubsub.o
+LOAD build/home/mirmik/project/genos/src/drivers/crow/uartgate.o
+LOAD build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MS_PWMServoDriver.o
+LOAD build/home/mirmik/project/genos/src/addons/Adafruit_MotorShield/Adafruit_MotorShield.o
+LOAD build/home/mirmik/project/igris/igris/protocols/gstuff/autorecv.o
+LOAD build/home/mirmik/project/igris/igris/protocols/gstuff/gstuff.o
+LOAD build/home/mirmik/project/igris/igris/util/numconvert.o
+LOAD build/home/mirmik/project/igris/igris/util/hexascii.o
+LOAD build/home/mirmik/project/igris/igris/util/string.o
+LOAD build/home/mirmik/project/igris/igris/util/dstring.o
+LOAD build/home/mirmik/project/igris/igris/util/stub.o
+LOAD build/home/mirmik/project/igris/igris/util/bug_abort.o
+LOAD build/home/mirmik/project/igris/igris/dprint/dprint_stdout.o
+LOAD build/home/mirmik/project/igris/igris/dprint/dprint_func_impl.o
+LOAD build/home/mirmik/project/igris/igris/dprint/dprintxx.o
+LOAD build/home/mirmik/project/genos/src/genos/sched.o
+LOAD build/home/mirmik/project/genos/src/genos/schedee.o
+LOAD build/home/mirmik/project/genos/src/genos/apitime.o
+LOAD build/home/mirmik/project/genos/src/genos/schedee/autom.o
+LOAD build/home/mirmik/project/genos/src/genos/schedee/coop.o
+LOAD build/home/mirmik/project/genos/src/sched/posix/fcntl_mvfs.o
+LOAD build/home/mirmik/project/genos/src/sched/posix/unistd_mvfs.o
+LOAD build/home/mirmik/project/genos/src/genos/wait.o
+LOAD build/home/mirmik/project/genos/src/genos/ktimer.o
+LOAD build/home/mirmik/project/genos/src/genos/fops.o
+LOAD build/home/mirmik/project/genos/src/genos/resource.o
+LOAD build/home/mirmik/project/genos/src/genos/resmngr.o
+LOAD build/home/mirmik/project/genos/src/genos/nav.o
+LOAD build/home/mirmik/project/genos/src/genos/dev.o
+LOAD build/home/mirmik/project/genos/src/genos/errno.o
+LOAD build/home/mirmik/project/igris/compat/cxx/__cxa_pure_virtual.o
+LOAD build/home/mirmik/project/genos/arch/avr/src/diag.o
+LOAD build/home/mirmik/project/genos/src/hal/irqtable.o
+LOAD build/home/mirmik/project/genos/src/systime/systime.o
+LOAD build/home/mirmik/project/genos/src/drivers/serial/uartring.o
+LOAD build/home/mirmik/project/genos/src/drivers/spi/avr_spi.o
+LOAD build/home/mirmik/project/genos/src/drivers/serial/avr_usart.o
+LOAD build/home/mirmik/project/genos/src/drivers/timer/avr_timer.o
+LOAD build/home/mirmik/project/genos/src/drivers/gpio/avr_gpio.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/atol.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/qsort.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/strtoll.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/getpagesize.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/bsearch.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/abort.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/strtol.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/random.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/strtoul.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/sysconf.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/strtoull.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/rand.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/strtod.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/itoa.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/random_r.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdlib/system.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strlcpy.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcasecmp.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memmove.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strlen.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memchr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strlwr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strpbrk.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcasestr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strncat.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strspn.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strnlen.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcspn.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memcpy.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strncasecmp.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strupr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strchrnul.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strncmp.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memset.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strstr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memrchr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strrchr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcmp.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcpy.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strdup.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strncpy.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strtok.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strndup.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strchr.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/strcat.o
+LOAD build/home/mirmik/project/igris/compat/libc/string/memcmp.o
+LOAD build/home/mirmik/project/igris/compat/libc/ctype/ctype.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdio/fdprintf.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdio/puts.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdio/perror.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdio/fdputc.o
+LOAD build/home/mirmik/project/igris/compat/libc/stdio/printf.o
+LOAD build/home/mirmik/project/igris/compat/libc/math/math_builtins.o
+LOAD /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a
+LOAD /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a
+END GROUP
+                0x0000000000020000                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x20000
+                0x000000000000ffa0                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
+                0x0000000000010000                __EEPROM_REGION_LENGTH__ = DEFINED (__EEPROM_REGION_LENGTH__)?__EEPROM_REGION_LENGTH__:0x10000
+                0x0000000000000400                __FUSE_REGION_LENGTH__ = DEFINED (__FUSE_REGION_LENGTH__)?__FUSE_REGION_LENGTH__:0x400
+                0x0000000000000400                __LOCK_REGION_LENGTH__ = DEFINED (__LOCK_REGION_LENGTH__)?__LOCK_REGION_LENGTH__:0x400
+                0x0000000000000400                __SIGNATURE_REGION_LENGTH__ = DEFINED (__SIGNATURE_REGION_LENGTH__)?__SIGNATURE_REGION_LENGTH__:0x400
+                0x0000000000000400                __USER_SIGNATURE_REGION_LENGTH__ = DEFINED (__USER_SIGNATURE_REGION_LENGTH__)?__USER_SIGNATURE_REGION_LENGTH__:0x400
+
+.text           0x0000000000000000     0x42ac
+                0x0000000000000000                _stext = .
+ *(.vectors)
+ .vectors       0x0000000000000000       0x68 build/home/mirmik/project/genos/arch/avr/src/vectors.o
+                0x0000000000000000                vectortab
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x0000000000000068                . = ALIGN (0x2)
+ *(.trampolines)
+ .trampolines   0x0000000000000068        0x0 linker stubs
+ *(.trampolines*)
+ *(.init)
+ .init          0x0000000000000068       0xa6 build/home/mirmik/project/genos/arch/avr/src/start.o
+                0x0000000000000068                __start
+                0x00000000000000b4                __do_copy_data
+                0x00000000000000ca                __do_clear_bss
+                0x00000000000000da                __do_global_constructors
+ *(.handlers)
+ .handlers      0x000000000000010e       0x46 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000010e                do_irq
+ .handlers      0x0000000000000154      0x124 build/home/mirmik/project/genos/arch/avr/src/irqcall.o
+                0x0000000000000154                atmega_int0
+                0x000000000000015a                atmega_int1
+                0x0000000000000160                atmega_pcint0
+                0x0000000000000166                atmega_pcint1
+                0x000000000000016c                atmega_pcint2
+                0x0000000000000172                atmega_wdt
+                0x0000000000000178                atmega_tim2_compa
+                0x000000000000017e                atmega_tim2_compb
+                0x0000000000000184                atmega_tim2_ovf
+                0x000000000000018a                atmega_tim1_capt
+                0x0000000000000190                atmega_tim1_compa
+                0x0000000000000196                atmega_tim1_compb
+                0x000000000000019c                atmega_tim1_ovf
+                0x00000000000001a2                atmega_tim0_compa
+                0x00000000000001a8                atmega_tim0_compb
+                0x00000000000001ae                atmega_tim0_ovf
+                0x00000000000001b4                atmega_spi_stc
+                0x00000000000001ba                atmega_u0rx
+                0x00000000000001c0                atmega_u0dre
+                0x00000000000001c6                atmega_u0tx
+                0x00000000000001cc                atmega_adc
+                0x00000000000001d2                atmega_ee_rdy
+                0x00000000000001d8                atmega_ana_comp
+                0x00000000000001de                atmega_twi
+                0x00000000000001e4                atmega_spm_rdy
+                0x00000000000001ea                excpt_common
+                0x0000000000000278                __ctors_start = .
+ SORT(*)(.ctors)
+ .ctors         0x0000000000000278        0x2 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x000000000000027a                __ctors_end = .
+                0x000000000000027a                _dtors_start = .
+ SORT(*)(.dtors)
+ .dtors         0x000000000000027a        0x2 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x000000000000027c                _dtors_end = .
+                0x000000000000027c                . = ALIGN (0x2)
+ *(.text)
+ .text          0x000000000000027c      0x196 build/home/mirmik/project/genos/arch/avr/src/switch_context.o
+                0x000000000000027c                context_switch
+                0x0000000000000348                context_load
+                0x00000000000003ae                context_save_and_displace
+ *(.text.*)
+ .text._ZN12motor_driver4stopEv
+                0x0000000000000412       0x14 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x0000000000000412                _ZN12motor_driver4stopEv
+ .text._ZN5genos3avr8pwmservo14pwm_mode_startEv
+                0x0000000000000426       0x82 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._ZN5genos7schedee14signal_handlerEi
+                0x00000000000004a8        0x2 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x00000000000004a8                _ZN5genos7schedee14signal_handlerEi
+                0x00000000000004a8                _ZN5genos18autom_schedee_base14signal_handlerEi
+ .text._ZN14avr_i2c_device15writeread_startEhPKvjPvj
+                0x00000000000004aa       0x3e /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x00000000000004aa                _ZN14avr_i2c_device15writeread_startEhPKvjPvj
+ .text._ZN14avr_i2c_device11write_startEhPKvj
+                0x00000000000004e8       0x20 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x00000000000004e8                _ZN14avr_i2c_device11write_startEhPKvj
+ .text._ZN14avr_i2c_device6statusEv
+                0x0000000000000508        0x8 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x0000000000000508                _ZN14avr_i2c_device6statusEv
+ .text._ZN4crow6pubsubL8get_dataEPNS_6packetE
+                0x0000000000000510       0x2c /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._ZN12motor_driver5powerEf
+                0x000000000000053c      0x1a4 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x000000000000053c                _ZN12motor_driver5powerEf
+ .text._Z15i2c_irq_handlerPv
+                0x00000000000006e0      0x368 /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x00000000000006e0                _Z15i2c_irq_handlerPv
+ .text._ZN5igris6buffereqEPKc
+                0x0000000000000a48       0x1a /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._Z14pubsub_handlerPN4crow6packetE
+                0x0000000000000a62      0x172 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .text._Z10motors_runff
+                0x0000000000000bd4       0x7a /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x0000000000000bd4                _Z10motors_runff
+ .text.startup.main
+                0x0000000000000c4e      0x60e /tmp/cc2X38eK.ltrans0.ltrans.o
+                0x0000000000000c4e                main
+ .text._ZN5genos3avr5timerIhP11timer8_regsE7value16Ev
+                0x000000000000125c       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text._ZN5genos3avr5timerIhP11timer8_regsE4typeEv
+                0x000000000000126c        0x4 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text._ZN5genos3avr5timerIhP11timer8_regsE15set_ovf_handlerEPFvPvES5_
+                0x0000000000001270       0x1c /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text._ZN5genos3avr5timerIjP12timer16_regsE14irq_ovf_enableEb
+                0x000000000000128c       0x14 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text._ZN5genos3avr5timerIhP11timer8_regsE11set_divcodeEh
+                0x00000000000012a0       0x1a /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text._ZN5genos3avr5timerIhP11timer8_regsE11set_dividerEj
+                0x00000000000012ba       0x24 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.startup._GLOBAL__I_65535_0_main.o.5772
+                0x00000000000012de      0x482 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .text.unwait_one.constprop.90
+                0x0000000000001760       0x4a /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001760                unwait_one.constprop.90
+ .text._ZN4crow13create_packetEPNS_7gatewayEhj.constprop.81
+                0x00000000000017aa       0x78 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000000017aa                _ZN4crow13create_packetEPNS_7gatewayEhj.constprop.81
+ .text._ZN4crow6send_vEPKvhPK5iovecjhhj.constprop.80
+                0x0000000000001822       0xd8 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001822                _ZN4crow6send_vEPKvhPK5iovecjhhj.constprop.80
+ .text.wait_current_schedee.constprop.72
+                0x00000000000018fa       0x8c /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000000018fa                wait_current_schedee.constprop.72
+ .text._ZN10i2c_device5writeEhPKvj.constprop.71
+                0x0000000000001986       0x2c /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001986                _ZN10i2c_device5writeEhPKvj.constprop.71
+ .text._ZN5genos3avr8pwmservo10get_writerEjj.constprop.60
+                0x00000000000019b2       0xae /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000000019b2                _ZN5genos3avr8pwmservo10get_writerEjj.constprop.60
+ .text._ZN26Adafruit_MS_PWMServoDriver6write8Ehh.constprop.55
+                0x0000000000001a60       0x30 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001a60                _ZN26Adafruit_MS_PWMServoDriver6write8Ehh.constprop.55
+ .text._ZN4crow9subscribeEPKhhPKchjhj.constprop.41
+                0x0000000000001a90       0x88 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001a90                _ZN4crow9subscribeEPKhhPKchjhj.constprop.41
+ .text.debug_writehex_reversed.constprop.33
+                0x0000000000001b18       0x52 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001b18                debug_writehex_reversed.constprop.33
+ .text.memcmp   0x0000000000001b6a       0x36 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001b6a                memcmp
+ .text.strcmp   0x0000000000001ba0       0x22 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001ba0                strcmp
+ .text.strncmp  0x0000000000001bc2       0x40 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001bc2                strncmp
+ .text.memcpy   0x0000000000001c02       0xf8 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001c02                memcpy
+ .text.memmove  0x0000000000001cfa       0x32 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001cfa                memmove
+ .text.abort    0x0000000000001d2c        0xa /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001d2c                abort
+ .text._ZN13crow_uartgate7do_sendEPN4crow6packetE.constprop.13
+                0x0000000000001d36       0x7e /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000001d36                _ZN13crow_uartgate7do_sendEPN4crow6packetE.constprop.13
+ .text._Z8spammer0PvPi
+                0x0000000000001db4      0x1fa /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000001db4                _Z8spammer0PvPi
+ .text._Z7updaterPv
+                0x0000000000001fae      0x210 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000001fae                _Z7updaterPv
+ .text.__schedule__
+                0x00000000000021be      0x516 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x00000000000021be                __schedule__
+ .text.diag_write_common
+                0x00000000000026d4       0x40 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000026d4                diag_write_common
+ .text._ZN5genos3avr5timerIjP12timer16_regsE11set_dividerEj
+                0x0000000000002714       0x24 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002714                _ZN5genos3avr5timerIjP12timer16_regsE11set_dividerEj
+ .text.debug_putchar
+                0x0000000000002738       0x26 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002738                debug_putchar
+ .text._ZN26Adafruit_MS_PWMServoDriver6setPWMEhjj
+                0x000000000000275e       0x44 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x000000000000275e                _ZN26Adafruit_MS_PWMServoDriver6setPWMEhjj
+ .text._ZN20Adafruit_MotorShield6setPinEhb.part.1.lto_priv.138
+                0x00000000000027a2        0xe /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000027a2                _ZN20Adafruit_MotorShield6setPinEhb.part.1.lto_priv.138
+ .text._ZN20Adafruit_MotorShield6setPWMEhj
+                0x00000000000027b0       0x1e /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000027b0                _ZN20Adafruit_MotorShield6setPWMEhj
+ .text.exit._GLOBAL__sub_D_crow_gateways
+                0x00000000000027ce        0x8 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .text.end_of_programm
+                0x00000000000027d6        0x6 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000027d6                end_of_programm
+ .text.system_unlock
+                0x00000000000027dc       0x26 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000027dc                system_unlock
+ .text.system_lock
+                0x0000000000002802       0x28 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002802                system_lock
+ .text._ZN4crow6travelEPNS_6packetE
+                0x000000000000282a       0x2a /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x000000000000282a                _ZN4crow6travelEPNS_6packetE
+ .text._ZL13crow_send_ackPN4crow6packetE.lto_priv.133
+                0x0000000000002854       0x66 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002854                _ZL13crow_send_ackPN4crow6packetE.lto_priv.133
+ .text._ZN5genos3avr8pwmservo19standart_timer_modeEv.isra.10.lto_priv.139
+                0x00000000000028ba       0x42 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000028ba                _ZN5genos3avr8pwmservo19standart_timer_modeEv.isra.10.lto_priv.139
+ .text._ZN5genos3avr15pwmservo_writerIjE3setEf
+                0x00000000000028fc       0x96 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x00000000000028fc                _ZN5genos3avr15pwmservo_writerIjE3setEf
+ .text._ZN13crow_uartgate4sendEPN4crow6packetE
+                0x0000000000002992       0xc2 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002992                _ZN13crow_uartgate4sendEPN4crow6packetE
+ .text._ZL12crow_utilizePN4crow6packetE.lto_priv.134
+                0x0000000000002a54       0x4c /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002a54                _ZL12crow_utilizePN4crow6packetE.lto_priv.134
+ .text._Z16uartgate_handlerPvi
+                0x0000000000002aa0      0x348 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002aa0                _Z16uartgate_handlerPvi
+ .text._ZL19utilize_from_outersPN4crow6packetE.lto_priv.136
+                0x0000000000002de8       0x76 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002de8                _ZL19utilize_from_outersPN4crow6packetE.lto_priv.136
+ .text._ZL18crow_tower_releasePN4crow6packetE.lto_priv.135
+                0x0000000000002e5e       0x2a /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002e5e                _ZL18crow_tower_releasePN4crow6packetE.lto_priv.135
+ .text._ZN4crow7releaseEPNS_6packetE
+                0x0000000000002e88       0x24 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002e88                _ZN4crow7releaseEPNS_6packetE
+ .text._ZN4crow19pubsub_protocol_cls8incomingEPNS_6packetE
+                0x0000000000002eac       0x16 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002eac                _ZN4crow19pubsub_protocol_cls8incomingEPNS_6packetE
+ .text._ZN4crow8protocol11undeliveredEPNS_6packetE
+                0x0000000000002ec2        0x6 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002ec2                _ZN4crow8protocol11undeliveredEPNS_6packetE
+ .text._ZN4crow15allocate_packetEj
+                0x0000000000002ec8       0x50 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002ec8                _ZN4crow15allocate_packetEj
+ .text._ZN13crow_uartgate9init_recvEv
+                0x0000000000002f18       0x4c /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002f18                _ZN13crow_uartgate9init_recvEv
+ .text._ZN13crow_uartgate14nblock_onestepEv
+                0x0000000000002f64      0x1b4 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000002f64                _ZN13crow_uartgate14nblock_onestepEv
+ .text._ZN5genos3avr5timerIjP12timer16_regsE7value16Ev
+                0x0000000000003118       0x10 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003118                _ZN5genos3avr5timerIjP12timer16_regsE7value16Ev
+ .text._ZN5genos3avr5timerIjP12timer16_regsE4typeEv
+                0x0000000000003128        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003128                _ZN5genos3avr5timerIjP12timer16_regsE4typeEv
+ .text._ZN5genos3avr5timerIjP12timer16_regsE15set_ovf_handlerEPFvPvES5_
+                0x000000000000312c       0x1c /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000312c                _ZN5genos3avr5timerIjP12timer16_regsE15set_ovf_handlerEPFvPvES5_
+ .text._ZN5genos3avr5timerIjP12timer16_regsE11set_divcodeEh
+                0x0000000000003148       0x1a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003148                _ZN5genos3avr5timerIjP12timer16_regsE11set_divcodeEh
+ .text._ZL11_rx_handlerPv
+                0x0000000000003162       0x1e /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZL12_dre_handlerPv
+                0x0000000000003180       0x1e /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZL11_tx_handlerPv
+                0x000000000000319e       0x1e /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZN16avr_usart_device5setupElchh
+                0x00000000000031bc       0xd0 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000031bc                _ZN16avr_usart_device5setupElchh
+ .text._ZN16avr_usart_device5hasrxEv
+                0x000000000000328c       0x12 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000328c                _ZN16avr_usart_device5hasrxEv
+ .text._ZN16avr_usart_device5cantxEv
+                0x000000000000329e       0x12 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000329e                _ZN16avr_usart_device5cantxEv
+ .text._ZN16avr_usart_device8sendbyteEi
+                0x00000000000032b0       0x12 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000032b0                _ZN16avr_usart_device8sendbyteEi
+ .text._ZN16avr_usart_device8recvbyteEv
+                0x00000000000032c2       0x10 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000032c2                _ZN16avr_usart_device8recvbyteEv
+ .text._ZN16avr_usart_device7ctrirqsEh
+                0x00000000000032d2       0x6e /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000032d2                _ZN16avr_usart_device7ctrirqsEh
+ .text._ZN16avr_usart_device6enableEi
+                0x0000000000003340       0xd6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003340                _ZN16avr_usart_device6enableEi
+ .text.system_tick
+                0x0000000000003416       0x28 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003416                system_tick
+ .text.usart0_diag_putchar
+                0x000000000000343e       0x2a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000343e                usart0_diag_putchar
+ .text.__errno_location
+                0x0000000000003468       0x16 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .text._ZN5genos8resource4openEPNS_7openresE
+                0x000000000000347e        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000347e                _ZN5genos7resmngr5mkdirEPKc
+                0x000000000000347e                _ZN5genos7resmngr5rmdirEPKc
+                0x000000000000347e                _ZN5genos8resource4openEPNS_7openresE
+ .text._ZN5genos15named_node_list7iterateEPcjPNS_7openresE
+                0x0000000000003484        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003484                _ZN5genos15named_node_list7iterateEPcjPNS_7openresE
+ .text._ZN5genos9directory6mknodeEPKcPNS_7openresE
+                0x000000000000348a        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000348a                _ZN5genos9directory6rmnodeEPKcPNS_7openresE
+                0x000000000000348a                _ZN5genos9directory6mknodeEPKcPNS_7openresE
+ .text._ZN5genos8resource7releaseEv
+                0x0000000000003490        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003490                _ZN5genos8resource7releaseEv
+ .text._ZN5genos13autom_schedee7executeEv
+                0x0000000000003496       0x1a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003496                _ZN5genos13autom_schedee7executeEv
+ .text._ZN5genos14device_manager4openEPKcPNS_7openresE
+                0x00000000000034b0       0xa8 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000034b0                _ZN5genos14device_manager4openEPKcPNS_7openresE
+ .text._ZN5genos11coopschedee8displaceEv
+                0x0000000000003558       0x14 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003558                _ZN5genos11coopschedee8displaceEv
+ .text._ZN5genos11coopschedee7executeEv
+                0x000000000000356c        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000356c                _ZN5genos11coopschedee7executeEv
+ .text._ZN5genos3avrL15tc_divider_codeEj.lto_priv.105.lto_priv.111
+                0x0000000000003572       0x34 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003572                _ZN5genos3avrL15tc_divider_codeEj.lto_priv.106.lto_priv.107
+                0x0000000000003572                _ZN5genos3avrL15tc_divider_codeEj.lto_priv.105.lto_priv.111
+ .text.millis   0x00000000000035a6       0x4a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000035a6                millis
+ .text.delay    0x00000000000035f0       0x48 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000035f0                delay
+ .text.debug_print_newline.lto_priv.101.lto_priv.110
+                0x0000000000003638        0xc /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003638                debug_print_newline.lto_priv.101.lto_priv.110
+                0x0000000000003638                debug_print_newline.lto_priv.102.lto_priv.103
+                0x0000000000003638                debug_print_newline.lto_priv.112.lto_priv.129
+ .text.write    0x0000000000003644       0xba /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003644                write
+ .text._ZN5genos4node7gettypeEv
+                0x00000000000036fe        0x6 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000036fe                _ZN5genos4node7gettypeEv
+                0x00000000000036fe                _ZN5genos9directory7gettypeEv
+ .text.dlist_del_init.lto_priv.98.lto_priv.109
+                0x0000000000003704       0x24 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003704                dlist_del_init.lto_priv.98.lto_priv.109
+                0x0000000000003704                dlist_del_init.lto_priv.114.lto_priv.131
+                0x0000000000003704                dlist_del_init.lto_priv.116.lto_priv.132
+                0x0000000000003704                dlist_del_init.lto_priv.99.lto_priv.100
+ .text.dlist_del.lto_priv.94.lto_priv.108
+                0x0000000000003728       0x2c /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003728                dlist_del.lto_priv.96.lto_priv.97
+                0x0000000000003728                dlist_del.lto_priv.94.lto_priv.108
+                0x0000000000003728                dlist_del.lto_priv.95.lto_priv.104
+ .text.__context_displace_vector__
+                0x0000000000003754       0x16 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003754                __context_displace_vector__
+ .text._ZN5genos18autom_schedee_base8displaceEv
+                0x000000000000376a        0xc /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000376a                _ZN5genos18autom_schedee_base8displaceEv
+ .text.__displace__
+                0x0000000000003776       0x26 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003776                __displace__
+ .text.msleep   0x000000000000379c      0x15a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000000379c                msleep
+ .text.dlist_move_tail.lto_priv.122.lto_priv.127
+                0x00000000000038f6       0x32 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000038f6                dlist_move_tail.lto_priv.122.lto_priv.127
+                0x00000000000038f6                dlist_move_tail.lto_priv.123.lto_priv.128
+                0x00000000000038f6                dlist_move_tail.lto_priv.124.lto_priv.130
+ .text._ZN5genos11coopschedee7starterEPv
+                0x0000000000003928       0x4e /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003928                _ZN5genos11coopschedee7starterEPv
+ .text.schedee_run
+                0x0000000000003976       0x22 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003976                schedee_run
+ .text.debug_print
+                0x0000000000003998       0x36 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003998                debug_print
+ .text.debug_printdec_uint64
+                0x00000000000039ce       0xde /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x00000000000039ce                debug_printdec_uint64
+ .text.irqtable_stub
+                0x0000000000003aac       0x26 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003aac                irqtable_stub
+ .text.debug_print_location.lto_priv.119.lto_priv.126
+                0x0000000000003ad2       0xd2 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003ad2                debug_print_location.lto_priv.119.lto_priv.126
+ .text._ZN5genos11coopschedee8finalizeEv
+                0x0000000000003ba4       0x5a /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003ba4                _ZN5genos11coopschedee8finalizeEv
+ .text._ZN5genos13autom_schedee8finalizeEv
+                0x0000000000003bfe       0x4e /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000003bfe                _ZN5genos13autom_schedee8finalizeEv
+ .text.avr-libc.fplib
+                0x0000000000003c4c        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o)
+                0x0000000000003c4c                __subsf3
+                0x0000000000003c4e                __addsf3
+ .text.avr-libc.fplib
+                0x0000000000003c5a       0xcc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o)
+                0x0000000000003c7c                __addsf3x
+ .text.avr-libc.fplib
+                0x0000000000003d26        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o)
+                0x0000000000003d26                __lesf2
+                0x0000000000003d26                __nesf2
+                0x0000000000003d26                __eqsf2
+                0x0000000000003d26                __cmpsf2
+                0x0000000000003d26                __ltsf2
+ .text.avr-libc.fplib
+                0x0000000000003d30        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o)
+                0x0000000000003d30                __divsf3
+ .text.avr-libc.fplib
+                0x0000000000003d38       0xdc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3x.o)
+                0x0000000000003d58                __divsf3x
+                0x0000000000003d5e                __divsf3_pse
+ .text.avr-libc.fplib
+                0x0000000000003e14        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixsfsi.o)
+                0x0000000000003e14                __fixsfsi
+ .text.avr-libc.fplib
+                0x0000000000003e22       0x5e /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+                0x0000000000003e22                __fixunssfsi
+ .text.avr-libc.fplib
+                0x0000000000003e80       0x7a /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(floatsisf.o)
+                0x0000000000003e80                __floatunsisf
+                0x0000000000003e84                __floatsisf
+ .text.avr-libc.fplib
+                0x0000000000003efa       0x48 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_cmp.o)
+                0x0000000000003efa                __fp_cmp
+ .text.avr-libc.fplib
+                0x0000000000003f42        0xc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_inf.o)
+                0x0000000000003f42                __fp_inf
+ .text.avr-libc.fplib
+                0x0000000000003f4e        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_nan.o)
+                0x0000000000003f4e                __fp_nan
+ .text.avr-libc.fplib
+                0x0000000000003f54        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscA.o)
+                0x0000000000003f54                __fp_pscA
+ .text.avr-libc.fplib
+                0x0000000000003f62        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscB.o)
+                0x0000000000003f62                __fp_pscB
+ .text.avr-libc.fplib
+                0x0000000000003f70       0x22 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_round.o)
+                0x0000000000003f70                __fp_round
+ .text.avr-libc.fplib
+                0x0000000000003f92       0x44 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_split3.o)
+                0x0000000000003f92                __fp_split3
+                0x0000000000003fa2                __fp_splitA
+ .text.avr-libc.fplib
+                0x0000000000003fd6        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_zero.o)
+                0x0000000000003fd6                __fp_zero
+                0x0000000000003fd8                __fp_szero
+ .text.avr-libc.fplib
+                0x0000000000003fe4        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(gesf2.o)
+                0x0000000000003fe4                __gtsf2
+                0x0000000000003fe4                __gesf2
+ .text.avr-libc.fplib
+                0x0000000000003fee        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o)
+                0x0000000000003fee                __mulsf3
+ .text.avr-libc.fplib
+                0x0000000000003ff6       0xd2 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3x.o)
+                0x0000000000004014                __mulsf3x
+                0x000000000000401a                __mulsf3_pse
+ .text.libgcc.mul
+                0x00000000000040c8       0x20 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+                0x00000000000040c8                __mulsi3
+ .text.libgcc.div
+                0x00000000000040e8       0x44 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+                0x00000000000040e8                __udivmodsi4
+ .text.libgcc.div
+                0x000000000000412c       0x2e /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+                0x000000000000412c                __divmodsi4
+ .text.libgcc.div
+                0x000000000000415a       0x10 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+                0x000000000000415a                __negsi2
+ .text.libgcc.mul
+                0x000000000000416a       0x16 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+                0x000000000000416a                __muluhisi3
+ .text.libgcc.div
+                0x0000000000004180       0x1c /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+                0x0000000000004180                __umoddi3
+                0x0000000000004184                __udivdi3
+                0x0000000000004186                __udivdi3_umoddi3
+ .text.libgcc.div
+                0x000000000000419c       0xa2 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+                0x000000000000419c                __udivmod64
+ .text.libgcc   0x000000000000423e       0x20 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+                0x000000000000423e                __negdi2
+ .text.libgcc   0x000000000000425e       0x18 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+                0x000000000000425e                __adddi3_s8
+ .text.libgcc   0x0000000000004276       0x18 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+                0x0000000000004276                __cmpdi2_s8
+ .text.libgcc.mul
+                0x000000000000428e       0x1e /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+                0x000000000000428e                __umulhisi3
+                0x00000000000042ac                _etext = .
+
+.data           0x0000000000800100      0x516 load address 0x00000000000042ac
+                0x0000000000800100                __data_start = ABSOLUTE (.)
+ *(.data)
+ .data          0x0000000000800100        0x0 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .data          0x0000000000800100        0x0 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .data          0x0000000000800100        0x0 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .data          0x0000000000800100        0x0 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .data          0x0000000000800100        0x0 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .data          0x0000000000800100        0x0 build/home/mirmik/project/genos/arch/avr/src/start.o
+ .data          0x0000000000800100        0x0 build/home/mirmik/project/genos/arch/avr/src/vectors.o
+ .data          0x0000000000800100        0x0 build/home/mirmik/project/genos/arch/avr/src/irqcall.o
+ .data          0x0000000000800100        0x0 build/home/mirmik/project/genos/arch/avr/src/switch_context.o
+ .data          0x0000000000800100        0x0 build/home/mirmik/project/genos/arch/avr/src/debug_blink.o
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(addsf3x.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(cmpsf2.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(divsf3x.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixsfsi.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fixunssfsi.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(floatsisf.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_cmp.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_inf.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_nan.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscA.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_pscB.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_round.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_split3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(fp_zero.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(gesf2.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/libm.a(mulsf3x.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_mulsi3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmodsi4.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_divmodsi4.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negsi2.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_ctors.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_dtors.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_muluhisi3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivdi3.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_udivmod64.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_negdi2.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_adddi3_s8.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_cmpdi2_s8.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_tablejump2.o)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_umulhisi3.o)
+ *(.data.*)
+ .data.timer0   0x0000000000800100        0x5 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .data._ZN5genos7ns_listE
+                0x0000000000800105        0x4 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .data._ZN4crow9protocolsE
+                0x0000000000800109        0x4 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800109                _ZN4crow9protocolsE
+ .data.crow_incoming
+                0x000000000080010d        0x4 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .data.crow_travelled
+                0x0000000000800111        0x4 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000800111                crow_travelled
+ .data.crow_outters
+                0x0000000000800115        0x4 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000800115                crow_outters
+ .data.unstoplist
+                0x0000000000800119        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800119                unstoplist
+ .data.ktimer_list
+                0x000000000080011d        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x000000000080011d                ktimer_list
+ .data.finallist
+                0x0000000000800121        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800121                finallist
+ .data.jiffies_to_millis
+                0x0000000000800125        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800125                jiffies_to_millis
+ *(.rodata)
+ .rodata        0x0000000000800129        0xc /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata        0x0000000000800135        0x6 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata        0x000000000080013b       0x12 /tmp/cc2X38eK.ltrans4.ltrans.o
+ *(.rodata.*)
+ .rodata.str1.1
+                0x000000000080014d       0x67 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .rodata.usart0_diag
+                0x00000000008001b4        0x8 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .rodata._ctype
+                0x00000000008001bc      0x100 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .rodata._ZZN4crow18engage_packet_poolEPvjjE19__PRETTY_FUNCTION__
+                0x00000000008002bc       0x35 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .rodata._ZZN13crow_uartgate4initEP11uart_deviceE19__PRETTY_FUNCTION__
+                0x00000000008002f1       0x27 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .rodata.str1.1
+                0x0000000000800318        0xb /tmp/cc2X38eK.ltrans1.ltrans.o
+                                         0x14 (size before relaxing)
+ .rodata._ZZN13crow_uartgate7do_sendEPN4crow6packetEE19__PRETTY_FUNCTION__
+                0x0000000000800323       0x2b /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN5genos3avr5timerIjP12timer16_regsEE
+                0x000000000080034e       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN5genos3avr5timerIhP11timer8_regsEE
+                0x000000000080035e       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN5genos14device_managerE
+                0x000000000080036e       0x1a /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN4crow19pubsub_protocol_clsE
+                0x0000000000800388        0x8 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTV16avr_usart_device
+                0x0000000000800390       0x12 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN5genos11coopschedeeE
+                0x00000000008003a2        0xc /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTV13crow_uartgate
+                0x00000000008003ae        0x8 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTV14avr_i2c_device
+                0x00000000008003b6        0xa /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTVN5genos13autom_schedeeE
+                0x00000000008003c0        0xc /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata._ZTV12motor_driver
+                0x00000000008003cc        0x8 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .rodata.str1.1
+                0x00000000008003d4        0xd /tmp/cc2X38eK.ltrans2.ltrans.o
+ .rodata.str1.1
+                0x00000000008003e1       0x39 /tmp/cc2X38eK.ltrans3.ltrans.o
+                                         0x45 (size before relaxing)
+ .rodata._ZZ16uartgate_handlerPviE8__func__
+                0x000000000080041a       0x11 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN4crow15allocate_packetEjE19__PRETTY_FUNCTION__
+                0x000000000080042b       0x2c /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN4crow17deallocate_packetEPNS_6packetEE19__PRETTY_FUNCTION__
+                0x0000000000800457       0x2c /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN13crow_uartgate4sendEPN4crow6packetEE19__PRETTY_FUNCTION__
+                0x0000000000800483       0x30 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN13crow_uartgate9init_recvEvE19__PRETTY_FUNCTION__
+                0x00000000008004b3       0x20 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN13crow_uartgate15newline_handlerEvE19__PRETTY_FUNCTION__
+                0x00000000008004d3       0x26 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZ19uartgate_rx_handlerPvE19__PRETTY_FUNCTION__
+                0x00000000008004f9       0x20 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZN13crow_uartgate6sendedEvE19__PRETTY_FUNCTION__
+                0x0000000000800519       0x1d /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZ19uartgate_tx_handlerPvE19__PRETTY_FUNCTION__
+                0x0000000000800536       0x20 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata._ZZ16uartgate_handlerPviE19__PRETTY_FUNCTION__
+                0x0000000000800556       0x22 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .rodata.str1.1
+                0x0000000000800578       0x8c /tmp/cc2X38eK.ltrans4.ltrans.o
+ .rodata._ZZN5genos13autom_schedee8finalizeEvE8__func__
+                0x0000000000800604        0x9 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .rodata._ZZN5genos11coopschedee8finalizeEvE8__func__
+                0x000000000080060d        0x9 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800616                __data_end = ABSOLUTE (.)
+
+.bss            0x0000000000800620      0x54a load address 0x00000000000047c2
+                0x0000000000800620                __bss_start = ABSOLUTE (.)
+ *(.bss .bss.*)
+ .bss.updater_schedee_heap
+                0x0000000000800620       0x80 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .bss.crow_pool_buffer
+                0x00000000008006a0      0x200 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .bss.wr_ver    0x00000000008008a0        0x6 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .bss.wr_hor    0x00000000008008a6        0x6 /tmp/cc2X38eK.ltrans0.ltrans.o
+ .bss.irqtable  0x00000000008008ac       0x96 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000008008ac                irqtable
+ .bss.__seqcounter
+                0x0000000000800942        0x2 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .bss.raddr_    0x0000000000800944       0x10 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800944                raddr_
+ .bss._ZN5genos3avr6timer2E
+                0x0000000000800954        0xa /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800954                _ZN5genos3avr6timer2E
+ .bss._ZN5genos3avr6timer1E
+                0x000000000080095e        0xa /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x000000000080095e                _ZN5genos3avr6timer1E
+ .bss._ZN5genos3avr6timer0E
+                0x0000000000800968        0xa /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800968                _ZN5genos3avr6timer0E
+ .bss._ZN5genos7devmngrE
+                0x0000000000800972        0xe /tmp/cc2X38eK.ltrans1.ltrans.o
+ .bss._ZN4crow15pubsub_protocolE
+                0x0000000000800980        0x9 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800980                _ZN4crow15pubsub_protocolE
+ .bss.crow_gateways
+                0x0000000000800989        0x4 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800989                crow_gateways
+ .bss.usart0    0x000000000080098d        0x9 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x000000000080098d                usart0
+ .bss.board_led
+                0x0000000000800996        0x4 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800996                board_led
+ .bss.__current_schedee
+                0x000000000080099a        0x2 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x000000000080099a                __current_schedee
+ .bss.spammer_schedee
+                0x000000000080099c       0x2e /tmp/cc2X38eK.ltrans1.ltrans.o
+ .bss.motors    0x00000000008009ca       0x18 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000008009ca                motors
+ .bss.pwm_hor   0x00000000008009e2        0x3 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000008009e2                pwm_hor
+ .bss.pwm_ver   0x00000000008009e5        0x3 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000008009e5                pwm_ver
+ .bss.updater_schedee
+                0x00000000008009e8       0x57 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x00000000008009e8                updater_schedee
+ .bss.uartgate  0x0000000000800a3f       0x67 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800a3f                uartgate
+ .bss.mshield   0x0000000000800aa6       0x40 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800aa6                mshield
+ .bss.i2c       0x0000000000800ae6       0x15 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800ae6                i2c
+ .bss._ZL6PINOUT.lto_priv.137
+                0x0000000000800afb       0x38 /tmp/cc2X38eK.ltrans1.ltrans.o
+                0x0000000000800afb                _ZL6PINOUT.lto_priv.137
+ .bss.lpower    0x0000000000800b33        0x4 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b33                lpower
+ .bss.rpower    0x0000000000800b37        0x4 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b37                rpower
+ .bss.en        0x0000000000800b3b        0x1 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b3b                en
+ .bss.raddr_len
+                0x0000000000800b3c        0x2 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b3c                raddr_len
+ .bss.i         0x0000000000800b3e        0x4 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .bss._ZN4crow21user_incoming_handlerE
+                0x0000000000800b42        0x2 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b42                _ZN4crow21user_incoming_handlerE
+ .bss.runlist   0x0000000000800b44       0x10 /tmp/cc2X38eK.ltrans2.ltrans.o
+                0x0000000000800b44                runlist
+ .bss.current_diag_priv
+                0x0000000000800b54        0x2 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000800b54                current_diag_priv
+ .bss.current_diag_ops
+                0x0000000000800b56        0x2 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000800b56                current_diag_ops
+ .bss._ZL4save  0x0000000000800b58        0x1 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .bss._crow_packet_pool
+                0x0000000000800b59        0x8 /tmp/cc2X38eK.ltrans3.ltrans.o
+                0x0000000000800b59                _crow_packet_pool
+ .bss._ZL5count.lto_priv.125
+                0x0000000000800b61        0x2 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800b61                _ZL5count.lto_priv.125
+ .bss._ZZ16__errno_locationE12global_errno
+                0x0000000000800b63        0x2 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .bss.__interrupt_context
+                0x0000000000800b65        0x1 /tmp/cc2X38eK.ltrans4.ltrans.o
+ .bss.__jiffies
+                0x0000000000800b66        0x4 /tmp/cc2X38eK.ltrans4.ltrans.o
+                0x0000000000800b66                __jiffies
+                0x0000000000800b6a                __bss_end = ABSOLUTE (.)
+                0x0000000000800b6a                _heap_start = ABSOLUTE (.)
+
+.noinit         0x0000000000800b6a        0x0 load address 0x00000000000047c2
+                0x0000000000800b6a                _snoinit = ABSOLUTE (.)
+ *(.noinit*)
+                0x0000000000800b6a                _enoinit = ABSOLUTE (.)
+
+.eeprom         0x0000000000810000        0x0
+                0x0000000000810000                _seeprom = ABSOLUTE (.)
+ *(.eeprom*)
+                0x0000000000810000                _eeeprom = ABSOLUTE (.)
+OUTPUT(./firmware elf32-avr)
+LOAD linker stubs
+
+.comment        0x0000000000000000       0x11
+ .comment       0x0000000000000000       0x11 /tmp/cc2X38eK.ltrans0.ltrans.o
+                                         0x12 (size before relaxing)
+ .comment       0x0000000000000011       0x12 /tmp/cc2X38eK.ltrans1.ltrans.o
+ .comment       0x0000000000000011       0x12 /tmp/cc2X38eK.ltrans2.ltrans.o
+ .comment       0x0000000000000011       0x12 /tmp/cc2X38eK.ltrans3.ltrans.o
+ .comment       0x0000000000000011       0x12 /tmp/cc2X38eK.ltrans4.ltrans.o

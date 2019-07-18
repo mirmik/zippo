@@ -263,10 +263,10 @@ int main()
 
 	//crow::diagnostic_enable();
 
-	crow::subscribe(raddr_, raddr_len, "zippo_enable");
-	crow::subscribe(raddr_, raddr_len, "zippo_control");
-	crow::subscribe(raddr_, raddr_len, "zippo_shor");
-	crow::subscribe(raddr_, raddr_len, "zippo_sver");
+	crow::subscribe(raddr_, raddr_len, "zippo_enable", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_control", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_shor", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_sver", 1, 200, 0, 200);
 
 	//motors_run(0.2, 0.2);
 
