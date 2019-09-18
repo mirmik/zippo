@@ -2,7 +2,7 @@
 #include <hal/irq.h>
 
 #include <crow/tower.h>
-#include <crow/pubsub.h>
+#include <crow/proto/pubsub.h>
 #include <crow/hexer.h>
 #include <systime/systime.h>
 #include <drivers/i2c/avr_i2c.h>
@@ -255,8 +255,6 @@ int main()
 
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_protocol.incoming_handler = pubsub_handler;
-
-	crow::pubsub_protocol.enable();	
 
 	irqs_enable();
 	delay(100);
