@@ -52,6 +52,8 @@ licant.glbfunc.genos_firmware(
 		("genos.diag", "stub"),
 		"genos.sched",
 
+		"nos",
+
 		"ralgo",
 		"malgo",
 		"linalg-v3",
