@@ -2,7 +2,7 @@
 #include <hal/irq.h>
 
 #include <crow/tower.h>
-#include <crow/pubsub.h>
+#include <crow/proto/pubsub.h>
 #include <crow/hexer.h>
 #include <systime/systime.h>
 #include <drivers/i2c/avr_i2c.h>
@@ -256,17 +256,15 @@ int main()
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_protocol.incoming_handler = pubsub_handler;
 
-	crow::pubsub_protocol.enable();	
-
 	irqs_enable();
 	delay(100);
 
 	//crow::diagnostic_enable();
 
-	crow::subscribe(raddr_, raddr_len, "zippo_enable");
-	crow::subscribe(raddr_, raddr_len, "zippo_control");
-	crow::subscribe(raddr_, raddr_len, "zippo_shor");
-	crow::subscribe(raddr_, raddr_len, "zippo_sver");
+	crow::subscribe(raddr_, raddr_len, "zippo_enable", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_control", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_shor", 1, 200, 0, 200);
+	crow::subscribe(raddr_, raddr_len, "zippo_sver", 1, 200, 0, 200);
 
 	//motors_run(0.2, 0.2);
 
