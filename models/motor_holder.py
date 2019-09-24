@@ -2,6 +2,7 @@
 #coding: utf-8
 
 from zencad import *
+zencad.lazy.fastdo=True
 
 xgate = 14.65
 ygate = 11.6
@@ -23,7 +24,7 @@ gate = (
 	box(t, ygate, zgate) +
 	box(t, ygate, zgate).right(xgate - t)
 )
-gate = gate.fillet(1, [5, 23,29, 76])
+gate = gate.fillet(1, [5, 23, 29, 76])
 gate = gate.left(xgate/2)
 
 ear = (box(ear_w, ear_r * 2, ear_z) + cylinder(r = ear_r, h = ear_z).forw(ear_r).right(ear_w)).right(xgate/2 - t)

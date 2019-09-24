@@ -24,7 +24,7 @@ def handler(pack):
 	data = pack.data()
 	#print(data[-40:-1])
 
-crow.subscribe("video_stream", handler, ack=0, ackquant=200, rack=0, rackquant=200)
+crow.subscribe("video_stream", handler, qos=0, ackquant=200, rqos=0, rackquant=200)
 
 while(True):
 	if (data is not None):
