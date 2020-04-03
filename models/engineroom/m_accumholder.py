@@ -23,7 +23,7 @@ def accumholder_model():
 		- box(size=[x-2*t,y-2*t,z-t],center=True).up(t) 
 		- box(size=[x2,y2,z2],center=True).up((z-z2)/2)
 		+ box(size=[t,y,z2],center=True).down((z-z2)/2)
-		- sqrtrans()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0))
+		- sqrmirror()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0))
 	).up(z/2).rotateZ(deg(90))
 
 

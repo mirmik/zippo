@@ -56,16 +56,16 @@ drive_place = drive_place(t,z,sl,t)
 def bottom_model():
 	return (m
 		#Cylinders body
-		+ sqrtrans() ( cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
+		+ sqrmirror() ( cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
 	
 		#Cylinders holes
-		- sqrtrans()(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
+		- sqrmirror()(cylinder(r=3,h=z).translate(x/2-5,y/2-5,0))
 	
 		#Drive places
-		- sqrtrans()(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
+		- sqrmirror()(drive_place.translate(x/2-t, dist_between_whells / 2, 0))
 
 		#accumholder place
-		- sqrtrans()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0)).rotateZ(deg(90))
+		- sqrmirror()(cylinder(r=hole_d/2, h=1000, center = True).translate(hole_x/2, hole_y/2, 0)).rotateZ(deg(90))
 
 		#Добавляем ребра жесткости.
 		+stiffer_trans1(stiffener)
