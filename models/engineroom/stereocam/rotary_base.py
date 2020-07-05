@@ -2,8 +2,6 @@
 
 from zencad import *
 
-lazy.fastdo=True
-
 class RotaryBase:
 	t=2 
 	roof_r=40
@@ -110,7 +108,7 @@ class RotaryBase:
 	def fork(self):
 		h = 15
 		hear_x = 95/2
-		hear_z = 50
+		hear_z = 44
 		hear_R = 28/2
 		hear_h = 15
 
@@ -120,7 +118,6 @@ class RotaryBase:
 
 		xk = math.sqrt(R**2 - yk**2)
 		ixk = math.sqrt(iR**2 - yk**2)
-		print(xk)
 
 		base_cylinder = cylinder(r=R, h=h)
 		ibase_cylinder = cylinder(r=iR, h=h - self.t) 
