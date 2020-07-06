@@ -113,8 +113,8 @@ class RotaryBase:
 		hear_h = 15
 
 		yk = hear_R * 3 / 4
-		R = self.roof_r - self.t/2
-		iR = self.roof_r - self.t/2 - self.t
+		R = self.roof_r #- self.t/2
+		iR = self.roof_r - self.t*2
 
 		xk = math.sqrt(R**2 - yk**2)
 		ixk = math.sqrt(iR**2 - yk**2)
@@ -125,6 +125,8 @@ class RotaryBase:
 			- halfspace().rotateY(deg(90)).moveX(-xk)
 			- halfspace().rotateY(deg(-90)).moveX(xk)
 		)
+
+		icyl = cylinder(r=R-self.t, h=self.t)
 
 		ibase_cylinder = (ibase_cylinder
 			- halfspace().rotateY(deg(90)).moveX(-ixk)
@@ -173,6 +175,7 @@ class RotaryBase:
 			+ hear
 			- ihear
 			- ibase_cylinder
+			- icyl
 		)
 
 		#supports = (
@@ -187,6 +190,11 @@ class RotaryBase:
 			#+ supports
 			#+ supports.mirrorYZ()
 		)
+
+	def connection_cylinder(self):
+		m = cylinder(self.roof_r-self.t, self.t)
+
+		return m
 
 	def fork_half0(self):
 		return self.fork() - halfspace().rotateY(deg(90))
@@ -262,8 +270,9 @@ class RotaryBase:
 		return unify(m).extrude(self.t)
 
 #disp(RotaryBase().room())
-#disp(RotaryBase().rotation_plate().down(RotaryBase().rotation_plate().bbox().zmax))
+disp(RotaryBase().rotation_plate().down(RotaryBase().rotation_plate().bbox().zmax))
 disp(RotaryBase().fork_half0())#.up(10))
+disp(RotaryBase().connection_cylinder())#.up(10))
 #disp(RotaryBase().roof())
 
 to_stl(RotaryBase().rotation_plate(), "/home/mirmik/models/spi_rotation_plate.stl", delta=0.1)
