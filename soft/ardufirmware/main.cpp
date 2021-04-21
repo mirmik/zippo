@@ -2,12 +2,14 @@
 #include <hal/irq.h>
 
 #include <crow/tower.h>
-#include <crow/proto/pubsub.h>
+#include <crow/pubsub/pubsub.h>
 #include <crow/hexer.h>
 #include <systime/systime.h>
 #include <drivers/i2c/avr_i2c.h>
 #include <drivers/serial/avr_usart.h>
 #include <drivers/crow/uartgate.h>
+
+#include <asm/avr_gpio.h>
 
 #include <genos/sched.h>
 #include <genos/schedee/coop.h>
@@ -16,16 +18,21 @@
 #include <genos/ktimer.h>
 
 #include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
-#include <robo/motor.h>
+#include <ralgo/robo/motor.h>
 
 #include <drivers/pwmservo/avr_pwmservo.h>
-#include <addons/arduino/pwm.h>
-#include <addons/arduino/pin.h>
+//#include <addons/arduino/pwm.h>
+//#include <addons/arduino/pin.h>
 #include <drivers/timer/avr_timer.h>
 
 #include <igris/util/numconvert.h>
 
 #include <ralgo/lintrans.h>
+#include <drivers/gpio/avr_gpio.h>
+
+#include <genos/api.h>
+
+#include <Arduino.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
@@ -34,6 +41,8 @@
 void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
+
+DECLARE_AVR_USART_WITH_IRQS(usart0, USART0);
 
 uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL] __attribute__((aligned(16)));
 
@@ -54,11 +63,13 @@ char updater_schedee_heap[128];
 //pwmservo<uint16_t> servo0(&TIMER1->ocr_a, 0, 90, 1, 0x03FF);
 //pwmservo<uint16_t> servo1(&TIMER1->ocr_b, 0, 90, 1, 0x03FF);
 
-genos::avr::pwmservo pwm_ver;
-genos::avr::pwmservo pwm_hor;
+//genos::avr::pwmservo pwm_ver;
+//genos::avr::pwmservo pwm_hor;
 
-genos::avr::pwmservo_writer<uint16_t> wr_ver;
-genos::avr::pwmservo_writer<uint16_t> wr_hor;
+//genos::avr::pwmservo_writer<uint16_t> wr_ver;
+//genos::avr::pwmservo_writer<uint16_t> wr_hor;
+
+extern avr_gpio_pin board_led;
 
 ralgo::lintrans::aperiodic<float> ver_filter(0.90, 0.1);
 ralgo::lintrans::aperiodic<float> hor_filter(0.90, 0.1);
@@ -66,7 +77,7 @@ ralgo::lintrans::aperiodic<float> hor_filter(0.90, 0.1);
 ralgo::lintrans::aperiodic<float> left_filter(0.05, 0.01);
 ralgo::lintrans::aperiodic<float> right_filter(0.05, 0.01);
 
-struct motor_driver : public genos::robo::motor
+struct motor_driver : public ralgo::robo::motor
 {
 	Adafruit_DCMotor* M;
 
@@ -157,25 +168,25 @@ void pubsub_handler(crow::packet* pack)
 	{
 		//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
 		//board::sysled.toggle();
-		gpio_pin_toggle(&board_led);
+		board_led.toggle();
 
 		igris::buffer datbuf = crow::pubsub::get_data(pack);
 
 		if (datbuf == "on")
 		{
-			gpio_pin_write(&board_led, 1);
+			board_led.set(1);
 			en = true;
 		}
 
 		else if (datbuf == "off")
 		{
-			gpio_pin_write(&board_led, 0);
+			board_led.set(0);
 			en = false;
 		}
 	}
 
 
-	else if (thmbuf == "zippo_shor")
+	/*else if (thmbuf == "zippo_shor")
 	{
 		igris::buffer datbuf = crow::pubsub::get_data(pack);
 
@@ -192,7 +203,7 @@ void pubsub_handler(crow::packet* pack)
 		float l;
 		memcpy(&l, datbuf.data(), 4);
 		wr_ver.set(ver_filter(l));
-	}
+	}*/
 
 	crow::release(pack);
 }
@@ -203,7 +214,7 @@ void pubsub_handler(crow::packet* pack)
 }*/
 
 uint8_t raddr_[16];
-int raddr_len;
+size_t raddr_len;
 int main()
 {
 	//const char * raddr = "#F4.12.192.168.1.135:10009";
@@ -211,22 +222,22 @@ int main()
 	//while(1)
 	//dprln("INITED");
 
-	pwm_hor = arduino_pwm_timer(9);
-	pwm_ver = arduino_pwm_timer(10);
+	//pwm_hor = arduino_pwm_timer(9);
+	//pwm_ver = arduino_pwm_timer(10);
 
-	pwm_hor.standart_timer_mode();
-	pwm_hor.pwm_mode_start();
-	wr_hor = pwm_hor.get_writer(1000, 2000);
+	//pwm_hor.standart_timer_mode();
+	//pwm_hor.pwm_mode_start();
+	//wr_hor = pwm_hor.get_writer(1000, 2000);
 
-	pwm_ver.standart_timer_mode();
-	pwm_ver.pwm_mode_start();
-	wr_ver = pwm_ver.get_writer(1000, 2000);
+	//pwm_ver.standart_timer_mode();
+	//pwm_ver.pwm_mode_start();
+	//wr_ver = pwm_ver.get_writer(1000, 2000);
 
 	pinMode(9,1);
 	pinMode(10,1);
 
-	wr_hor.set(0.5);
-	wr_ver.set(0.5);
+	//wr_hor.set(0.5);
+	//wr_ver.set(0.5);
 
 	/*periph::timer1.set_mode(decltype(periph::timer1)::TimerMode::Clock);
 	periph::timer1.set_divider(64);
@@ -238,7 +249,7 @@ int main()
 	periph::timer1.set_compare_a(0x1FF);
 	periph::timer1.set_compare_b(0x1FF);*/
 
-	gpio_settings(GPIOB, (1<<0) | (1<<1), GPIO_MODE_OUTPUT);
+	//gpio_settings(GPIOB, (1<<0) | (1<<1), GPIO_MODE_OUTPUT);
 
 	const char * raddr = "#F4.12.127.0.0.1:10009";
 	raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
@@ -248,10 +259,10 @@ int main()
 	scheduler_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 
-	gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
-	gpio_pin_write(&board_led, 1);
+	//gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
+	//gpio_pin_write(&board_led, 1);
 
-	uartgate.init(&usart0);
+	uartgate.init(&usart0, 42);
 
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_protocol.incoming_handler = pubsub_handler;
@@ -261,10 +272,10 @@ int main()
 
 	//crow::diagnostic_enable();
 
-	crow::subscribe(raddr_, raddr_len, "zippo_enable", 1, 200, 0, 200);
-	crow::subscribe(raddr_, raddr_len, "zippo_control", 1, 200, 0, 200);
-	crow::subscribe(raddr_, raddr_len, "zippo_shor", 1, 200, 0, 200);
-	crow::subscribe(raddr_, raddr_len, "zippo_sver", 1, 200, 0, 200);
+	crow::subscribe({raddr_, raddr_len}, "zippo_enable", 1, 200, 0, 200);
+	crow::subscribe({raddr_, raddr_len}, "zippo_control", 1, 200, 0, 200);
+	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
+	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
 
 	//motors_run(0.2, 0.2);
 
@@ -272,7 +283,7 @@ int main()
 
 
 	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
-	updater_schedee.run();
+	updater_schedee.start();
 
 	while (1)
 		__schedule__();
@@ -302,11 +313,11 @@ void* updater(void* arg)
 	irqs_enable();
 
 	//dprln("i2c init master");
-	i2c.init_master();
+	//i2c.init_master();
 	//msleep(2000);
 
 	//dprln("i2c enable");
-	i2c.enable();
+	//i2c.enable();
 	//msleep(2000);
 
 	//dprln("mshield begin");
@@ -341,7 +352,7 @@ void* spammer0(void* arg, int* state)
 	char buf[20];
 	i32toa(i++, buf, 10);
 
-	crow::publish(raddr_, raddr_len, "mirmik0", buf, 0, 200);
+	crow::publish({raddr_, raddr_len}, "mirmik0", buf, 0, 200);
 	msleep(1000);
 }
 
