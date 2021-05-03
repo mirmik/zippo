@@ -10,13 +10,15 @@ from licant.modules import submodule
 import time
 import os
 
+TOOLCHAIN = make_gcc_binutils("avr")
+
 include("genos")
 include("nos")
 include("igris")
 include("crow")
 include("ralgo")
 include("malgo")
-include("linalg-v3")
+include("linalg")
 
 @licant.routine(deps=["firmware"])
 def install_retrans():
@@ -35,7 +37,8 @@ def remote_install():
 	time.sleep(1)
 	os.system("ssh mirmik@{ip} ctrans --api --noconsole --udp 10010 --serial /dev/ttyACM0 > /dev/null &".format(ip=remote_ip))
 
-licant.glbfunc.genos_firmware(
+licant.cxx_application("firmware",
+	toolchain = TOOLCHAIN,
 	sources=["main.cpp"],
 	mdepends=[	
 		"crow.minimal",
@@ -52,10 +55,25 @@ licant.glbfunc.genos_firmware(
 		("genos.diag", "stub"),
 		"genos.sched",
 
+		"igris.compat.std",
+		"igris.compat.posix",
+
 		"nos",
 
 		"ralgo",
+		("ralgo.disctime", "manual"),
 		"malgo",
-		"linalg-v3",
+		"linalg",
+
+		"genos.arduino_compat",
+		"genos",
+
+		"board.arduino_mega",
+		"cpu.avr.atmega2560"
+		#"genos.drivers.avr"
+
 	],
+	defines=["WITHOUT_LOG2=1"],
 )
+
+licant.ex("firmware")
