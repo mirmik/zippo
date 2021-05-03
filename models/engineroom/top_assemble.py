@@ -2,6 +2,7 @@
 #coding: utf-8
 
 import zencad
+import zencad.assemble
 from zencad import *
 
 from top import top_model, ardu_position, rasp_position
@@ -23,9 +24,9 @@ def top_assemble():
 
 def top_assemble_unit():
  	u = zencad.assemble.unit()
- 	u.add_shape(top_position(top_model()).unlazy(), Color(0,1,0))
- 	u.add_shape(top_position(ardu_position(ardubox())).unlazy(), Color(0.6,0.6,0.8))
- 	u.add_shape(top_position(rasp_position(raspbox())).unlazy(), Color(0.6,0.6,0.8))
+ 	u.add(top_position(top_model()).unlazy(), Color(0,1,0))
+ 	u.add(top_position(ardu_position(ardubox())).unlazy(), Color(0.6,0.6,0.8))
+ 	u.add(top_position(rasp_position(raspbox())).unlazy(), Color(0.6,0.6,0.8))
  	return u
 
 if __name__ == "__main__":

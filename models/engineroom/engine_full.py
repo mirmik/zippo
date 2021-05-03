@@ -15,7 +15,7 @@ def engineroom_scene():
  	scene = Scene()
  	scene.add(top_model().up(bottom_z+top_z).unlazy(), Color(0,1,0))
  	#scene.add(control_body().up(bottom_z+top_z+control_z).eval(), Color(1,0,0))
- 	scene.append(bottom_full_scene())
+ 	scene.add(bottom_full_scene())
  	return scene
 
 if __name__ == "__main__":

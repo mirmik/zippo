@@ -45,13 +45,13 @@ def bottom_full_scene():
 def bottom_full_scene_unit():
 	u = zencad.assemble.unit()
 
-	u.add_shape(unlazy(bottom_model()), Color(0.6,0.8,0.6))
-	u.add_shape(unlazy(accumholder_model().up(bottom_wall_thikness)), Color(1,1,1))
-	u.add_shape(unlazy(m_wheel.quadro()), Color(1,1,1))
-	u.add_shape(unlazy(usb_charger_position(usb_charger())), Color(1,1,1))
-	u.add_shape(unlazy(usb_charger_position(usb_charger_protect().up(usb_charger_upper))), Color(1,0,0))
-	u.add_shape(unlazy(voltregul.position_0(voltregul.plate)), Color(1,1,1))
-	u.add_shape(unlazy(voltregul.position_1(voltregul.plate)), Color(1,1,1))
+	u.add(unlazy(bottom_model()), Color(0.6,0.8,0.6))
+	u.add(unlazy(accumholder_model().up(bottom_wall_thikness)), Color(1,1,1))
+	u.add(unlazy(m_wheel.quadro()), Color(1,1,1))
+	u.add(unlazy(usb_charger_position(usb_charger())), Color(1,1,1))
+	u.add(unlazy(usb_charger_position(usb_charger_protect().up(usb_charger_upper))), Color(1,0,0))
+	u.add(unlazy(voltregul.position_0(voltregul.plate)), Color(1,1,1))
+	u.add(unlazy(voltregul.position_1(voltregul.plate)), Color(1,1,1))
 
 	return u
 

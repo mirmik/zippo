@@ -23,8 +23,8 @@ def top_model():
 	m = (
 		#Основное тело
 		difference([
-			linear_extrude(rectangle(x, y, center = True).fillet(5),(0,0,z2)),
-			linear_extrude(rectangle(x-2*t, y-2*t, center = True).fillet(5-t),(0,0,z2-t)).up(t)
+			linear_extrude(rectangle(x, y, center = True).fillet2d(5),(0,0,z2)),
+			linear_extrude(rectangle(x-2*t, y-2*t, center = True).fillet2d(5-t),(0,0,z2-t)).up(t)
 		])
 	
 		#Колоны

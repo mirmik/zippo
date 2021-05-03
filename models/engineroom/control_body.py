@@ -27,7 +27,7 @@ base = rectangle(x, y, center = True).extrude(z+filrad*2).fillet(filrad).down(z)
 def control_body():
 	m = (
 		#Основное тело
-		thicksolid(base, -t, [point(0,0,0)]).up(z)
+		thicksolid(base, -t, [point3(0,0,0)]).up(z)
 
 		#Колоны
 		- sqrtrans()(cylinder(r=5,h=z).translate(x/2-5,y/2-5,0)) 
@@ -38,14 +38,14 @@ def control_body():
 		
 		#Отверстия под крепления поворотной платформы
 		- sqrtrans()(cylinder(r=2,h=t).translate(24,24,0)).forw(platform_offset)
-		- square(20).fillet(3).extrude(t).translate(-10,platform_offset-10,0)
+		- square(20).fillet2d(3).extrude(t).translate(-10,platform_offset-10,0)
 		
 		#Держатели гаек
 		+ sqrtrans()(nut_holder.translate(24,24,0)).forw(platform_offset).up(t/2)
 		
-		- rectangle(20, 10, center = True).fillet(3).extrude(t)
-		- rectangle(16, 8, center = True).fillet(3).extrude(t).right(40)
-		- rectangle(16, 8, center = True).fillet(3).extrude(t).left(40)
+		- rectangle(20, 10, center = True).fillet2d(3).extrude(t)
+		- rectangle(16, 8, center = True).fillet2d(3).extrude(t).right(40)
+		- rectangle(16, 8, center = True).fillet2d(3).extrude(t).left(40)
 		- rectangle(voltdisp[1], voltdisp[0], center = True).extrude(t).right(35).back(54)
 	).mirrorXY()
 
