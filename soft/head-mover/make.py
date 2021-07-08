@@ -23,10 +23,15 @@ licant.cxx_application("firmware.elf",
 		"genos.hal.avr",
 		"genos.hal.avr.diag",
 
-		"genos.sched2"
+		"genos.sched2",
+		"genos.systime",
+		"genos.drivers.avr"
 	],
 
 	defines=["F_CPU=16000000"]
 )
 
-licant.ex("firmware.elf")
+licant.objcopy(toolchain=toolchain, 
+	src="firmware.elf", tgt="firmware.bin", format="binary", sections=[])
+
+licant.ex("firmware.bin")
