@@ -64,3 +64,5 @@ _autosave-*
 
 *target
 firmware
+
+*.stl
