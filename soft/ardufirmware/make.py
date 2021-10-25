@@ -44,10 +44,12 @@ licant.cxx_application("firmware",
 	sources=["main.cpp"],
 	mdepends=
 	[
+
 		"genos.include",	
 		"igris.include",	
 		"zillot.include",	
 		"crow.include",	
+		"ralgo.include",	
 
 		"zillot.chip.avr.atmega328p",	
 		"zillot.arduino.uno",		
@@ -55,7 +57,6 @@ licant.cxx_application("firmware",
 		("igris.syslock", "irqs"),
 		"igris.util",
 		("igris.dprint", "stub"),
-
 		"igris.compat.std"
 	],
 

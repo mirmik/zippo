@@ -1,11 +1,48 @@
 #include <Arduino.h>
-
 #include <string.h>
+
+#include <genos/ktimer.h>
 #include <genos/schedee.h>
+#include <genos/schedee_api.h>
+#include <genos/coop_schedee.h>
 
 #include <crow/tower.h>
 #include <crow/address.h>
 #include <crow/pubsub/pubsub.h>
+#include <crow/packet.h>
+
+#include <igris/util/numconvert.h>
+#include <zillot/i2c/avr_i2c_device.h>
+#include <zillot/serial/avr_usart_device.h>
+#include <zillot/arduino/libs/Adafruit_MotorShield/Adafruit_MotorShield.h>
+
+#include <ralgo/robo/motor.h>
+#include <ralgo/filter/aperiodic_filter.h>
+
+#define WITHOUT_COMMAND_TIMEOUT 300
+#define CROW_PACKET_SIZE 64
+#define CROW_PACKET_TOTAL 8
+
+avr_i2c_device i2c;
+bool POWER_ENABLED = false;
+
+__attribute__((aligned(16)))
+uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
+
+Adafruit_MotorShield mshield;
+
+ralgo::aperiodic_filter<float> ver_filter(0.90, 0.1);
+ralgo::aperiodic_filter<float> hor_filter(0.90, 0.1);
+ralgo::aperiodic_filter<float> left_filter(0.05, 0.01);
+ralgo::aperiodic_filter<float> right_filter(0.05, 0.01);
+
+float lpower = 0;
+float rpower = 0;
+
+coop_schedee updater_schedee;
+char updater_schedee_heap[128];
+
+DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
 
 /*#include <crow/tower.h>
 #include <crow/pubsub/pubsub.h>
@@ -22,9 +59,6 @@
 #include <genos/schedee/autom.h>
 
 #include <genos/ktimer.h>
-
-#include <addons/Adafruit_MotorShield/Adafruit_MotorShield.h>
-#include <ralgo/robo/motor.h>
 
 #include <drivers/pwmservo/avr_pwmservo.h>
 //#include <addons/arduino/pwm.h>
@@ -48,23 +82,11 @@ void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
 
-DECLARE_AVR_USART_WITH_IRQS(usart0, USART0);
-
-uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL] __attribute__((aligned(16)));
-
-float lpower = 0;
-float rpower = 0;
-
 bool en = false;
-avr_i2c_device i2c;
-Adafruit_MotorShield mshield;
 
 struct crow_uartgate uartgate;
 
 bool prevent_crowing = false;
-
-genos::coopschedee updater_schedee;
-char updater_schedee_heap[128];
 
 //pwmservo<uint16_t> servo0(&TIMER1->ocr_a, 0, 90, 1, 0x03FF);
 //pwmservo<uint16_t> servo1(&TIMER1->ocr_b, 0, 90, 1, 0x03FF);
@@ -77,13 +99,8 @@ char updater_schedee_heap[128];
 
 extern avr_gpio_pin board_led;
 
-ralgo::lintrans::aperiodic<float> ver_filter(0.90, 0.1);
-ralgo::lintrans::aperiodic<float> hor_filter(0.90, 0.1);
-
-ralgo::lintrans::aperiodic<float> left_filter(0.05, 0.01);
-ralgo::lintrans::aperiodic<float> right_filter(0.05, 0.01);
-
-struct motor_driver : public ralgo::robo::motor
+*/
+struct motor_driver : public robo::motor
 {
 	Adafruit_DCMotor* M;
 
@@ -139,7 +156,7 @@ motor_driver & motor_fl = motors[0];
 motor_driver & motor_fr = motors[1];
 motor_driver & motor_bl = motors[2];
 motor_driver & motor_br = motors[3];
-
+/*
 char buf[64];
 
 void* recvproc(void* arg);
@@ -148,16 +165,18 @@ void* spammer0(void* arg, int* state);
 void* updater(void* arg);
 
 genos::autom_schedee spammer_schedee{spammer0, nullptr};
-
+*/
 int32_t i = 0;
 void pubsub_handler(crow::packet* pack)
 {
-	igris::buffer thmbuf = crow::pubsub::get_theme(pack);
+	auto psptr = crow::pubsub_packet_ptr(pack);
+
+	igris::buffer thmbuf = psptr.theme();
 	//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
 
 	if (thmbuf == "zippo_control")
 	{
-		igris::buffer datbuf = crow::pubsub::get_data(pack);
+		igris::buffer datbuf = psptr.message();
 
 		float l;
 		float r;
@@ -172,22 +191,18 @@ void pubsub_handler(crow::packet* pack)
 
 	else if (thmbuf == "zippo_enable")
 	{
-		//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
-		//board::sysled.toggle();
-		board_led.toggle();
-
-		igris::buffer datbuf = crow::pubsub::get_data(pack);
+		igris::buffer datbuf = psptr.message();
 
 		if (datbuf == "on")
 		{
-			board_led.set(1);
-			en = true;
+			digitalWrite(13, 1);
+			POWER_ENABLED = true;
 		}
 
 		else if (datbuf == "off")
 		{
-			board_led.set(0);
-			en = false;
+			digitalWrite(13, 0);
+			POWER_ENABLED = false;
 		}
 	}
 
@@ -210,10 +225,10 @@ void pubsub_handler(crow::packet* pack)
 		memcpy(&l, datbuf.data(), 4);
 		wr_ver.set(ver_filter(l));
 	}*/
-/*
+
 	crow::release(pack);
 }
-*/
+
 /*void user_incoming_handler(crowket* pack) {
 	board::sysled.toggle();
 	crow::release(pack);
@@ -232,9 +247,9 @@ int main()
 	const char * raddr = "#F4.12.127.0.0.1:10009";
 	raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
 
-	usart0.setup(115200, 'n', 8, 1);
+	avr_usart_setup(USART0, 115200, 'n', 8, 1);
 
-	schee_manager_init();
+	schedee_manager_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 
 	uartgate.init(&usart0, 42);
@@ -250,8 +265,8 @@ int main()
 	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
 	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
 
-	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
-	updater_schedee.start();
+	coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128);
+	schedee_start(&updater_schedee);
 
 	while (1)
 		__schedule__();
@@ -288,37 +303,28 @@ void* updater(void* arg)
 
 	while (1)
 	{
-		if (en)
+		if (POWER_ENABLED)
 		{
 			motors_run(left_filter(lpower), right_filter(rpower));
 		}
 		else {
-			left_filter.set_value(0);
-			right_filter.set_value(0);
+			left_filter.reset(0);
+			right_filter.reset(0);
 			motors_run(0, 0);
 		}
 
-		msleep(10);
+		current_schedee_msleep(10);
 	}
-}
-
-void* spammer0(void* arg, int* state)
-{
-	char buf[20];
-	i32toa(i++, buf, 10);
-
-	crow::publish({raddr_, raddr_len}, "mirmik0", buf, 0, 200);
-	msleep(1000);
 }
 
 void __schedule__()
 {
 	while (1)
 	{
-		if (!prevent_crowing)
-			crow::onestep();
+		auto curtime = millis();
 
-		ktimer_manager_step();
+		crow::onestep();
+		ktimer_manager_step(curtime);
 		schedee_manager_step();
 	}
 }
