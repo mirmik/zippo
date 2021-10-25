@@ -4,21 +4,23 @@
 import licant
 from licant.cxx_modules import application
 from licant.libs import include
-from licant.cxx_make import make_gcc_binutils
 from licant.modules import submodule
 
 import time
 import os
 
-TOOLCHAIN = make_gcc_binutils("avr")
+TOOLCHAIN = licant.gcc_toolchain("avr-")
 
-include("genos")
-include("nos")
 include("igris")
+include("zillot")
+include("genos")
 include("crow")
 include("ralgo")
-include("malgo")
-include("linalg")
+
+#include("nos")
+#include("crow")
+#include("malgo")
+#include("linalg")
 
 @licant.routine(deps=["firmware"])
 def install_retrans():
@@ -40,40 +42,26 @@ def remote_install():
 licant.cxx_application("firmware",
 	toolchain = TOOLCHAIN,
 	sources=["main.cpp"],
-	mdepends=[	
-		"crow.minimal",
-		("crow.protocol.pubsub"),
-		("crow.allocator", "pool"),
-		("crow.time", "genos"),
+	mdepends=
+	[
+		"genos.include",	
+		"igris.include",	
+		"zillot.include",	
+		"crow.include",	
 
-		"genos.drivers.crow.uartgate",
-		"genos.addons.adafruit_motor_shield",
+		"zillot.chip.avr.atmega328p",	
+		"zillot.arduino.uno",		
 
-		"igris.protocols.gstuff",
-
+		("igris.syslock", "irqs"),
+		"igris.util",
 		("igris.dprint", "stub"),
-		("genos.diag", "stub"),
-		"genos.sched",
 
-		"igris.compat.std",
-		"igris.compat.posix",
-
-		"nos",
-
-		"ralgo",
-		("ralgo.disctime", "manual"),
-		"malgo",
-		"linalg",
-
-		"genos.arduino_compat",
-		"genos",
-
-		"board.arduino_mega",
-		"cpu.avr.atmega2560"
-		#"genos.drivers.avr"
-
+		"igris.compat.std"
 	],
-	defines=["WITHOUT_LOG2=1"],
+
+	cxx_flags = "-ffunction-sections -fdata-sections",
+	cc_flags = "-ffunction-sections -fdata-sections",
+	ld_flags = "-Wl,--gc-sections"
 )
 
 licant.ex("firmware")

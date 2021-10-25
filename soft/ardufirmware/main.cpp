@@ -1,7 +1,13 @@
-#include <hal/board.h>
-#include <hal/irq.h>
+#include <Arduino.h>
+
+#include <string.h>
+#include <genos/schedee.h>
 
 #include <crow/tower.h>
+#include <crow/address.h>
+#include <crow/pubsub/pubsub.h>
+
+/*#include <crow/tower.h>
 #include <crow/pubsub/pubsub.h>
 #include <crow/hexer.h>
 #include <systime/systime.h>
@@ -36,8 +42,8 @@
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 8
-
+#define CROW_PACKET_TOTAL 8*/
+/*
 void motors_stop();
 void motors_run(float pwr);
 void motors_run(float lpwr, float rpwr);
@@ -204,10 +210,10 @@ void pubsub_handler(crow::packet* pack)
 		memcpy(&l, datbuf.data(), 4);
 		wr_ver.set(ver_filter(l));
 	}*/
-
+/*
 	crow::release(pack);
 }
-
+*/
 /*void user_incoming_handler(crowket* pack) {
 	board::sysled.toggle();
 	crow::release(pack);
@@ -215,52 +221,21 @@ void pubsub_handler(crow::packet* pack)
 
 uint8_t raddr_[16];
 size_t raddr_len;
+
 int main()
 {
-	//const char * raddr = "#F4.12.192.168.1.135:10009";
-	board_init();
-	//while(1)
-	//dprln("INITED");
-
-	//pwm_hor = arduino_pwm_timer(9);
-	//pwm_ver = arduino_pwm_timer(10);
-
-	//pwm_hor.standart_timer_mode();
-	//pwm_hor.pwm_mode_start();
-	//wr_hor = pwm_hor.get_writer(1000, 2000);
-
-	//pwm_ver.standart_timer_mode();
-	//pwm_ver.pwm_mode_start();
-	//wr_ver = pwm_ver.get_writer(1000, 2000);
+//	board_init();
 
 	pinMode(9,1);
 	pinMode(10,1);
-
-	//wr_hor.set(0.5);
-	//wr_ver.set(0.5);
-
-	/*periph::timer1.set_mode(decltype(periph::timer1)::TimerMode::Clock);
-	periph::timer1.set_divider(64);
-	//servo0.set(0.5);
-	//servo1.set(0.5);
-	periph::timer1.set_output_a_mode(0b10);
-	periph::timer1.set_output_b_mode(0b10);
-
-	periph::timer1.set_compare_a(0x1FF);
-	periph::timer1.set_compare_b(0x1FF);*/
-
-	//gpio_settings(GPIOB, (1<<0) | (1<<1), GPIO_MODE_OUTPUT);
 
 	const char * raddr = "#F4.12.127.0.0.1:10009";
 	raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
 
 	usart0.setup(115200, 'n', 8, 1);
 
-	scheduler_init();
+	schee_manager_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
-
-	//gpio_pin_settings(&board_led, GPIO_MODE_OUTPUT);
-	//gpio_pin_write(&board_led, 1);
 
 	uartgate.init(&usart0, 42);
 
@@ -270,17 +245,10 @@ int main()
 	irqs_enable();
 	delay(100);
 
-	//crow::diagnostic_enable();
-
 	crow::subscribe({raddr_, raddr_len}, "zippo_enable", 1, 200, 0, 200);
 	crow::subscribe({raddr_, raddr_len}, "zippo_control", 1, 200, 0, 200);
 	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
 	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
-
-	//motors_run(0.2, 0.2);
-
-	//spammer_schedee.run();
-
 
 	updater_schedee.init(updater, nullptr, updater_schedee_heap, 128);
 	updater_schedee.start();
@@ -311,20 +279,8 @@ void motors_run(float lpwr, float rpwr)
 void* updater(void* arg)
 {
 	irqs_enable();
-
-	//dprln("i2c init master");
-	//i2c.init_master();
-	//msleep(2000);
-
-	//dprln("i2c enable");
-	//i2c.enable();
-	//msleep(2000);
-
-	//dprln("mshield begin");
 	mshield.begin(&i2c);
-	//msleep(2000);
 
-	//dprln("mshield motors registry begin");
 	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
@@ -334,7 +290,6 @@ void* updater(void* arg)
 	{
 		if (en)
 		{
-			//crow::send("\xF4", 1, "Asdfa", 5, 0, 0, 200);
 			motors_run(left_filter(lpower), right_filter(rpower));
 		}
 		else {
@@ -360,7 +315,6 @@ void __schedule__()
 {
 	while (1)
 	{
-		dprln("HERE");
 		if (!prevent_crowing)
 			crow::onestep();
 

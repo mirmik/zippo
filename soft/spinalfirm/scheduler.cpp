@@ -1,4 +1,4 @@
-#include <genos/sched.h>
+#include <genos/schedee.h>
 #include <genos/ktimer.h>
 
 void __schedule__()
