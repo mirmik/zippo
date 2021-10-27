@@ -16,8 +16,8 @@ include("zillot")
 include("genos")
 include("crow")
 include("ralgo")
+include("nos")
 
-#include("nos")
 #include("crow")
 #include("malgo")
 #include("linalg")
@@ -49,15 +49,31 @@ licant.cxx_application("firmware",
 		"igris.include",	
 		"zillot.include",	
 		"crow.include",	
+		"nos.include",	
 		"ralgo.include",	
 
+		"crow.minimal",
+		"crow.protocol.pubsub",		
+		("crow.allocator", "pool"),		
+		"nos.print",
+		"nos.fprint",
+		("nos.current_ostream", "nullptr"),
+
+		"genos",
+
 		"zillot.chip.avr.atmega328p",	
-		"zillot.arduino.uno",		
+		"zillot.arduino.uno",			
+		"zillot.arduino.avr-systime",		
+		"zillot.avr_i2c_device",
+		"zillot.arduino.Adafruit_MotorShield",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
+		"igris.ctrobj.common",
+		"igris.utilxx",
 		("igris.dprint", "stub"),
-		"igris.compat.std"
+		"igris.compat.std",
+		"igris.cxx_support",
 	],
 
 	cxx_flags = "-ffunction-sections -fdata-sections",

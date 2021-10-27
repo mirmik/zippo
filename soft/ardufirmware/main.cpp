@@ -44,6 +44,8 @@ char updater_schedee_heap[128];
 
 DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
 
+void* updater(void* arg);
+
 /*#include <crow/tower.h>
 #include <crow/pubsub/pubsub.h>
 #include <crow/hexer.h>
@@ -252,7 +254,7 @@ int main()
 	schedee_manager_init();
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 
-	uartgate.init(&usart0, 42);
+//	uartgate.init(&usart0, 42);
 
 	crow::user_incoming_handler = NULL;
 	crow::pubsub_protocol.incoming_handler = pubsub_handler;
@@ -265,8 +267,8 @@ int main()
 	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
 	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
 
-	coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128);
-	schedee_start(&updater_schedee);
+	coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128, 0);
+	schedee_start(&updater_schedee.sch);
 
 	while (1)
 		__schedule__();
@@ -294,7 +296,7 @@ void motors_run(float lpwr, float rpwr)
 void* updater(void* arg)
 {
 	irqs_enable();
-	mshield.begin(&i2c);
+	mshield.begin(&i2c.dev);
 
 	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
