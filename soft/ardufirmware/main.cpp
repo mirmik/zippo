@@ -8,7 +8,7 @@
 
 #include <crow/tower.h>
 #include <crow/address.h>
-#include <crow/pubsub/pubsub.h>
+#include <crow/nodes/publisher_node.h>
 #include <crow/packet.h>
 
 #include <igris/util/numconvert.h>
@@ -19,9 +19,15 @@
 #include <ralgo/robo/motor.h>
 #include <ralgo/filter/aperiodic_filter.h>
 
+#include <igris/serialize/serialize_storage.h>
+
 #define WITHOUT_COMMAND_TIMEOUT 300
 #define CROW_PACKET_SIZE 64
 #define CROW_PACKET_TOTAL 8
+
+const auto crowaddr = crow::address(".1");
+
+//crow::publisher_node pubnode(crowaddr);
 
 avr_i2c_device i2c;
 bool POWER_ENABLED = false;
@@ -171,7 +177,7 @@ genos::autom_schedee spammer_schedee{spammer0, nullptr};
 int32_t i = 0;
 void pubsub_handler(crow::packet* pack)
 {
-	auto psptr = crow::pubsub_packet_ptr(pack);
+/*	auto psptr = crow::pubsub_packet_ptr(pack);
 
 	igris::buffer thmbuf = psptr.theme();
 	//crow::send("\xF4", 1, "fsdfa", 5, 0, 0, 200);
@@ -207,7 +213,7 @@ void pubsub_handler(crow::packet* pack)
 			POWER_ENABLED = false;
 		}
 	}
-
+*/
 
 	/*else if (thmbuf == "zippo_shor")
 	{
@@ -257,15 +263,15 @@ int main()
 //	uartgate.init(&usart0, 42);
 
 	crow::user_incoming_handler = NULL;
-	crow::pubsub_protocol.incoming_handler = pubsub_handler;
+//	crow::pubsub_protocol.incoming_handler = pubsub_handler;
 
 	irqs_enable();
 	delay(100);
 
-	crow::subscribe({raddr_, raddr_len}, "zippo_enable", 1, 200, 0, 200);
-	crow::subscribe({raddr_, raddr_len}, "zippo_control", 1, 200, 0, 200);
-	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
-	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
+//	crow::subscribe({raddr_, raddr_len}, "zippo_enable", 1, 200, 0, 200);
+//	crow::subscribe({raddr_, raddr_len}, "zippo_control", 1, 200, 0, 200);
+//	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
+//	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
 
 	coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128, 0);
 	schedee_start(&updater_schedee.sch);

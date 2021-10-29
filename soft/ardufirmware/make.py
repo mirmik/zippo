@@ -44,7 +44,6 @@ licant.cxx_application("firmware",
 	sources=["main.cpp"],
 	mdepends=
 	[
-
 		"genos.include",	
 		"igris.include",	
 		"zillot.include",	
@@ -52,6 +51,7 @@ licant.cxx_application("firmware",
 		"nos.include",	
 		"ralgo.include",	
 
+#		"crow.address",
 		"crow.minimal",
 		"crow.protocol.pubsub",		
 		("crow.allocator", "pool"),		
@@ -66,6 +66,7 @@ licant.cxx_application("firmware",
 		"zillot.arduino.avr-systime",		
 		"zillot.avr_i2c_device",
 		"zillot.arduino.Adafruit_MotorShield",
+		"zillot.drivers.serial.avr",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
@@ -78,7 +79,9 @@ licant.cxx_application("firmware",
 
 	cxx_flags = "-ffunction-sections -fdata-sections",
 	cc_flags = "-ffunction-sections -fdata-sections",
-	ld_flags = "-Wl,--gc-sections"
+	ld_flags = "-Wl,--gc-sections",
+
+	cxxstd="c++17" 
 )
 
 licant.ex("firmware")
