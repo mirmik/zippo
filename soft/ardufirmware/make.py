@@ -18,11 +18,9 @@ include("crow")
 include("ralgo")
 include("nos")
 
-#include("crow")
-#include("malgo")
-#include("linalg")
+default_device = "/dev/ttyACM0"
 
-@licant.routine(deps=["firmware"])
+@licant.routine(deps=["firmware.elf"])
 def install_retrans():
 	os.system("ctrans .12.127.0.0.1:10008 --pulse exit")
 	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
@@ -31,7 +29,7 @@ def install_retrans():
 
 remote_ip = "192.168.1.93"
 
-@licant.routine(deps=['firmware'])
+@licant.routine(deps=['firmware.elf'])
 def remote_install():
 	os.system("ctrans .12.{ip}:10010 --pulse exit".format(ip=remote_ip))
 	os.system("scp ./firmware mirmik@{ip}:/tmp/enginedrive.bin".format(ip=remote_ip))
@@ -39,9 +37,27 @@ def remote_install():
 	time.sleep(1)
 	os.system("ssh mirmik@{ip} ctrans --api --noconsole --udp 10010 --serial /dev/ttyACM0 > /dev/null &".format(ip=remote_ip))
 
-licant.cxx_application("firmware",
+@licant.routine(deps=["firmware.elf"])
+def install(src="firmware.hex", tgt=default_device, *args):
+	for cmd in [
+		"avr-objcopy -O ihex -R .eeprom -R .fuse firmware.elf firmware.hex",
+		f"avrdude -P{tgt} -v -carduino -patmega328p -b115200 -D -Uflash:w:./{src} -u"
+	]:
+		print(cmd)
+		os.system(cmd)
+
+@licant.routine
+def terminal(path=default_device):
+	os.system("sudo gtkterm -p {} -s 115200 --parity none".format(path))
+
+
+licant.cxx_application("firmware.elf",
 	toolchain = TOOLCHAIN,
-	sources=["main.cpp"],
+	sources=[
+		"src/main.cpp",
+		"src/blink_task.c",
+		"src/motors.cpp",
+	],
 	mdepends=
 	[
 
@@ -59,26 +75,28 @@ licant.cxx_application("firmware",
 		"nos.fprint",
 		("nos.current_ostream", "nullptr"),
 
+		"zillot",	
 		"genos",
 
 		"zillot.chip.avr.atmega328p",	
 		"zillot.arduino.uno",			
 		"zillot.arduino.avr-systime",		
-		"zillot.avr_i2c_device",
+		"zillot.drivers.avr",
 		"zillot.arduino.Adafruit_MotorShield",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
 		"igris.ctrobj.common",
 		"igris.utilxx",
-		("igris.dprint", "stub"),
 		"igris.compat.std",
 		"igris.cxx_support",
 	],
 
-	cxx_flags = "-ffunction-sections -fdata-sections",
-	cc_flags = "-ffunction-sections -fdata-sections",
-	ld_flags = "-Wl,--gc-sections"
+	include_paths = ["src"],
+
+	cxx_flags = "-ffunction-sections -fdata-sections -Os",
+	cc_flags = "-ffunction-sections -fdata-sections -Os",
+	ld_flags = "-Wl,--gc-sections -Os"
 )
 
-licant.ex("firmware")
+licant.ex("firmware.elf")
