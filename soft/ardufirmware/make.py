@@ -60,7 +60,6 @@ licant.cxx_application("firmware.elf",
 	],
 	mdepends=
 	[
-
 		"genos.include",	
 		"igris.include",	
 		"zillot.include",	
@@ -68,6 +67,7 @@ licant.cxx_application("firmware.elf",
 		"nos.include",	
 		"ralgo.include",	
 
+#		"crow.address",
 		"crow.minimal",
 		"crow.protocol.pubsub",		
 		("crow.allocator", "pool"),		
@@ -83,6 +83,7 @@ licant.cxx_application("firmware.elf",
 		"zillot.arduino.avr-systime",		
 		"zillot.drivers.avr",
 		"zillot.arduino.Adafruit_MotorShield",
+		"zillot.drivers.serial.avr",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
