@@ -57,6 +57,7 @@ licant.cxx_application("firmware.elf",
 		"src/main.cpp",
 		"src/blink_task.c",
 		"src/motors.cpp",
+		"src/crow-service.cpp",
 	],
 	mdepends=
 	[
@@ -95,9 +96,9 @@ licant.cxx_application("firmware.elf",
 
 	include_paths = ["src"],
 
-	cxx_flags = "-ffunction-sections -fdata-sections -Os",
-	cc_flags = "-ffunction-sections -fdata-sections -Os",
-	ld_flags = "-Wl,--gc-sections -Os"
+	cxx_flags = "-ffunction-sections -fdata-sections -Os -Wall",
+	cc_flags = "-ffunction-sections -fdata-sections -Os -Wall",
+	ld_flags = "-Wl,--gc-sections -Os -Wall -Wextra"
 )
 
 licant.ex("firmware.elf")

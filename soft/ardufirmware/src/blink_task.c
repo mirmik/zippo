@@ -9,7 +9,7 @@ struct autom_schedee blink_schedee;
 void blink_task(void* priv, int * state) 
 {
 	digitalWrite(13,!digitalRead(13));
-	current_schedee_msleep(100);
+	current_schedee_msleep(1000);
 }
 
 void blink_task_init() 

@@ -15,11 +15,13 @@
 #include <igris/util/numconvert.h>
 #include <zillot/i2c/avr_i2c_device.h>
 #include <zillot/serial/avr_usart_device.h>
+#include <zillot/i2c/avr_i2c_device.h>
 
 #include <ralgo/robo/motor.h>
 #include <ralgo/filter/aperiodic_filter.h>
 
 #include <blink_task.h>
+#include <crow-service.h>
 #include <motors.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
@@ -30,6 +32,7 @@ __attribute__((aligned(16)))
 uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
 DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
+DECLARE_AVR_I2C_WITH_IRQS(i2c);
 
 /*#include <crow/tower.h>
 #include <crow/pubsub/pubsub.h>
@@ -173,6 +176,7 @@ int main()
 {
 	arch_init();
 	schedee_manager_init();
+	crow_services_init();
 
 	irqs_enable();
     avr_usart_setup(USART0, 115200, 'n', 8, 1);
@@ -218,7 +222,6 @@ void __schedule__()
 	{
 		auto curtime = millis();
 
-		//crow::onestep();
 		ktimer_manager_step(curtime);
 		schedee_manager_step();
 	}

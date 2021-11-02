@@ -5,7 +5,7 @@
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
 
-avr_i2c_device i2c;
+extern avr_i2c_device i2c;
 Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 
@@ -108,10 +108,12 @@ void* updater(void* arg)
 
 		current_schedee_msleep(10);
 	}*/
+
+	return NULL;
 }
 
 void motors_task_init() 
 {
-	coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128, 0);
+	//coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128, 0);
 	//schedee_start(&updater_schedee.sch);
 }
