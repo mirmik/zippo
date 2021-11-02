@@ -32,7 +32,6 @@ __attribute__((aligned(16)))
 uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
 DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
-DECLARE_AVR_I2C_WITH_IRQS(i2c);
 
 /*#include <crow/tower.h>
 #include <crow/pubsub/pubsub.h>

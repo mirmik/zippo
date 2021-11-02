@@ -5,7 +5,10 @@
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
 
-extern avr_i2c_device i2c;
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+DECLARE_AVR_I2C_WITH_IRQS(i2c);
 Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 
