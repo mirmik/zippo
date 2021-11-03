@@ -25,11 +25,6 @@
 #include <motors.h>
 
 #define WITHOUT_COMMAND_TIMEOUT 300
-#define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 8
-
-__attribute__((aligned(16)))
-uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
 DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
 
@@ -168,9 +163,6 @@ void pubsub_handler(crow::packet* pack)
 	crow::release(pack);
 }*/
 
-uint8_t raddr_[16];
-size_t raddr_len;
-
 int main()
 {
 	arch_init();
@@ -189,30 +181,6 @@ int main()
 
 	while(1)
 		__schedule__();
-
-	const char * raddr = "#F4.12.127.0.0.1:10009";
-	raddr_len = hexer(raddr_, 16, raddr, strlen(raddr));
-
-	avr_usart_setup(USART0, 115200, 'n', 8, 1);
-
-	schedee_manager_init();
-	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
-
-//	uartgate.init(&usart0, 42);
-
-	crow::user_incoming_handler = NULL;
-//	crow::pubsub_protocol.incoming_handler = pubsub_handler;
-
-	irqs_enable();
-	delay(100);
-
-//	crow::subscribe({raddr_, raddr_len}, "zippo_enable", 1, 200, 0, 200);
-//	crow::subscribe({raddr_, raddr_len}, "zippo_control", 1, 200, 0, 200);
-//	crow::subscribe({raddr_, raddr_len}, "zippo_shor", 1, 200, 0, 200);
-//	crow::subscribe({raddr_, raddr_len}, "zippo_sver", 1, 200, 0, 200);
-
-	while (1)
-		__schedule__();
 }
 
 void __schedule__()
@@ -221,6 +189,7 @@ void __schedule__()
 	{
 		auto curtime = millis();
 
+		crow::onestep();
 		ktimer_manager_step(curtime);
 		schedee_manager_step();
 	}

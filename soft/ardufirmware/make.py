@@ -92,9 +92,11 @@ licant.cxx_application("firmware.elf",
 		"igris.utilxx",
 		"igris.compat.std",
 		"igris.cxx_support",
+		("crow.diagnostic", "debug")
 	],
 
 	include_paths = ["src"],
+	defines=["MEMORY_ECONOMY"],
 
 	cxx_flags = "-ffunction-sections -fdata-sections -Os -Wall",
 	cc_flags = "-ffunction-sections -fdata-sections -Os -Wall",
