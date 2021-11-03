@@ -65,5 +65,7 @@ _autosave-*
 *target
 firmware
 firmware.elf
+firmware.hex
+firmware.bin
 
 *.stl
