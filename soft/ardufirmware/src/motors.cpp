@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-DECLARE_AVR_I2C_WITH_IRQS(i2c);
+DECLARE_AVR_I2C_WITH_IRQS(i2c)
 Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 

@@ -100,7 +100,7 @@ licant.cxx_application("firmware.elf",
 
 	cxx_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
 	cc_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
-	ld_flags = "-Wl,--gc-sections -Os -Wall -Wextra"
+	ld_flags = "-Wl,--gc-sections -Os -Wall -Wextra",
 )
 
 licant.ex("firmware.elf")
