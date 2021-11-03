@@ -90,6 +90,7 @@ void motors_run(float lpwr, float rpwr)
 
 void* updater(void* arg)
 {
+	(void)arg;
 	mshield.begin(&i2c.dev);
 
 /*	motor_bl.M = mshield.getMotor(1);

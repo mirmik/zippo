@@ -6,8 +6,10 @@
 
 struct autom_schedee blink_schedee;
 
-void blink_task(void* priv, int * state) 
+void blink_task(void* priv, int* state) 
 {
+	(void) priv;
+	(void) state;
 	digitalWrite(13,!digitalRead(13));
 	current_schedee_msleep(1000);
 }

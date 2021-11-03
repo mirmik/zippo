@@ -24,8 +24,10 @@ char send_buffer[40];
 __attribute__((aligned(16)))
 uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
-void crow_schedee_thread(void *, int * state)
+void crow_schedee_thread(void * priv, int * state)
 {
+	(void) priv;
+	(void) state;
 	if (cdev_avail(&serial0.dev)) 
 	{
 		char c;
@@ -38,12 +40,14 @@ void crow_schedee_thread(void *, int * state)
 
 int crow_service_handle(char *, int, char * ans, int ansmax)
 {
+	(void) ansmax;
 	sprintf(ans, "crow_service_handle");
 	return 0;
 }
 
 int crow_write_callback(void * priv, const char *data, unsigned int size) 
 {
+	(void) priv;
 	return cdev_write(&serial0.dev, data, size, IO_NOBLOCK);
 }
 

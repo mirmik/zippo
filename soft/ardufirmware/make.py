@@ -98,8 +98,8 @@ licant.cxx_application("firmware.elf",
 	include_paths = ["src"],
 	defines=["MEMORY_ECONOMY"],
 
-	cxx_flags = "-ffunction-sections -fdata-sections -Os -Wall",
-	cc_flags = "-ffunction-sections -fdata-sections -Os -Wall",
+	cxx_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
+	cc_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
 	ld_flags = "-Wl,--gc-sections -Os -Wall -Wextra"
 )
 
