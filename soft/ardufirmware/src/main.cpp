@@ -166,7 +166,7 @@ void pubsub_handler(crow::packet* pack)
 int main()
 {
 	arch_init();
-	schedee_manager_init();
+	genos::schedee_manager_init();
 	crow_services_init();
 
 	irqs_enable();
@@ -191,6 +191,6 @@ void __schedule__()
 
 		crow::onestep();
 		ktimer_manager_step(curtime);
-		schedee_manager_step();
+		genos::schedee_manager_step();
 	}
 }

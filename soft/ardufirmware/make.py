@@ -55,7 +55,7 @@ licant.cxx_application("firmware.elf",
 	toolchain = TOOLCHAIN,
 	sources=[
 		"src/main.cpp",
-		"src/blink_task.c",
+		"src/blink_task.cpp",
 		"src/motors.cpp",
 		"src/crow-service.cpp",
 	],

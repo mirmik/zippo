@@ -16,7 +16,6 @@ ZILLOT_DEF_UARTRING(serial0, &usart0.dev, 40, 40);
 
 crow::self_driven_gstuff crowgate;
 crow::service_node clinode;
-autom_schedee crow_schedee;
 char send_buffer[40];
 
 #define CROW_PACKET_SIZE 64
@@ -37,6 +36,7 @@ void crow_schedee_thread(void * priv, int * state)
 	}
 	cdev_read(&serial0.dev, NULL, 0, IO_VIRTUAL_DISPLACE);
 }
+genos::autom_schedee crow_schedee(crow_schedee_thread, nullptr);
 
 int crow_service_handle(char *, int, char * ans, int ansmax)
 {
@@ -63,8 +63,7 @@ void crow_services_init()
 	crowgate.bind(1);
 
 	uartring_install(&serial0, NULL);
-	autom_schedee_init(&crow_schedee, crow_schedee_thread, NULL);
-	schedee_start(&crow_schedee.sch);
+	schedee_start(&crow_schedee);
 	//clinode.init(crow_service_handle, 48);
 	//clinode.bind(42);
 }

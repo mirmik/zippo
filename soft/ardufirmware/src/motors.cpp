@@ -12,7 +12,7 @@ DECLARE_AVR_I2C_WITH_IRQS(i2c)
 Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 
-coop_schedee updater_schedee;
+genos::coop_schedee updater_schedee;
 char updater_schedee_heap[128];
 
 float lpower = 0;
