@@ -48,7 +48,7 @@ def install(src="firmware.hex", tgt=default_device, *args):
 
 @licant.routine
 def terminal(path=default_device):
-	os.system("sudo gtkterm -p {} -s 115200 --parity none".format(path))
+	os.system("gtkterm -p {} -s 115200 --parity none".format(path))
 
 
 licant.cxx_application("firmware.elf",
@@ -92,15 +92,19 @@ licant.cxx_application("firmware.elf",
 		"igris.utilxx",
 		"igris.compat.std",
 		"igris.cxx_support",
-		("crow.diagnostic", "debug")
+		("igris.dprint", "diag"),
+		("crow.diagnostic", "stub"),
+		("crow.select", "stub"),
+		("crow.protocol.pubsub", "stub"),
+		("igris.location", "stub")
 	],
 
 	include_paths = ["src"],
 	defines=["MEMORY_ECONOMY"],
 
-	cxx_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
-	cc_flags = "-ffunction-sections -fdata-sections -Os -Werror=all -Werror=extra",
-	ld_flags = "-Wl,--gc-sections -Os -Wall -Wextra",
+	cxx_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-rtti -fno-exceptions",
+	cc_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-exceptions",
+	ld_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Wall -Wextra -fno-rtti -fno-exceptions",
 )
 
 licant.ex("firmware.elf")

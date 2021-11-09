@@ -1,19 +1,26 @@
 #include <motors.h>
 #include <asm/irq.h>
+
 #include <zillot/i2c/avr_i2c_device.h>
+#include <zillot/serial/uartring.h>
+#include <zillot/ioflags.h>
 #include <ralgo/filter/aperiodic_filter.h>
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
 
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
+
+extern struct uartring_s serial0;
 
 DECLARE_AVR_I2C_WITH_IRQS(i2c)
 Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 
-genos::coop_schedee updater_schedee;
-char updater_schedee_heap[128];
+void* updater(void* arg);
+char updater_schedee_heap[100];
+genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, 100);
 
 float lpower = 0;
 float rpower = 0;
@@ -24,8 +31,8 @@ motor_driver & motor_fr = motors[1];
 motor_driver & motor_bl = motors[2];
 motor_driver & motor_br = motors[3];
 
-ralgo::aperiodic_filter<float> ver_filter(0.90, 0.1);
-ralgo::aperiodic_filter<float> hor_filter(0.90, 0.1);
+//ralgo::aperiodic_filter<float> ver_filter(0.90, 0.1);
+//ralgo::aperiodic_filter<float> hor_filter(0.90, 0.1);
 ralgo::aperiodic_filter<float> left_filter(0.05, 0.01);
 ralgo::aperiodic_filter<float> right_filter(0.05, 0.01);
 
@@ -91,18 +98,28 @@ void motors_run(float lpwr, float rpwr)
 void* updater(void* arg)
 {
 	(void)arg;
+
+	avr_i2c_device_init_master(&i2c, 100000);
+	avr_i2c_device_enable();
+
 	mshield.begin(&i2c.dev);
 
-/*	motor_bl.M = mshield.getMotor(1);
+	motor_bl.M = mshield.getMotor(1);
 	motor_br.M = mshield.getMotor(2);
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
 
+	systime_t last_time = millis();
 	while (1)
 	{
+		auto curtime = millis();
 		if (POWER_ENABLED)
 		{
-			motors_run(left_filter(lpower), right_filter(rpower));
+			auto delta = (curtime - last_time) * 0.001;
+
+			motors_run(
+				left_filter.serve(lpower, delta), 
+				right_filter.serve(rpower, delta));
 		}
 		else {
 			left_filter.reset(0);
@@ -110,14 +127,14 @@ void* updater(void* arg)
 			motors_run(0, 0);
 		}
 
+		last_time = curtime;
 		current_schedee_msleep(10);
-	}*/
+	}
 
 	return NULL;
 }
 
 void motors_task_init() 
 {
-	//coop_schedee_init(&updater_schedee, updater, nullptr, updater_schedee_heap, 128, 0);
-	//schedee_start(&updater_schedee.sch);
+	schedee_start(&updater_schedee);
 }

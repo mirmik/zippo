@@ -9,19 +9,30 @@
 #include <zillot/ioflags.h>
 #include <crow/packet.h>
 
+extern genos::autom_schedee blink_schedee;
 extern struct avr_usart_device_s usart0;
-crow::hostaddr crowaddr = crow::address(".1.127.0.0.1:10009");
+crow::hostaddr crowaddr = crow::address(".1.12.127.0.0.1:10009");
 
-ZILLOT_DEF_UARTRING(serial0, &usart0.dev, 40, 40);
+ZILLOT_DEF_UARTRING(serial0, &usart0.dev, 48, 64);
 
 crow::self_driven_gstuff crowgate;
 crow::service_node clinode;
-char send_buffer[40];
+char send_buffer[80];
 
-#define CROW_PACKET_SIZE 64
-#define CROW_PACKET_TOTAL 4
+#define CROW_PACKET_SIZE 80
+#define CROW_PACKET_TOTAL 2
 __attribute__((aligned(16)))
 uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
+
+
+void crow_resubscribe_thread(void * priv, int * state)
+{
+	(void) priv;
+	(void) state;
+
+	clinode.subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
+	current_schedee_msleep(1000);
+}
 
 void crow_schedee_thread(void * priv, int * state)
 {
@@ -31,17 +42,18 @@ void crow_schedee_thread(void * priv, int * state)
 	{
 		char c;
 		cdev_read(&serial0.dev, &c, 1, 0);
-		//debug_putchar(c);
 		crowgate.newdata(c);
 	}
 	cdev_read(&serial0.dev, NULL, 0, IO_VIRTUAL_DISPLACE);
 }
 genos::autom_schedee crow_schedee(crow_schedee_thread, nullptr);
+genos::autom_schedee crow_resubscribe_schedee(crow_resubscribe_thread, nullptr);
 
 int crow_service_handle(char *, int, char * ans, int ansmax)
 {
 	(void) ansmax;
 	sprintf(ans, "crow_service_handle");
+	//schedee_stop(&blink_schedee);
 	return 0;
 }
 
@@ -53,17 +65,20 @@ int crow_write_callback(void * priv, const char *data, unsigned int size)
 
 void crow_services_init()
 {
-	crow::retransling_allowed = true;
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
+	crow::diagnostic_setup(true, false);
 
 	crowgate.init(
 		send_buffer, 
 		crow_write_callback,
-        NULL);
+        NULL,
+        CROW_PACKET_SIZE);
 	crowgate.bind(1);
+
+	clinode.init(crow_service_handle, 32);
+	clinode.bind(42);
 
 	uartring_install(&serial0, NULL);
 	schedee_start(&crow_schedee);
-	//clinode.init(crow_service_handle, 48);
-	//clinode.bind(42);
+	schedee_start(&crow_resubscribe_schedee);
 }
