@@ -19,8 +19,8 @@ Adafruit_MotorShield mshield;
 bool POWER_ENABLED = false;
 
 void* updater(void* arg);
-char updater_schedee_heap[100];
-genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, 100);
+char updater_schedee_heap[128];
+genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, sizeof(updater_schedee_heap));
 
 float lpower = 0;
 float rpower = 0;

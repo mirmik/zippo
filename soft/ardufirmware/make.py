@@ -100,7 +100,7 @@ licant.cxx_application("firmware.elf",
 	],
 
 	include_paths = ["src"],
-	defines=["MEMORY_ECONOMY"],
+	defines=["MEMORY_ECONOMY", "ADAFRUIT_MOTOR_SHIELD_NO_STEPPERS", "ADAFRUIT_MOTOR_SHIELD_NO_PWM"],
 
 	cxx_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-rtti -fno-exceptions",
 	cc_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-exceptions",
