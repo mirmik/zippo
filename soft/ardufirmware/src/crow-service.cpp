@@ -1,6 +1,7 @@
 #include <crow-service.h>
 #include <crow/nodes/nospublisher.h>
 #include <crow/crow.h>
+#include <crow/constexpr_hexer.h>
 #include <crow/nodes/service_node.h>
 #include <crow/gates/self_driven_gstuff.h>
 #include <zillot/serial/uartring.h>
@@ -13,6 +14,18 @@
 extern genos::autom_schedee blink_schedee;
 extern struct avr_usart_device_s usart0;
 crow::hostaddr crowaddr = crow::address(".1.12.127.0.0.1:10009");
+
+/*template< size_t N >
+constexpr std::array<char, N> constexpr_char_array( char const (&s)[N] )
+{
+	std::array<char, N> ret = {};
+	for (size_t i = 0; i < N; ++i)
+		ret[i] = s[i];
+	return ret;
+}
+constexpr auto crowaddr_pair = crow::constexpr_hexer(constexpr_char_array(".1.12.127.0.0.1:10009"));
+crow::hostaddr_view crowaddr(&*crowaddr_pair.first.begin(), crowaddr_pair.second);
+*/
 
 ZILLOT_DEF_UARTRING(serial0, &usart0.dev, 100, 16);
 

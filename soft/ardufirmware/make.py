@@ -100,9 +100,11 @@ licant.cxx_application("firmware.elf",
 	include_paths = ["src"],
 	defines=["MEMORY_ECONOMY", "ADAFRUIT_MOTOR_SHIELD_NO_STEPPERS", "ADAFRUIT_MOTOR_SHIELD_NO_PWM"],
 
-	cxx_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-rtti -fno-exceptions",
-	cc_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-exceptions",
-	ld_flags = "-ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Wall -Wextra -fno-rtti -fno-exceptions",
+	cxx_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-rtti -fno-exceptions",
+	cc_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-exceptions",
+	ld_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Wall -Wextra -fno-rtti -fno-exceptions",
+
+	cxxstd = "c++17",
 )
 
 licant.ex("firmware.elf")
