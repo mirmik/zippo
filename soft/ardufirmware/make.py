@@ -58,6 +58,7 @@ licant.cxx_application("firmware.elf",
 		"src/blink_task.cpp",
 		"src/motors.cpp",
 		"src/crow-service.cpp",
+		"src/command.cpp",
 	],
 	mdepends=
 	[

@@ -1,6 +1,8 @@
 #include <motors.h>
 #include <asm/irq.h>
 
+#include <crow/nodes/nospublisher.h>
+#include <nos/print.h>
 #include <zillot/i2c/avr_i2c_device.h>
 #include <zillot/serial/uartring.h>
 #include <zillot/ioflags.h>
@@ -16,14 +18,14 @@ extern struct uartring_s serial0;
 
 DECLARE_AVR_I2C_WITH_IRQS(i2c)
 Adafruit_MotorShield mshield;
-bool POWER_ENABLED = false;
+volatile bool POWER_ENABLED = false;
 
 void* updater(void* arg);
 char updater_schedee_heap[128];
 genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, sizeof(updater_schedee_heap));
 
-float lpower = 0;
-float rpower = 0;
+volatile float lpower = 0;
+volatile float rpower = 0;
 
 motor_driver motors[4];
 motor_driver & motor_fl = motors[0];
@@ -115,11 +117,14 @@ void* updater(void* arg)
 		auto curtime = millis();
 		if (POWER_ENABLED)
 		{
-			auto delta = (curtime - last_time) * 0.001;
+			//auto delta = (curtime - last_time) * 0.001;
 
 			motors_run(
-				left_filter.serve(lpower, delta), 
-				right_filter.serve(rpower, delta));
+			lpower,
+			rpower
+			//	left_filter.serve((float)lpower, delta), 
+			//	right_filter.serve((float)rpower, delta)
+			);
 		}
 		else {
 			left_filter.reset(0);
@@ -128,7 +133,8 @@ void* updater(void* arg)
 		}
 
 		last_time = curtime;
-		current_schedee_msleep(10);
+		(void) last_time;
+		current_schedee_msleep(100);
 	}
 
 	return NULL;

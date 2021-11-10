@@ -5,10 +5,10 @@
 #include <ralgo/robo/motor.h>
 
 extern Adafruit_MotorShield mshield;
-extern bool POWER_ENABLED;
+extern volatile bool POWER_ENABLED;
 
-extern float lpower;
-extern float rpower;
+extern volatile float lpower;
+extern volatile float rpower;
 
 struct motor_driver : public robo::motor
 {
