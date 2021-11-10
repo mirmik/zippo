@@ -63,8 +63,6 @@ int crow_write_callback(void * priv, const char *data, unsigned int size)
 void crow_services_init()
 {
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
-	crow::diagnostic_setup(true, false);
-
 	crowgate.init(
 		send_buffer, 
 		crow_write_callback,

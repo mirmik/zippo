@@ -70,7 +70,6 @@ licant.cxx_application("firmware.elf",
 
 #		"crow.address",
 		"crow.minimal",
-		"crow.protocol.pubsub",		
 		("crow.allocator", "pool"),		
 		"nos.print",
 		"nos.fprint",
@@ -95,7 +94,6 @@ licant.cxx_application("firmware.elf",
 		("igris.dprint", "diag"),
 		("crow.diagnostic", "stub"),
 		("crow.select", "stub"),
-		("crow.protocol.pubsub", "stub"),
 		("igris.location", "stub")
 	],
 
