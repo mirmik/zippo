@@ -44,7 +44,7 @@ genos::autom_schedee crow_schedee([](void * priv, int * state)
 {
 	(void) priv;
 	(void) state;
-	while (cdev_avail(&serial0.dev)) 
+	while (cdev_avail(&serial0.dev))
 	{
 		char c;
 		cdev_read(&serial0.dev, &c, 1, 0);
@@ -63,10 +63,10 @@ genos::autom_schedee crow_resubscribe_schedee([](void * priv, int * state)
 
 int crow_service_handle(char * a, int b, char * c, int d)
 {
-	return command(a,b,c,d);
+	return command(a, b, c, d);
 }
 
-int crow_write_callback(void * priv, const char *data, unsigned int size) 
+int crow_write_callback(void * priv, const char *data, unsigned int size)
 {
 	(void) priv;
 	return cdev_write(&serial0.dev, data, size, IO_NOBLOCK);
@@ -81,10 +81,10 @@ void crow_services_init()
 
 	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 	crowgate.init(
-		send_buffer, 
-		crow_write_callback,
-        NULL,
-        CROW_PACKET_SIZE);
+	    send_buffer,
+	    crow_write_callback,
+	    NULL,
+	    CROW_PACKET_SIZE);
 	crowgate.bind(1);
 
 	clinode.init(crow_service_handle, 8);

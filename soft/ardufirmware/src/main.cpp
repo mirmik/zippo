@@ -28,10 +28,13 @@
 
 DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
 
+
+void commands_init();
 int main()
 {
 	arch_init();
 	genos::schedee_manager_init();
+	ktimer_manager_init();
 	crow_services_init();
 
 	irqs_enable();
@@ -41,6 +44,7 @@ int main()
 	pinMode(9,1);
 	pinMode(10,1);
 
+	commands_init();
 	blink_task_init();
 	motors_task_init();
 

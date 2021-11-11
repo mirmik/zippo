@@ -4,6 +4,9 @@
 #include <igris/util/numconvert.h>
 #include <crow/nodes/nospublisher.h>
 #include <nos/print.h>
+#include <genos/ktimer.h>
+
+ktimer_head stop_timer;
 
 int hello(int argc, char ** argv, char * ans, int ansmax)
 {
@@ -47,6 +50,11 @@ int power_setup(int argc, char ** argv, char * ans, int ansmax)
 
 	lpower = a;
 	rpower = b;
+	if (lpower != 0 || rpower != 0)
+	{
+		stop_timer.start = millis();
+		ktimer_plan(&stop_timer);
+	}
 
 	return 0;
 }
@@ -65,4 +73,15 @@ int command(char * str, int len, char * ans, int ansmax)
 	int ret = 0;
 	rshell_execute(str, commands, &ret, 0, ans, ansmax);
 	return ret;
+}
+
+void stop_timer_handle(void *, struct ktimer_head *)
+{
+	lpower = 0;
+	rpower = 0;
+}
+
+void commands_init()
+{
+	ktimer_init(&stop_timer, stop_timer_handle, nullptr, 0, 2000);
 }

@@ -20,19 +20,12 @@ include("nos")
 
 default_device = "/dev/ttyACM0"
 
-@licant.routine(deps=["firmware.elf"])
-def install_retrans():
-	os.system("ctrans .12.127.0.0.1:10008 --pulse exit")
-	os.system("avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:./firmware.bin -u")
-	time.sleep(1)
-	os.system("bash /home/mirmik/start-trans.sh &")
-
-remote_ip = "192.168.1.93"
+remote_ip = "192.168.1.100"
 
 @licant.routine(deps=['firmware.elf'])
 def remote_install():
 	os.system("ctrans .12.{ip}:10010 --pulse exit".format(ip=remote_ip))
-	os.system("scp ./firmware mirmik@{ip}:/tmp/enginedrive.bin".format(ip=remote_ip))
+	os.system("scp ./firmware.elf mirmik@{ip}:/tmp/enginedrive.bin".format(ip=remote_ip))
 	os.system("ssh mirmik@{ip} avrdude -P/dev/ttyACM0 -v -carduino -patmega328p -b115200 -D -Uflash:w:/tmp/enginedrive.bin -u".format(ip=remote_ip))
 	time.sleep(1)
 	os.system("ssh mirmik@{ip} ctrans --api --noconsole --udp 10010 --serial /dev/ttyACM0 > /dev/null &".format(ip=remote_ip))
@@ -88,7 +81,6 @@ licant.cxx_application("firmware.elf",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
-		"igris.ctrobj.common",
 		"igris.utilxx",
 		"igris.compat.std",
 		"igris.cxx_support",
