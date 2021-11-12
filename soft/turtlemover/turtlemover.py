@@ -39,6 +39,7 @@ def getchar():
 		#termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 	return ch
 
+speed = 0.2
 while 1:
 	print("Press Key")
 	ch = getchar()
@@ -48,20 +49,28 @@ while 1:
 		break
 
 	elif 'A' == ch:
-		requestor.async_request("power 0.2 0.2".encode("utf-8"))
+		requestor.async_request(("power %.2f %.2f"%(speed,speed)).encode("utf-8"))
 		print("up")
 	elif 'B' == ch:
-		requestor.async_request("power -0.2 -0.2".encode("utf-8"))
+		requestor.async_request(("power -%.2f -%.2f"%(speed,speed)).encode("utf-8"))
 		print("down")
 	elif 'C' == ch:
-		requestor.async_request("power 0.2 -0.2".encode("utf-8"))
+		requestor.async_request(("power %.2f -%.2f"%(speed,speed)).encode("utf-8"))
 		print("rigth")
 	elif 'D' == ch:
-		requestor.async_request("power -0.2 0.2".encode("utf-8"))
+		requestor.async_request(("power -%.2f %.2f"%(speed,speed)).encode("utf-8"))
 		print("left")
 	elif 32 == ord(ch):
 		requestor.async_request("power 0 0".encode("utf-8"))
 		print("stop")
+
+	elif 'p' == ch:
+		speed += 0.01
+		print(speed)
+
+	elif 'o' == ch:
+		speed -= 0.01
+		print(speed)
 
 cancel_token =True
 pycrow.stop_spin(False)
