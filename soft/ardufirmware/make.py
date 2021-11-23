@@ -64,7 +64,7 @@ licant.cxx_application("firmware.elf",
 
 #		"crow.address",
 		"crow.minimal",
-		("crow.allocator", "pool"),		
+		("crow.allocator", "malloc"),		
 		"nos.print",
 		"nos.fprint",
 		("nos.current_ostream", "nullptr"),

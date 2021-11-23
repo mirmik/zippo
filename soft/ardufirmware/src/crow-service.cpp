@@ -36,9 +36,9 @@ crow::service_node clinode;
 char send_buffer[100];
 
 #define CROW_PACKET_SIZE 90
-#define CROW_PACKET_TOTAL 3
-__attribute__((aligned(16)))
-uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
+//#define CROW_PACKET_TOTAL 3
+//__attribute__((aligned(16)))
+//uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
 
 genos::autom_schedee crow_schedee([](void * priv, int * state)
 {
@@ -79,7 +79,7 @@ void crow_services_init()
 	int l = hexer_s(crowaddr_buffer, 16, caddr);
 	crowaddr = crow::hostaddr_view(crowaddr_buffer, l);
 
-	crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
+	//crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 	crowgate.init(
 	    send_buffer,
 	    crow_write_callback,
