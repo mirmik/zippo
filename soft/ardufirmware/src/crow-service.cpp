@@ -4,8 +4,8 @@
 #include <crow/constexpr_hexer.h>
 #include <crow/nodes/service_node.h>
 #include <crow/gates/self_driven_gstuff.h>
-#include <zillot/serial/uartring.h>
-#include <zillot/serial/avr_usart_device.h>
+#include <zillot/common/uartring.h>
+#include <zillot/avr/usart.h>
 #include <genos/autom_schedee.h>
 #include <genos/schedee_api.h>
 #include <zillot/ioflags.h>
@@ -13,63 +13,48 @@
 #include <crow/packet.h>
 
 extern genos::autom_schedee blink_schedee;
-extern struct avr_usart_device_s usart0;
-uint8_t crowaddr_buffer[16];
+extern zillot::avr::usart usart0;
+
 crow::hostaddr_view crowaddr;
 
-/*template< size_t N >
-constexpr std::array<char, N> constexpr_char_array( char const (&s)[N] )
-{
-	std::array<char, N> ret = {};
-	for (size_t i = 0; i < N; ++i)
-		ret[i] = s[i];
-	return ret;
-}
-constexpr auto crowaddr_pair = crow::constexpr_hexer(constexpr_char_array(".1.12.127.0.0.1:10009"));
-crow::hostaddr_view crowaddr(&*crowaddr_pair.first.begin(), crowaddr_pair.second);
-*/
-
-ZILLOT_DEF_UARTRING(serial0, &usart0.dev, 100, 16);
+ZILLOT_UARTRING(serial0, usart0, 100, 16);
 
 crow::self_driven_gstuff crowgate;
 crow::service_node clinode;
 char send_buffer[100];
-
-#define CROW_PACKET_SIZE 90
-//#define CROW_PACKET_TOTAL 3
-//__attribute__((aligned(16)))
-//uint8_t crow_pool_buffer[CROW_PACKET_SIZE * CROW_PACKET_TOTAL];
+uint8_t crowaddr_buffer[16];
+#define CROW_PACKET_SIZE 60
 
 genos::autom_schedee crow_schedee([](void * priv, int * state)
 {
 	(void) priv;
 	(void) state;
-	while (cdev_avail(&serial0.dev))
+	while (serial0.avail())
 	{
 		char c;
-		cdev_read(&serial0.dev, &c, 1, 0);
+		serial0.read(&c, 1);
 		crowgate.newdata(c);
 	}
-	cdev_read(&serial0.dev, NULL, 0, IO_VIRTUAL_DISPLACE);
+	//serial0.read(NULL, 0); // здесь надо наколдовать ожидание.
 }, nullptr);
 
 genos::autom_schedee crow_resubscribe_schedee([](void * priv, int * state)
 {
 	(void) priv;
 	(void) state;
-	clinode.subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
+	//clinode.subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
 	current_schedee_msleep(1000);
 }, nullptr);
 
-int crow_service_handle(char * a, int b, char * c, int d)
+void crow_service_handle(char* a, int b, crow::service_node& c)
 {
-	return command(a, b, c, d);
+	command(a, b, c);
 }
 
 int crow_write_callback(void * priv, const char *data, unsigned int size)
 {
 	(void) priv;
-	return cdev_write(&serial0.dev, data, size, IO_NOBLOCK);
+	return serial0.write(data, size);
 }
 
 const char * caddr = ".1.12.127.0.0.1:10009";
@@ -87,10 +72,9 @@ void crow_services_init()
 	    CROW_PACKET_SIZE);
 	crowgate.bind(1);
 
-	clinode.init(crow_service_handle, 8);
+	clinode.init(crow_service_handle);
 	clinode.bind(42);
 
-	uartring_install(&serial0, NULL);
 	schedee_start(&crow_schedee);
 	schedee_start(&crow_resubscribe_schedee);
 }

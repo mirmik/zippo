@@ -5,8 +5,10 @@
 #include <crow/nodes/nospublisher.h>
 #include <nos/print.h>
 #include <genos/ktimer.h>
+#include <crow/nodes/service_node.h>
+#include <igris/util/numconvert.h>
 
-ktimer_head stop_timer;
+genos::ktimer stop_timer;
 
 int hello(int argc, char ** argv, char * ans, int ansmax)
 {
@@ -45,15 +47,15 @@ int power_setup(int argc, char ** argv, char * ans, int ansmax)
 		return 0;
 	}
 
-	float a = atof32(argv[1], nullptr);
-	float b = atof32(argv[2], nullptr);
+	float a = igris_atof32(argv[1], nullptr);
+	float b = igris_atof32(argv[2], nullptr);
 
 	lpower = a;
 	rpower = b;
 	if (lpower != 0 || rpower != 0)
 	{
-		stop_timer.start = millis();
-		ktimer_plan(&stop_timer);
+		stop_timer.start = igris::millis();
+		stop_timer.plan();
 	}
 
 	return 0;
@@ -67,15 +69,16 @@ rshell_command commands[] =
 	{NULL, NULL, NULL}
 };
 
-int command(char * str, int len, char * ans, int ansmax)
+void command(char* str, int len, crow::service_node& c)
 {
+	char ansbuf[64];
 	if (str[len - 1] == '\n') str[len - 1] = 0;
 	int ret = 0;
-	rshell_execute(str, commands, &ret, 0, ans, ansmax);
-	return ret;
+	rshell_execute(str, commands, &ret, 0, ansbuf, 64);
+	c.reply(ansbuf, strlen(ansbuf));
 }
 
-void stop_timer_handle(void *, struct ktimer_head *)
+void stop_timer_handle(void *, genos::ktimer*)
 {
 	lpower = 0;
 	rpower = 0;
@@ -83,5 +86,5 @@ void stop_timer_handle(void *, struct ktimer_head *)
 
 void commands_init()
 {
-	ktimer_init(&stop_timer, stop_timer_handle, nullptr, 0, 2000);
+	stop_timer.init(stop_timer_handle, nullptr, 0, 2000);
 }

@@ -55,10 +55,14 @@ licant.cxx_application("firmware.elf",
 	],
 	mdepends=
 	[
-		"genos.include",	
+		#"igris.libc",
+		"igris.std",
+		"igris.posix",
+
+		#"genos.include",	
 		"igris.include",	
-		"zillot.include",	
-		"crow.include",	
+		#"zillot.include",	
+		#"crow.include",	
 		"nos.include",	
 		"ralgo.include",	
 
@@ -72,30 +76,39 @@ licant.cxx_application("firmware.elf",
 		"zillot",	
 		"genos",
 
-		"zillot.chip.avr.atmega328p",	
+		"zillot.avr",
+		"zillot.avr.atmega328p",	
 		"zillot.arduino.uno",			
-		"zillot.arduino.avr-systime",		
-		"zillot.drivers.avr",
+#		"zillot.arduino.avr-systime",		
+#		"zillot.drivers.avr",
 		"zillot.arduino.Adafruit_MotorShield",
-		"zillot.drivers.serial.avr",
+#		"zillot.drivers.serial.avr",
 
 		("igris.syslock", "irqs"),
 		"igris.util",
 		"igris.utilxx",
-		"igris.compat.std",
 		"igris.cxx_support",
+		("igris.systime", "jiffies"),
 		("igris.dprint", "diag"),
 		("crow.diagnostic", "stub"),
 		("crow.select", "stub"),
-		("igris.location", "stub")
+		("igris.location", "stub"),
+		#"igris.printf_impl"
 	],
 
 	include_paths = ["src"],
-	defines=["MEMORY_ECONOMY", "ADAFRUIT_MOTOR_SHIELD_NO_STEPPERS", "ADAFRUIT_MOTOR_SHIELD_NO_PWM"],
+	defines=[
+		"MEMORY_ECONOMY", 
+		"WITHOUT_ATOF64=1", 
+		"ADAFRUIT_MOTOR_SHIELD_NO_STEPPERS", 
+		"ADAFRUIT_MOTOR_SHIELD_NO_PWM",
+		"F_CPU=16000000",
+		"NDEBUG"
+	],
 
-	cxx_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-rtti -fno-exceptions",
-	cc_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Werror=all -Werror=extra -fno-exceptions",
-	ld_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -Wall -Wextra -fno-rtti -fno-exceptions",
+	cxx_flags = "-flto -ffunction-sections -fexceptions -fdata-sections -Wl,--gc-sections -Os -fno-rtti",
+	cc_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os",
+	ld_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -fno-rtti",
 
 	cxxstd = "c++17",
 )

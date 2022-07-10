@@ -3,8 +3,8 @@
 
 #include <crow/nodes/nospublisher.h>
 #include <nos/print.h>
-#include <zillot/i2c/avr_i2c_device.h>
-#include <zillot/serial/uartring.h>
+#include <zillot/avr/avr_i2c_device.h>
+#include <zillot/common/uartring.h>
 #include <zillot/ioflags.h>
 #include <ralgo/filter/aperiodic_filter.h>
 #include <genos/schedee_api.h>
@@ -111,10 +111,10 @@ void* updater(void* arg)
 	motor_fr.M = mshield.getMotor(3);
 	motor_fl.M = mshield.getMotor(4);
 
-	systime_t last_time = millis();
+	auto last_time = igris::millis();
 	while (1)
 	{
-		auto curtime = millis();
+		auto curtime = igris::millis();
 		if (POWER_ENABLED)
 		{
 			//auto delta = (curtime - last_time) * 0.001;

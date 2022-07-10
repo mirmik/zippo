@@ -1,6 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-int command(char * a, int b, char * c, int d);
+#include <crow/nodes/service_node.h>
+void command(char* a, int b, crow::service_node& c);
 
 #endif

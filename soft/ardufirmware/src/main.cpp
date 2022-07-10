@@ -13,9 +13,8 @@
 #include <crow/packet.h>
 
 #include <igris/util/numconvert.h>
-#include <zillot/i2c/avr_i2c_device.h>
-#include <zillot/serial/avr_usart_device.h>
-#include <zillot/i2c/avr_i2c_device.h>
+#include <zillot/avr/usart.h>
+#include <zillot/avr/avr_i2c_device.h>
 
 #include <ralgo/robo/motor.h>
 #include <ralgo/filter/aperiodic_filter.h>
@@ -26,15 +25,13 @@
 
 #define WITHOUT_COMMAND_TIMEOUT 300
 
-DECLARE_AVR_USART_WITH_IRQS(usart0, USART0, USART);
-
+AVR_USART_WITH_IRQS(usart0, USART0, USART);
 
 void commands_init();
 int main()
 {
 	arch_init();
 	genos::schedee_manager_init();
-	ktimer_manager_init();
 	crow_services_init();
 
 	irqs_enable();
@@ -56,10 +53,22 @@ void __schedule__()
 {
 	while (1)
 	{
-		auto curtime = millis();
+		//auto curtime = igris::millis();
 
 		crow::onestep();
-		ktimer_manager_step(curtime);
+		ktimer_manager_step();
 		genos::schedee_manager_step();
 	}
+}
+
+void emergency_halt() 
+{
+	irqs_disable();
+	while(1) {}
+}
+
+extern "C" int* __errno_location() 
+{
+	static int errno;
+	return &errno;
 }
