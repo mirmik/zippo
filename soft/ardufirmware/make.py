@@ -55,7 +55,7 @@ licant.cxx_application("firmware.elf",
 	],
 	mdepends=
 	[
-		#"igris.libc",
+		"igris.libc",
 		"igris.std",
 		"igris.posix",
 
@@ -94,6 +94,7 @@ licant.cxx_application("firmware.elf",
 		("crow.select", "stub"),
 		("igris.location", "stub"),
 		#"igris.printf_impl"
+		("igris.printf_impl", "stub")
 	],
 
 	include_paths = ["src"],
