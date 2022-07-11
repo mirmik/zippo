@@ -134,7 +134,7 @@ void* updater(void* arg)
 
 		last_time = curtime;
 		(void) last_time;
-		current_schedee_msleep(100);
+		genos::current_schedee_msleep(100);
 	}
 
 	return NULL;

@@ -56,7 +56,7 @@ void __schedule__()
 		//auto curtime = igris::millis();
 
 		crow::onestep();
-		ktimer_manager_step();
+		genos::ktimer_manager_step();
 		genos::schedee_manager_step();
 	}
 }
