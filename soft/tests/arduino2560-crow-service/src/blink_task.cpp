@@ -12,7 +12,6 @@ void blink_task(void* priv, int* state)
 	(void) priv;
 	(void) state;
 	digitalWrite(13,!digitalRead(13));
-	serial0.println(igris::millis());
 	genos::current_schedee_msleep(500);
 }
 
