@@ -8,22 +8,24 @@
 #include <zillot/avr/usart.h>
 #include <genos/autom_schedee.h>
 #include <genos/schedee_api.h>
+#include <genos/chardev.h>
 #include <zillot/ioflags.h>
 #include <command.h>
 #include <crow/packet.h>
 
-extern genos::autom_schedee blink_schedee;
 extern zillot::avr::usart usart0;
-
-crow::hostaddr_view crowaddr;
-
 ZILLOT_UARTRING(serial0, usart0, 100, 16);
+genos::zillot_chardev serial0_chardev(&serial0, "serial0");	
+
+extern genos::autom_schedee blink_schedee;
+
+crow::hostaddr crowaddr = crow::address(".1.12.127.0.0.1:10009");
+
 
 crow::self_driven_gstuff crowgate;
 crow::service_node clinode;
 char send_buffer[100];
-uint8_t crowaddr_buffer[16];
-#define CROW_PACKET_SIZE 60
+#define CROW_PACKET_SIZE 90
 
 genos::autom_schedee crow_schedee([](void * priv, int * state)
 {
@@ -32,18 +34,10 @@ genos::autom_schedee crow_schedee([](void * priv, int * state)
 	while (serial0.avail())
 	{
 		char c;
-		serial0.read(&c, 1);
+		serial0_chardev.read(&c, 1);
 		crowgate.newdata(c);
 	}
-	//serial0.read(NULL, 0); // здесь надо наколдовать ожидание.
-}, nullptr);
-
-genos::autom_schedee crow_resubscribe_schedee([](void * priv, int * state)
-{
-	(void) priv;
-	(void) state;
-	//clinode.subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
-	current_schedee_msleep(1000);
+	serial0_chardev.read(NULL, 0);
 }, nullptr);
 
 void crow_service_handle(char* a, int b, crow::service_node& c)
@@ -57,14 +51,8 @@ int crow_write_callback(void * priv, const char *data, unsigned int size)
 	return serial0.write(data, size);
 }
 
-const char * caddr = ".1.12.127.0.0.1:10009";
 void crow_services_init()
 {
-	memset(crowaddr_buffer, 0, 16);
-	int l = hexer_s(crowaddr_buffer, 16, caddr);
-	crowaddr = crow::hostaddr_view(crowaddr_buffer, l);
-
-	//crow::engage_packet_pool(crow_pool_buffer, CROW_PACKET_SIZE * CROW_PACKET_TOTAL, CROW_PACKET_SIZE);
 	crowgate.init(
 	    send_buffer,
 	    crow_write_callback,
@@ -73,8 +61,9 @@ void crow_services_init()
 	crowgate.bind(1);
 
 	clinode.init(crow_service_handle);
+	clinode.init_subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
 	clinode.bind(42);
+	clinode.install_keepalive(2000);
 
-	schedee_start(&crow_schedee);
-	schedee_start(&crow_resubscribe_schedee);
+	crow_schedee.start();
 }
