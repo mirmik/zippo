@@ -42,7 +42,7 @@ int main()
 	pinMode(10,1);
 
 	commands_init();
-	blink_task_init();
+	//blink_task_init();
 	motors_task_init();
 
 	while(1)

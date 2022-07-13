@@ -51,6 +51,12 @@ int crow_write_callback(void * priv, const char *data, unsigned int size)
 	return serial0.write(data, size);
 }
 
+int crow_room_callback(void * priv)
+{
+	(void) priv;
+	return serial0.room();
+}
+
 void crow_service_handle(char* a, int b, crow::service_node& c)
 {
 	c.reply("HelloWorld");
@@ -61,6 +67,7 @@ void crow_services_init()
 	crowgate.init(
 	    send_buffer,
 	    crow_write_callback,
+	    crow_room_callback,
 	    NULL,
 	    CROW_PACKET_SIZE);
 	crowgate.bind(1);

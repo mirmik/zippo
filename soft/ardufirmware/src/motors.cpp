@@ -9,6 +9,7 @@
 #include <ralgo/filter/aperiodic_filter.h>
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
+#include <Arduino.h>
 
 
 #include <avr/io.h>
@@ -21,7 +22,7 @@ Adafruit_MotorShield mshield;
 volatile bool POWER_ENABLED = false;
 
 void* updater(void* arg);
-char updater_schedee_heap[128];
+char updater_schedee_heap[100];
 genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, sizeof(updater_schedee_heap));
 
 volatile float lpower = 0;
@@ -134,6 +135,8 @@ void* updater(void* arg)
 
 		last_time = curtime;
 		(void) last_time;
+
+		digitalWrite(13,!digitalRead(13));
 		genos::current_schedee_msleep(100);
 	}
 

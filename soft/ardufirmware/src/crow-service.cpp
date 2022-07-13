@@ -2,7 +2,7 @@
 #include <crow/nodes/nospublisher.h>
 #include <crow/crow.h>
 #include <crow/constexpr_hexer.h>
-#include <crow/nodes/service_node.h>
+#include <crow/nodes/subscriber_node.h>
 #include <crow/gates/self_driven_gstuff.h>
 #include <zillot/common/uartring.h>
 #include <zillot/avr/usart.h>
@@ -14,18 +14,14 @@
 #include <crow/packet.h>
 
 extern zillot::avr::usart usart0;
-ZILLOT_UARTRING(serial0, usart0, 100, 16);
+ZILLOT_UARTRING(serial0, usart0, 90, 16);
 genos::zillot_chardev serial0_chardev(&serial0, "serial0");	
-
 extern genos::autom_schedee blink_schedee;
+crow::self_driven_gstuff crowgate;
+crow::subscriber_node clinode;
+char send_buffer[95];
 
 crow::hostaddr crowaddr = crow::address(".1.12.127.0.0.1:10009");
-
-
-crow::self_driven_gstuff crowgate;
-crow::service_node clinode;
-char send_buffer[100];
-#define CROW_PACKET_SIZE 90
 
 genos::autom_schedee crow_schedee([](void * priv, int * state)
 {
@@ -40,9 +36,9 @@ genos::autom_schedee crow_schedee([](void * priv, int * state)
 	serial0_chardev.read(NULL, 0);
 }, nullptr);
 
-void crow_service_handle(char* a, int b, crow::service_node& c)
+void crow_service_handle(igris::buffer buf, crow::subscriber_node& node)
 {
-	command(a, b, c);
+	command(buf);
 }
 
 int crow_write_callback(void * priv, const char *data, unsigned int size)
@@ -50,17 +46,25 @@ int crow_write_callback(void * priv, const char *data, unsigned int size)
 	(void) priv;
 	return serial0.write(data, size);
 }
+int crow_room_callback(void * priv)
+{
+	(void) priv;
+	return serial0.room();
+}
 
 void crow_services_init()
 {
+	serial0.begin();
+
 	crowgate.init(
 	    send_buffer,
 	    crow_write_callback,
+	    crow_room_callback,
 	    NULL,
-	    CROW_PACKET_SIZE);
+	    64);
 	crowgate.bind(1);
 
-	clinode.init(crow_service_handle);
+	clinode.set_handle(crow_service_handle);
 	clinode.init_subscribe(crowaddr, CROWKER_SERVICE_BROCKER_NODE_NO, "zippo/ctr", 0, 0, 0, 0);
 	clinode.bind(42);
 	clinode.install_keepalive(2000);

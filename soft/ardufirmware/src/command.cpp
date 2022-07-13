@@ -69,13 +69,14 @@ rshell_command commands[] =
 	{NULL, NULL, NULL}
 };
 
-void command(char* str, int len, crow::service_node& c)
+void command(igris::buffer buf)
 {
+	char * str = buf.data();
+	size_t len = buf.size();
 	char ansbuf[64];
 	if (str[len - 1] == '\n') str[len - 1] = 0;
 	int ret = 0;
 	rshell_execute(str, commands, &ret, 0, ansbuf, 64);
-	c.reply(ansbuf, strlen(ansbuf));
 }
 
 void stop_timer_handle(void *, genos::ktimer*)

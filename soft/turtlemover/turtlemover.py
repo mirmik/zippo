@@ -21,10 +21,10 @@ def sigint(code):
 	exit(0)
 signal.signal(signal.SIGINT, sigint)		
 
-requestor = pycrow.requestor(".12.192.168.1.100:10009", "zippo/ctr", "__noanswer__")
+requestor = pycrow.publisher(".12.192.168.1.100:10009", "zippo/ctr")
 
 print("Connect")
-requestor.async_request("enable on".encode("utf-8"))
+requestor.publish("enable on".encode("utf-8"))
 
 oldterm = termios.tcgetattr(sys.stdin.fileno())
 tty.setraw(sys.stdin.fileno())
@@ -49,19 +49,19 @@ while 1:
 		break
 
 	elif 'A' == ch:
-		requestor.async_request(("power %.2f %.2f"%(speed,speed)).encode("utf-8"))
+		requestor.publish(("power %.2f %.2f"%(speed,speed)).encode("utf-8"))
 		print("up")
 	elif 'B' == ch:
-		requestor.async_request(("power -%.2f -%.2f"%(speed,speed)).encode("utf-8"))
+		requestor.publish(("power -%.2f -%.2f"%(speed,speed)).encode("utf-8"))
 		print("down")
 	elif 'C' == ch:
-		requestor.async_request(("power %.2f -%.2f"%(speed,speed)).encode("utf-8"))
+		requestor.publish(("power %.2f -%.2f"%(speed,speed)).encode("utf-8"))
 		print("rigth")
 	elif 'D' == ch:
-		requestor.async_request(("power -%.2f %.2f"%(speed,speed)).encode("utf-8"))
+		requestor.publish(("power -%.2f %.2f"%(speed,speed)).encode("utf-8"))
 		print("left")
 	elif 32 == ord(ch):
-		requestor.async_request("power 0 0".encode("utf-8"))
+		requestor.publish("power 0 0".encode("utf-8"))
 		print("stop")
 
 	elif 'p' == ch:
