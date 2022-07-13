@@ -15,10 +15,10 @@
 //#include <crow/packet.h>
 
 extern zillot::avr::usart usart0;
-ZILLOT_UARTRING(serial0, usart0, 90, 16);
+ZILLOT_UARTRING(serial0, usart0, 100, 32);
 genos::zillot_chardev serial0_chardev(&serial0, "serial0");	
 
-uint8_t buffer[56];
+uint8_t buffer[100];
 gstuff_autorecv autorecv;
 
 /*extern genos::autom_schedee blink_schedee;
@@ -82,7 +82,7 @@ void crow_services_init()
 	clinode.bind(42);
 	clinode.install_keepalive(2000);
 */
-	autorecv.setbuf(buffer, 56);
+	autorecv.setbuf(buffer, 100);
 	autorecv.reset();
 	crow_schedee.start();
 }

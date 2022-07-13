@@ -22,7 +22,7 @@ Adafruit_MotorShield mshield;
 volatile bool POWER_ENABLED = false;
 
 void* updater(void* arg);
-char updater_schedee_heap[100];
+char updater_schedee_heap[200];
 genos::coop_schedee updater_schedee(updater, nullptr, (void*)updater_schedee_heap, sizeof(updater_schedee_heap));
 
 volatile float lpower = 0;
@@ -36,8 +36,8 @@ motor_driver & motor_br = motors[3];
 
 //ralgo::aperiodic_filter<float> ver_filter(0.90, 0.1);
 //ralgo::aperiodic_filter<float> hor_filter(0.90, 0.1);
-ralgo::aperiodic_filter<float> left_filter(0.1, 0.1);
-ralgo::aperiodic_filter<float> right_filter(0.1, 0.1);
+//ralgo::aperiodic_filter<float> left_filter(0.1, 0.1);
+//ralgo::aperiodic_filter<float> right_filter(0.1, 0.1);
 
 void motor_driver::power(float pwr)
 {
@@ -121,13 +121,13 @@ void* updater(void* arg)
 			motors_run(
 			lpower,
 			rpower
-				//left_filter.serve((float)lpower), 
-				//right_filter.serve((float)rpower)
+			//	left_filter.serve((float)lpower), 
+			//	right_filter.serve((float)rpower)
 			);
 		}
 		else {
-			left_filter.reset(0);
-			right_filter.reset(0);
+			//left_filter.reset(0);
+			//right_filter.reset(0);
 			motors_run(0, 0);
 		}
 
@@ -135,7 +135,7 @@ void* updater(void* arg)
 		(void) last_time;
 
 		digitalWrite(13,!digitalRead(13));
-		genos::current_schedee_msleep(100);
+		genos::current_schedee_msleep(50);
 	}
 
 	return NULL;

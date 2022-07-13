@@ -10,17 +10,8 @@
 
 genos::ktimer stop_timer;
 
-int hello(int argc, char ** argv, char * ans, int ansmax)
+int power_enable(int argc, char ** argv)
 {
-	(void) argv;
-	(void) argc;
-	snprintf(ans, ansmax, "helloworld");
-	return 10;
-}
-
-int power_enable(int argc, char ** argv, char * ans, int ansmax)
-{
-	(void) ans; (void) ansmax;
 	if (argc < 2)
 	{
 		return 0;
@@ -39,9 +30,8 @@ int power_enable(int argc, char ** argv, char * ans, int ansmax)
 	return 0;
 }
 
-int power_setup(int argc, char ** argv, char * ans, int ansmax)
+int power_setup(int argc, char ** argv)
 {
-	(void) ans; (void) ansmax;
 	if (argc < 3)
 	{
 		return 0;
@@ -55,28 +45,41 @@ int power_setup(int argc, char ** argv, char * ans, int ansmax)
 	if (lpower != 0 || rpower != 0)
 	{
 		stop_timer.start = igris::millis();
-		stop_timer.plan();
+		{
+			stop_timer.unplan();
+			stop_timer.plan();
+		}
 	}
 
 	return 0;
 }
 
-rshell_command commands[] =
-{
-	{"hello", hello, NULL},
-	{"enable", power_enable, NULL},
-	{"power", power_setup, NULL},
-	{NULL, NULL, NULL}
-};
-
 char ansbuf[64];
 void command(igris::buffer buf)
 {
-	char * str = buf.data();
+	/*char * str = buf.data();
 	size_t len = buf.size();
 	if (str[len - 1] == '\n') str[len - 1] = 0;
 	int ret = 0;
-	rshell_execute(str, commands, &ret, 0, ansbuf, 64);
+	rshell_execute(str, commands, &ret, 0, ansbuf, 64);*/
+
+	for (size_t i = 0; i < buf.size(); ++i) 
+	{
+		if (buf[i] == '\n' || buf[i] == '\r') buf[i] = 0;
+
+		char* argv[5];
+		int argc = argvc_internal_split(buf.data(), argv, 5);
+
+		if (strcmp(argv[0], "enable")==0) 
+		{
+			power_enable(argc, argv);
+		}
+
+		if (strcmp(argv[0], "power")==0) 
+		{
+			power_setup(argc, argv);
+		}
+	}
 }
 
 void stop_timer_handle(void *, genos::ktimer*)
