@@ -69,11 +69,11 @@ rshell_command commands[] =
 	{NULL, NULL, NULL}
 };
 
+char ansbuf[64];
 void command(igris::buffer buf)
 {
 	char * str = buf.data();
 	size_t len = buf.size();
-	char ansbuf[64];
 	if (str[len - 1] == '\n') str[len - 1] = 0;
 	int ret = 0;
 	rshell_execute(str, commands, &ret, 0, ansbuf, 64);

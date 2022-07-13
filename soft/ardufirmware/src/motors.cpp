@@ -36,8 +36,8 @@ motor_driver & motor_br = motors[3];
 
 //ralgo::aperiodic_filter<float> ver_filter(0.90, 0.1);
 //ralgo::aperiodic_filter<float> hor_filter(0.90, 0.1);
-ralgo::aperiodic_filter<float> left_filter(0.05, 0.01);
-ralgo::aperiodic_filter<float> right_filter(0.05, 0.01);
+ralgo::aperiodic_filter<float> left_filter(0.1, 0.1);
+ralgo::aperiodic_filter<float> right_filter(0.1, 0.1);
 
 void motor_driver::power(float pwr)
 {
@@ -118,13 +118,11 @@ void* updater(void* arg)
 		auto curtime = igris::millis();
 		if (POWER_ENABLED)
 		{
-			//auto delta = (curtime - last_time) * 0.001;
-
 			motors_run(
 			lpower,
 			rpower
-			//	left_filter.serve((float)lpower, delta), 
-			//	right_filter.serve((float)rpower, delta)
+				//left_filter.serve((float)lpower), 
+				//right_filter.serve((float)rpower)
 			);
 		}
 		else {

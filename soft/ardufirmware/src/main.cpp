@@ -32,10 +32,10 @@ int main()
 {
 	arch_init();
 	genos::schedee_manager_init();
-	crow_services_init();
 
 	irqs_enable();
     avr_usart_setup(USART0, 115200, 'n', 8, 1);
+	crow_services_init();
 
 	pinMode(13,1);
 	pinMode(9,1);
