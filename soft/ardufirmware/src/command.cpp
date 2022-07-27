@@ -2,10 +2,8 @@
 #include <motors.h>
 #include <igris/shell/rshell_executor.h>
 #include <igris/util/numconvert.h>
-#include <crow/nodes/nospublisher.h>
 #include <nos/print.h>
 #include <genos/ktimer.h>
-#include <crow/nodes/service_node.h>
 #include <igris/util/numconvert.h>
 
 genos::ktimer stop_timer;

@@ -13,7 +13,6 @@ import random
 
 pycrow.create_udpgate(12)
 pycrow.start_spin()
-pycrow.diagnostic_setup(True)
 
 def sigint(code):
 	pycrow.stop_spin()

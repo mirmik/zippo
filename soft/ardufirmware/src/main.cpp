@@ -7,11 +7,6 @@
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
 
-#include <crow/tower.h>
-#include <crow/address.h>
-#include <crow/nodes/publisher_node.h>
-#include <crow/packet.h>
-
 #include <igris/util/numconvert.h>
 #include <zillot/avr/usart.h>
 #include <zillot/avr/avr_i2c_device.h>
@@ -53,9 +48,6 @@ void __schedule__()
 {
 	while (1)
 	{
-		//auto curtime = igris::millis();
-
-		crow::onestep();
 		genos::ktimer_manager_step();
 		genos::schedee_manager_step();
 	}

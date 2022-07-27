@@ -1,7 +1,5 @@
 #include <motors.h>
 #include <asm/irq.h>
-
-#include <crow/nodes/nospublisher.h>
 #include <nos/print.h>
 #include <zillot/avr/avr_i2c_device.h>
 #include <zillot/common/uartring.h>
@@ -10,8 +8,6 @@
 #include <genos/schedee_api.h>
 #include <genos/coop_schedee.h>
 #include <Arduino.h>
-
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
