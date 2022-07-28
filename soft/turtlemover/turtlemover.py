@@ -74,11 +74,11 @@ while 1:
 
 
 	elif 'l' == ch:
-		rspeed += 0.005
+		rspeed += 0.002
 		print(rspeed)
 
 	elif 'k' == ch:
-		rspeed -= 0.005
+		rspeed -= 0.002
 		print(rspeed)
 
 cancel_token =True
