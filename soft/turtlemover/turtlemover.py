@@ -41,28 +41,28 @@ def getchar():
 speed = 0.22
 rspeed = 0.21
 while 1:
-	print("Press Key")
+	print("Press Key", "\r")
 	ch = getchar()
-	print("You pressed", ch, ord(ch))
+	print("You pressed", ch, ord(ch), "\r")
 
 	requestor.publish("enable on".encode("utf-8"))
 	if ch == 'q' or ord(ch) == 3: 
 		break
 	elif 'A' == ch:
 		requestor.publish(("power %.2f %.2f"%(speed,speed)).encode("utf-8"))
-		print("up")
+		print("up", "\r")
 	elif 'B' == ch:
 		requestor.publish(("power -%.2f -%.2f"%(speed,speed)).encode("utf-8"))
-		print("down")
+		print("down", "\r")
 	elif 'C' == ch:
 		requestor.publish(("power %.2f -%.2f"%(rspeed,rspeed)).encode("utf-8"))
-		print("rigth")
+		print("rigth", "\r")
 	elif 'D' == ch:
 		requestor.publish(("power -%.2f %.2f"%(rspeed,rspeed)).encode("utf-8"))
-		print("left")
+		print("left", "\r")
 	elif 32 == ord(ch):
 		requestor.publish("power 0 0".encode("utf-8"))
-		print("stop")
+		print("stop", "\r")
 
 	elif 'p' == ch:
 		speed += 0.005
