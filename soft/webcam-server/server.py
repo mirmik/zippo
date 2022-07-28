@@ -7,8 +7,8 @@ import cv2
 lock = threading.Lock()
 app = Flask(__name__)
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
 iii = 0
 
@@ -21,10 +21,6 @@ def generate():
         with lock:
             # generate random output frame    
             ret, frame = cap.read()
-
-            iii += 1
-            if iii % 5 == 0:
-                iii = 0
 
             quality = 30
 
