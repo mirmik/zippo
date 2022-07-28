@@ -10,6 +10,8 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+iii = 0
+
 def generate():
     # grab global references to the output frame and lock variables
     global outputFrame, lock, iii
