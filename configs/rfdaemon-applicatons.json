@@ -1,0 +1,19 @@
+{
+    "apps": [
+		{
+    	        "command": "/usr/local/bin/crowker --udp 10009",
+    	        "name": "crowker",
+    	        "restart": "always"
+    	},
+		{
+			"command" : "/home/mirmik/reproxy --mgmt.enabled --file.enabled --file.name=/home/mirmik/.reproxy.yml -l 0.0.0.0:80 --assets.location=/home/mirmik/project/zippo/control-panel/",
+			"name" : "reproxy",
+			"restart" : "always"
+		},
+		{
+    	        "command": "/home/mirmik/project/zippo/ctrans-arduino-adapter",
+    	        "name": "ctrans-adapter",
+    	        "restart": "always"
+    	},
+    ]
+}

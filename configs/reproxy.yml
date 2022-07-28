@@ -1,0 +1,2 @@
+default:
+  - { route: "^/rfdaemon/(.*)", dest: "http://127.0.0.1:9000/$1" }
