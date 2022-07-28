@@ -11,7 +11,7 @@
 			"restart" : "always"
 		},
 		{
-    	        "command": "/home/mirmik/project/zippo/ctrans-arduino-adapter",
+    	        "command": "/home/mirmik/project/zippo/soft/ctrans-arduino-adapter/ctrans-arduino-adapter",
     	        "name": "ctrans-adapter",
     	        "restart": "always"
     	}
