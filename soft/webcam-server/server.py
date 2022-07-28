@@ -22,7 +22,7 @@ def generate():
 
             # encode the frame in JPEG format
             print("Generating frame...")
-            (flag, encodedImage) = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), 50])
+            (flag, encodedImage) = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), 10])
             # ensure the frame was successfully encoded
             if not flag:
                 continue
