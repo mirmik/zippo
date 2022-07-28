@@ -20,9 +20,17 @@ def generate():
             # generate random output frame    
             ret, frame = cap.read()
 
+            iii += 1
+            if iii % 5 == 0:
+                iii = 0
+
+            quality = 30
+            if iii % 0 == 0:
+                quality = 50
+
             # encode the frame in JPEG format
             print("Generating frame...")
-            (flag, encodedImage) = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), 10])
+            (flag, encodedImage) = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), quality])
             # ensure the frame was successfully encoded
             if not flag:
                 continue
