@@ -7,8 +7,8 @@ import cv2
 lock = threading.Lock()
 app = Flask(__name__)
 cap = cv2.VideoCapture(0)
-cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, 320)
-cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, 240)
+cap.set(cv2.CV_CAP_PROP_FRAME_WIDTH, 320)
+cap.set(cv2.CV_CAP_PROP_FRAME_HEIGHT, 240)
 
 def generate():
     # grab global references to the output frame and lock variables
