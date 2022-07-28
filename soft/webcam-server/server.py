@@ -12,7 +12,7 @@ iii = 1
 
 def generate():
     # grab global references to the output frame and lock variables
-    global outputFrame, lock
+    global outputFrame, lock, iii
     # loop over frames from the output stream
     while True:
         # wait until the lock is acquired
