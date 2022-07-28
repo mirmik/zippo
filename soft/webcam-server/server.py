@@ -28,7 +28,7 @@ def generate():
 
             quality = 30
             if iii == 0:
-                quality = 50
+                quality = 100
 
             # encode the frame in JPEG format
             print("Generating frame...")
