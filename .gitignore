@@ -70,3 +70,5 @@ firmware.hex
 firmware.bin
 
 *.stl
+
+soft/ctrans-arduino-adapter/ctrans-arduino-adapter
