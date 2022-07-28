@@ -14,6 +14,11 @@
     	        "command": "/home/mirmik/project/zippo/soft/ctrans-arduino-adapter/ctrans-arduino-adapter",
     	        "name": "ctrans-adapter",
     	        "restart": "always"
+    	},
+		{
+    	        "command": "/home/mirmik/project/zippo/soft/webcam-server/server.py",
+    	        "name": "webcam-server",
+    	        "restart": "always"
     	}
     ]
 }
