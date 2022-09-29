@@ -1,0 +1,9 @@
+pipeline:
+  - name: zippo
+    watchdog: 600
+    git:
+      url: https://github.com/mirmik/zippo
+      name: zippo
+    steps:
+      - name: make-arduino-firmware
+        run: cd soft/ardufirmware && ./make.py
