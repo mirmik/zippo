@@ -93,7 +93,7 @@ licant.cxx_application("firmware.elf",
 		"igris.utilxx",
 		"igris.cxx_support",
 		("igris.systime", "jiffies"),
-		("igris.dprint", "diag"),
+		("igris.dprint", "zillot.diag"),
 		#("crow.diagnostic", "stub"),
 		#("crow.select", "stub"),
 		("igris.location", "stub"),
@@ -111,7 +111,7 @@ licant.cxx_application("firmware.elf",
 		"NDEBUG"
 	],
 
-	cxx_flags = "-flto -ffunction-sections -fexceptions -fdata-sections -Wl,--gc-sections -Os -fno-rtti",
+	cxx_flags = "-flto -fmax-errors=3 -ffunction-sections -fexceptions -fdata-sections -Wl,--gc-sections -Os -fno-rtti",
 	cc_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os",
 	ld_flags = "-flto -ffunction-sections -fdata-sections -Wl,--gc-sections -Os -fno-rtti",
 
