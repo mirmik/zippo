@@ -66,7 +66,7 @@ licant.cxx_application("firmware.elf",
                        mdepends=[
                            "igris.libc",
                            "igris.std",
-                           "igris.posix",
+                           "zillot.posix-stub",
 
                            # "genos.include",
                            "igris.include",
